@@ -1,0 +1,70 @@
+name: Build picks and deploy Pages
+
+on:
+  workflow_dispatch:
+  schedule:
+    # Daily at 9:10am Eastern = 14:10 UTC (adjust anytime)
+    - cron: "10 14 * * *"
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: true
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install Python deps
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Build picks JSON
+        env:
+          NCAA_API_BASE: "https://ncaa-api.henrygd.me"
+          START_SEASON_DATE: "2025-11-01"
+          HOME_COURT_ADV_ELO: "65"
+          ELO_K: "20"
+          API_SLEEP_SECONDS: "0.25"
+        run: |
+          python scripts/build_picks.py
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Install frontend deps
+        working-directory: app
+        run: npm ci
+
+      - name: Build frontend
+        working-directory: app
+        run: npm run build
+
+      - name: Copy picks into build
+        run: |
+          mkdir -p app/dist/picks
+          cp -r public/picks/* app/dist/picks/
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: app/dist
+
+      - name: Deploy to GitHub Pages
+        uses: actions/deploy-pages@v4
