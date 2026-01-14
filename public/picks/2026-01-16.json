@@ -1,14 +1,21 @@
 {
   "date": "2026-01-16",
   "season": "2025-2026",
-  "generated_at": "2026-01-14T16:18:04Z",
+  "generated_at": "2026-01-14T17:03:53Z",
   "model": {
     "type": "Elo",
     "mov": true,
     "recency_half_life_days": 30.0,
     "mov_cap": 2.0,
     "home_court_adv_elo": 65.0,
-    "neutral_site_hca": 0
+    "neutral_site_hca": 0,
+    "k_ramp": {
+      "k_early_mult": 1.4,
+      "k_mid_mult": 1.0,
+      "k_late_mult": 0.85,
+      "k_ramp_early_days": 45,
+      "k_ramp_mid_days": 105
+    }
   },
   "picks": [
     {
