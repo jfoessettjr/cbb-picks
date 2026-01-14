@@ -3,7 +3,6 @@ import "./App.css";
 
 function isoTodayLocal() {
   const d = new Date();
-  // build YYYY-MM-DD in local time (not UTC)
   const yyyy = d.getFullYear();
   const mm = String(d.getMonth() + 1).padStart(2, "0");
   const dd = String(d.getDate()).padStart(2, "0");
@@ -12,24 +11,32 @@ function isoTodayLocal() {
 
 export default function App() {
   const urlParams = new URLSearchParams(window.location.search);
-  const dateFromQuery = urlParams.get("date"); // optional ?date=YYYY-MM-DD
+  const dateFromQuery = urlParams.get("date");
   const [selectedDate, setSelectedDate] = useState(dateFromQuery || isoTodayLocal());
 
+  const [manifest, setManifest] = useState(null);
   const [data, setData] = useState(null);
   const [err, setErr] = useState("");
 
+  // Load manifest for available dates
+  useEffect(() => {
+    fetch(`${import.meta.env.BASE_URL}picks/manifest.json`)
+      .then((r) => (r.ok ? r.json() : Promise.reject(new Error(`HTTP ${r.status}`))))
+      .then(setManifest)
+      .catch(() => setManifest(null));
+  }, []);
+
+  // Load data for selected date
   useEffect(() => {
     setErr("");
     setData(null);
 
-    // We generate picks/YYYY-MM-DD.json daily in the workflow
     const url = `${import.meta.env.BASE_URL}picks/${selectedDate}.json`;
 
     fetch(url)
       .then((r) => (r.ok ? r.json() : Promise.reject(new Error(`No file for ${selectedDate} (HTTP ${r.status})`))))
       .then(setData)
       .catch(async () => {
-        // Fallback to latest.json so the site never feels "broken"
         try {
           const r2 = await fetch(`${import.meta.env.BASE_URL}picks/latest.json`);
           if (!r2.ok) throw new Error(`HTTP ${r2.status}`);
@@ -48,10 +55,16 @@ export default function App() {
     const d = e.target.value;
     setSelectedDate(d);
 
-    // Keep URL shareable
     const u = new URL(window.location.href);
     u.searchParams.set("date", d);
     window.history.replaceState({}, "", u.toString());
+  };
+
+  const cardStyle = {
+    border: "1px solid var(--border)",
+    borderRadius: 12,
+    padding: 14,
+    background: "var(--card-bg)",
   };
 
   return (
@@ -65,7 +78,9 @@ export default function App() {
             type="date"
             value={selectedDate}
             onChange={onChangeDate}
-            style={{ padding: 6, borderRadius: 8, border: "1px solid #ccc" }}
+            min={manifest?.min_date || undefined}
+            max={manifest?.max_date || undefined}
+            style={{ padding: 6, borderRadius: 8 }}
           />
         </label>
 
@@ -74,6 +89,12 @@ export default function App() {
           <b>{data?.generated_at ?? "—"}</b>
         </div>
       </div>
+
+      {manifest?.min_date && manifest?.max_date && (
+        <div style={{ opacity: 0.75, marginBottom: 12 }}>
+          Available dates: <b>{manifest.min_date}</b> to <b>{manifest.max_date}</b>
+        </div>
+      )}
 
       {err && (
         <div style={{ color: "crimson", marginBottom: 12 }}>
@@ -89,21 +110,11 @@ export default function App() {
 
           <div style={{ display: "grid", gap: 12 }}>
             {top5.length === 0 && (
-              <div style={{ border: "1px solid #ddd", borderRadius: 12, padding: 14 }}>
-                No games found for this date.
-              </div>
+              <div style={cardStyle}>No games found for this date.</div>
             )}
 
             {top5.map((p) => (
-              <div
-                key={p.game_id}
-                style={{
-                  border: "1px solid #ddd",
-                  borderRadius: 12,
-                  padding: 14,
-                  background: "white",
-                }}
-              >
+              <div key={p.game_id} style={cardStyle}>
                 <div style={{ fontSize: 18, fontWeight: 800 }}>
                   {p.away_team} @ {p.home_team}
                 </div>
@@ -113,8 +124,7 @@ export default function App() {
                 </div>
 
                 <div style={{ marginTop: 8, opacity: 0.75, fontSize: 13 }}>
-                  Elo (raw): {Math.round(p.home_elo_raw)} (home) vs {Math.round(p.away_elo)} (away) •
-                  HCA: +{p.hca} • Home Elo w/ HCA: {Math.round(p.home_elo_with_hca)}
+                  Elo (raw): {Math.round(p.home_elo_raw)} vs {Math.round(p.away_elo)} • HCA: +{p.hca}
                 </div>
               </div>
             ))}
@@ -124,7 +134,7 @@ export default function App() {
           <div style={{ overflowX: "auto" }}>
             <table style={{ width: "100%", borderCollapse: "collapse", minWidth: 520 }}>
               <thead>
-                <tr style={{ borderBottom: "2px solid #eee" }}>
+                <tr style={{ borderBottom: "2px solid var(--table-border)" }}>
                   <th align="left" style={{ padding: "8px 0" }}>Matchup</th>
                   <th align="left" style={{ padding: "8px 0" }}>Pick</th>
                   <th align="left" style={{ padding: "8px 0" }}>Win %</th>
@@ -132,7 +142,7 @@ export default function App() {
               </thead>
               <tbody>
                 {(data.picks ?? []).map((p) => (
-                  <tr key={`row-${p.game_id}`} style={{ borderTop: "1px solid #f0f0f0" }}>
+                  <tr key={`row-${p.game_id}`} style={{ borderTop: "1px solid var(--table-border)" }}>
                     <td style={{ padding: "10px 0" }}>{p.away_team} @ {p.home_team}</td>
                     <td>{p.pick_team}</td>
                     <td>{Math.round(p.win_prob * 100)}%</td>
@@ -143,7 +153,7 @@ export default function App() {
           </div>
 
           <div style={{ marginTop: 18, opacity: 0.75, fontSize: 13 }}>
-            Tip: share a date directly with <code>?date=YYYY-MM-DD</code>
+            Share a date directly with <code>?date=YYYY-MM-DD</code>
           </div>
         </>
       )}
