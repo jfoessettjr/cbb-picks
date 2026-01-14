@@ -43,6 +43,12 @@ jobs:
           API_SLEEP_SECONDS: "0.25"
           FUTURE_DAYS: "3"
           ELO_SNAPSHOT_PATH: "data/elo_snapshot.json"
+          K_EARLY_MULT: "1.40"
+          K_MID_MULT: "1.00"
+          K_LATE_MULT: "0.85"
+          K_RAMP_EARLY_DAYS: "45"
+          K_RAMP_MID_DAYS: "105"
+
         run: |
           python scripts/build_picks.py
 

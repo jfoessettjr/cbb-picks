@@ -21,6 +21,18 @@ K = float(os.getenv("ELO_K", "20"))
 HALF_LIFE_DAYS = float(os.getenv("HALF_LIFE_DAYS", "30"))
 MOV_CAP = float(os.getenv("MOV_CAP", "2.0"))
 
+# Season-phase K multipliers (higher early season, lower late season)
+# Smooth K ramp (days since season start)
+K_EARLY_MULT = float(os.getenv("K_EARLY_MULT", "1.40"))  # very early season
+K_MID_MULT   = float(os.getenv("K_MID_MULT", "1.00"))    # mid-season baseline
+K_LATE_MULT  = float(os.getenv("K_LATE_MULT", "0.85"))   # late-season stability
+
+# Ramp breakpoints (days since season start)
+K_RAMP_EARLY_DAYS = int(os.getenv("K_RAMP_EARLY_DAYS", "45"))   # end of early ramp
+K_RAMP_MID_DAYS   = int(os.getenv("K_RAMP_MID_DAYS", "105"))    # end of mid ramp
+
+
+
 SLEEP_SECONDS = float(os.getenv("API_SLEEP_SECONDS", "0.25"))
 SNAPSHOT_PATH = os.getenv("ELO_SNAPSHOT_PATH", "data/elo_snapshot.json")
 
@@ -138,6 +150,32 @@ def save_snapshot(season_start: date, last_finalized: date, ratings: dict[str, f
     }
     with open(SNAPSHOT_PATH, "w", encoding="utf-8") as f:
         json.dump(payload, f, indent=2)
+        
+def lerp(a: float, b: float, t: float) -> float:
+    return a + (b - a) * t
+
+def k_multiplier_ramp(game_day: date, season_start: date) -> float:
+    """
+    Smooth piecewise-linear ramp by days since season start:
+      0 .. K_RAMP_EARLY_DAYS : K_EARLY_MULT -> K_MID_MULT
+      K_RAMP_EARLY_DAYS .. K_RAMP_MID_DAYS : K_MID_MULT -> K_LATE_MULT
+      beyond K_RAMP_MID_DAYS : K_LATE_MULT
+    """
+    days = max(0, (game_day - season_start).days)
+
+    e = max(1, K_RAMP_EARLY_DAYS)
+    m = max(e + 1, K_RAMP_MID_DAYS)
+
+    if days <= e:
+        t = days / e
+        return lerp(K_EARLY_MULT, K_MID_MULT, t)
+
+    if days <= m:
+        t = (days - e) / (m - e)
+        return lerp(K_MID_MULT, K_LATE_MULT, t)
+
+    return K_LATE_MULT
+
 
 def apply_finals_for_date(d: date, as_of: date, ratings: dict[str, float]):
     """
@@ -170,14 +208,18 @@ def apply_finals_for_date(d: date, as_of: date, ratings: dict[str, float]):
         r_home = ratings.get(hid, 1500.0)
         r_away = ratings.get(aid, 1500.0)
 
+        season_start = season_start_for(as_of)
+        k_mult = k_multiplier_ramp(d, season_start)
+
         new_home, new_away = update_elo_mov_recency(
             r_home, r_away,
             home_score=hs, away_score=a_s,
-            base_k=K,
+            base_k=K * k_mult,
             days_ago=days_ago,
             half_life_days=HALF_LIFE_DAYS,
             mov_cap=MOV_CAP
         )
+
 
         ratings[hid], ratings[aid] = new_home, new_away
 
@@ -237,7 +279,14 @@ def write_picks_for_date(d: date, ratings: dict[str, float]):
             "recency_half_life_days": HALF_LIFE_DAYS,
             "mov_cap": MOV_CAP,
             "home_court_adv_elo": HCA,
-            "neutral_site_hca": 0
+            "neutral_site_hca": 0,
+            "k_ramp": {
+                "k_early_mult": K_EARLY_MULT,
+                "k_mid_mult": K_MID_MULT,
+                "k_late_mult": K_LATE_MULT,
+                "k_ramp_early_days": K_RAMP_EARLY_DAYS,
+                "k_ramp_mid_days": K_RAMP_MID_DAYS
+                }
         },
         "picks": picks,
     }
