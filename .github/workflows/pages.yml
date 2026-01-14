@@ -38,11 +38,14 @@ jobs:
           NCAA_API_BASE: "https://ncaa-api.henrygd.me"
           HOME_COURT_ADV_ELO: "65"
           ELO_K: "20"
+          HALF_LIFE_DAYS: "30"
+          MOV_CAP: "2.0"
           API_SLEEP_SECONDS: "0.25"
           FUTURE_DAYS: "3"
           ELO_SNAPSHOT_PATH: "data/elo_snapshot.json"
         run: |
           python scripts/build_picks.py
+
 
       - name: Commit generated picks + snapshot (if changed)
         run: |
