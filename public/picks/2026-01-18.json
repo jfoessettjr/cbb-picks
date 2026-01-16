@@ -1,7 +1,7 @@
 {
   "date": "2026-01-18",
   "season": "2025-2026",
-  "generated_at": "2026-01-15T14:39:40Z",
+  "generated_at": "2026-01-16T14:38:30Z",
   "model": {
     "type": "Elo",
     "mov": true,
@@ -51,10 +51,36 @@
       "away_team": "Milwaukee",
       "neutral_site": false,
       "pick_team": "Purdue Fort Wayne",
-      "win_prob": 0.657423676760366,
+      "win_prob": 0.6716451677779369,
       "home_elo_raw": 1534.2780730709367,
       "home_elo_with_hca": 1599.2780730709367,
-      "away_elo": 1486.0428742724873,
+      "away_elo": 1474.9594800430384,
+      "hca": 65.0
+    },
+    {
+      "game_id": "6505255",
+      "date_time_epoch": 1768780800,
+      "home_team": "San Francisco",
+      "away_team": "Washington St.",
+      "neutral_site": false,
+      "pick_team": "San Francisco",
+      "win_prob": 0.6485530308850456,
+      "home_elo_raw": 1532.138786089477,
+      "home_elo_with_hca": 1597.138786089477,
+      "away_elo": 1490.7045097060868,
+      "hca": 65.0
+    },
+    {
+      "game_id": "6504349",
+      "date_time_epoch": 1768762800,
+      "home_team": "South Fla.",
+      "away_team": "Wichita St.",
+      "neutral_site": false,
+      "pick_team": "South Fla.",
+      "win_prob": 0.6434926949345269,
+      "home_elo_raw": 1553.6427122288121,
+      "home_elo_with_hca": 1618.6427122288121,
+      "away_elo": 1516.0526371043193,
       "hca": 65.0
     },
     {
@@ -71,42 +97,16 @@
       "hca": 65.0
     },
     {
-      "game_id": "6505255",
-      "date_time_epoch": 1768780800,
-      "home_team": "San Francisco",
-      "away_team": "Washington St.",
-      "neutral_site": false,
-      "pick_team": "San Francisco",
-      "win_prob": 0.637971408739611,
-      "home_elo_raw": 1532.138786089477,
-      "home_elo_with_hca": 1597.138786089477,
-      "away_elo": 1498.7154478879854,
-      "hca": 65.0
-    },
-    {
-      "game_id": "6504349",
-      "date_time_epoch": 1768762800,
-      "home_team": "South Fla.",
-      "away_team": "Wichita St.",
-      "neutral_site": false,
-      "pick_team": "South Fla.",
-      "win_prob": 0.6277012425055946,
-      "home_elo_raw": 1553.6427122288121,
-      "home_elo_with_hca": 1618.6427122288121,
-      "away_elo": 1527.898151626406,
-      "hca": 65.0
-    },
-    {
       "game_id": "6502150",
       "date_time_epoch": 1768762800,
       "home_team": "Green Bay",
       "away_team": "Oakland",
       "neutral_site": false,
       "pick_team": "Green Bay",
-      "win_prob": 0.6132181860080921,
-      "home_elo_raw": 1527.7392153003225,
-      "home_elo_with_hca": 1592.7392153003225,
-      "away_elo": 1512.679623218245,
+      "win_prob": 0.6105086029458269,
+      "home_elo_raw": 1536.8405848815814,
+      "home_elo_with_hca": 1601.8405848815814,
+      "away_elo": 1523.763017447694,
       "hca": 65.0
     },
     {
@@ -116,10 +116,10 @@
       "away_team": "Fla. Atlantic",
       "neutral_site": false,
       "pick_team": "Temple",
-      "win_prob": 0.5850394683689714,
+      "win_prob": 0.5683954554922164,
       "home_elo_raw": 1542.1921709086644,
       "home_elo_with_hca": 1607.1921709086644,
-      "away_elo": 1547.5208211558788,
+      "away_elo": 1559.3663356779655,
       "hca": 65.0
     },
     {
@@ -129,9 +129,9 @@
       "away_team": "Blackburn",
       "neutral_site": false,
       "pick_team": "Eastern Ill.",
-      "win_prob": 0.5719894952715467,
-      "home_elo_raw": 1485.3734499358814,
-      "home_elo_with_hca": 1550.3734499358814,
+      "win_prob": 0.5553987353032853,
+      "home_elo_raw": 1473.6536770966495,
+      "home_elo_with_hca": 1538.6536770966495,
       "away_elo": 1500.0,
       "hca": 65.0
     },
