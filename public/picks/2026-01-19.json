@@ -1,7 +1,7 @@
 {
   "date": "2026-01-19",
   "season": "2025-2026",
-  "generated_at": "2026-01-16T14:38:31Z",
+  "generated_at": "2026-01-17T14:32:00Z",
   "model": {
     "type": "Elo",
     "mov": true,
@@ -409,19 +409,6 @@
       "hca": 65.0
     },
     {
-      "game_id": "6502646",
-      "date_time_epoch": 1768863600,
-      "home_team": "Marquette",
-      "away_team": "Providence",
-      "neutral_site": false,
-      "pick_team": "Marquette",
-      "win_prob": 0.5362713017042675,
-      "home_elo_raw": 1458.976291148187,
-      "home_elo_with_hca": 1523.976291148187,
-      "away_elo": 1498.7280579201035,
-      "hca": 65.0
-    },
-    {
       "game_id": "6503743",
       "date_time_epoch": 1768870800,
       "home_team": "New Orleans",
@@ -510,6 +497,19 @@
       "home_elo_raw": 1473.2147673634277,
       "home_elo_with_hca": 1538.2147673634277,
       "away_elo": 1525.0935218651987,
+      "hca": 65.0
+    },
+    {
+      "game_id": "6502646",
+      "date_time_epoch": 1768863600,
+      "home_team": "Marquette",
+      "away_team": "Providence",
+      "neutral_site": false,
+      "pick_team": "Marquette",
+      "win_prob": 0.5073593990791594,
+      "home_elo_raw": 1450.653301584622,
+      "home_elo_with_hca": 1515.653301584622,
+      "away_elo": 1510.539097988123,
       "hca": 65.0
     },
     {
