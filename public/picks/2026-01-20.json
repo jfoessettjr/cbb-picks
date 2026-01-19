@@ -1,7 +1,7 @@
 {
   "date": "2026-01-20",
   "season": "2025-2026",
-  "generated_at": "2026-01-18T14:31:09Z",
+  "generated_at": "2026-01-19T14:45:20Z",
   "model": {
     "type": "Elo",
     "mov": true,
@@ -159,6 +159,19 @@
       "home_elo_raw": 1563.1956508713226,
       "home_elo_with_hca": 1628.1956508713226,
       "away_elo": 1521.6624169886527,
+      "hca": 65.0
+    },
+    {
+      "game_id": "6537904",
+      "date_time_epoch": 1768950000,
+      "home_team": "Morgan St.",
+      "away_team": "Virginia-Lynchburg",
+      "neutral_site": false,
+      "pick_team": "Morgan St.",
+      "win_prob": 0.6190058602949312,
+      "home_elo_raw": 1435.920550271455,
+      "home_elo_with_hca": 1500.920550271455,
+      "away_elo": 1416.609964257827,
       "hca": 65.0
     },
     {

@@ -1,7 +1,7 @@
 {
   "date": "2026-01-21",
   "season": "2025-2026",
-  "generated_at": "2026-01-18T14:31:10Z",
+  "generated_at": "2026-01-19T14:45:21Z",
   "model": {
     "type": "Elo",
     "mov": true,
@@ -32,19 +32,6 @@
       "hca": 65.0
     },
     {
-      "game_id": "6503730",
-      "date_time_epoch": 1769040000,
-      "home_team": "Illinois",
-      "away_team": "Maryland",
-      "neutral_site": false,
-      "pick_team": "Illinois",
-      "win_prob": 0.7585932613713277,
-      "home_elo_raw": 1610.4723893733392,
-      "home_elo_with_hca": 1675.4723893733392,
-      "away_elo": 1476.5685526965517,
-      "hca": 65.0
-    },
-    {
       "game_id": "6505373",
       "date_time_epoch": 1769047200,
       "home_team": "Nebraska",
@@ -71,6 +58,19 @@
       "hca": 65.0
     },
     {
+      "game_id": "6501792",
+      "date_time_epoch": 1769040000,
+      "home_team": "Oakland",
+      "away_team": "IU Indy",
+      "neutral_site": false,
+      "pick_team": "Oakland",
+      "win_prob": 0.7480023221532401,
+      "home_elo_raw": 1537.2670618013324,
+      "home_elo_with_hca": 1602.2670618013324,
+      "away_elo": 1413.2644988666896,
+      "hca": 65.0
+    },
+    {
       "game_id": "6530947",
       "date_time_epoch": 1769054400,
       "home_team": "Saint Mary's (CA)",
@@ -81,6 +81,32 @@
       "home_elo_raw": 1616.7992964348082,
       "home_elo_with_hca": 1681.7992964348082,
       "away_elo": 1496.4902942703545,
+      "hca": 65.0
+    },
+    {
+      "game_id": "6503730",
+      "date_time_epoch": 1769040000,
+      "home_team": "Illinois",
+      "away_team": "Maryland",
+      "neutral_site": false,
+      "pick_team": "Illinois",
+      "win_prob": 0.7436574086440272,
+      "home_elo_raw": 1610.4723893733392,
+      "home_elo_with_hca": 1675.4723893733392,
+      "away_elo": 1490.4515339074721,
+      "hca": 65.0
+    },
+    {
+      "game_id": "6532430",
+      "date_time_epoch": 1769043600,
+      "home_team": "North Texas",
+      "away_team": "UTSA",
+      "neutral_site": false,
+      "pick_team": "North Texas",
+      "win_prob": 0.7424030260722302,
+      "home_elo_raw": 1535.0873507898375,
+      "home_elo_with_hca": 1600.0873507898375,
+      "away_elo": 1416.20776019142,
       "hca": 65.0
     },
     {
@@ -110,19 +136,6 @@
       "hca": 65.0
     },
     {
-      "game_id": "6501792",
-      "date_time_epoch": 1769040000,
-      "home_team": "Oakland",
-      "away_team": "IU Indy",
-      "neutral_site": false,
-      "pick_team": "Oakland",
-      "win_prob": 0.7330692052084221,
-      "home_elo_raw": 1523.763017447694,
-      "home_elo_with_hca": 1588.763017447694,
-      "away_elo": 1413.2644988666896,
-      "hca": 65.0
-    },
-    {
       "game_id": "6505496",
       "date_time_epoch": 1769054400,
       "home_team": "Southern California",
@@ -136,19 +149,6 @@
       "hca": 65.0
     },
     {
-      "game_id": "6532430",
-      "date_time_epoch": 1769043600,
-      "home_team": "North Texas",
-      "away_team": "UTSA",
-      "neutral_site": false,
-      "pick_team": "North Texas",
-      "win_prob": 0.7173105917478519,
-      "home_elo_raw": 1522.8975606875088,
-      "home_elo_with_hca": 1587.8975606875088,
-      "away_elo": 1426.1384779277564,
-      "hca": 65.0
-    },
-    {
       "game_id": "6505018",
       "date_time_epoch": 1769040000,
       "home_team": "Villanova",
@@ -159,6 +159,19 @@
       "home_elo_raw": 1585.3241503763916,
       "home_elo_with_hca": 1650.3241503763916,
       "away_elo": 1498.1480929851707,
+      "hca": 65.0
+    },
+    {
+      "game_id": "6504351",
+      "date_time_epoch": 1769041800,
+      "home_team": "Wichita St.",
+      "away_team": "East Carolina",
+      "neutral_site": false,
+      "pick_team": "Wichita St.",
+      "win_prob": 0.7052593731962277,
+      "home_elo_raw": 1525.3747977850799,
+      "home_elo_with_hca": 1590.3747977850799,
+      "away_elo": 1438.8112521626406,
       "hca": 65.0
     },
     {
@@ -201,6 +214,19 @@
       "hca": 65.0
     },
     {
+      "game_id": "6505338",
+      "date_time_epoch": 1769043600,
+      "home_team": "Tulsa",
+      "away_team": "Memphis",
+      "neutral_site": false,
+      "pick_team": "Tulsa",
+      "win_prob": 0.6981552814952965,
+      "home_elo_raw": 1602.108599249744,
+      "home_elo_with_hca": 1667.108599249744,
+      "away_elo": 1521.441220633655,
+      "hca": 65.0
+    },
+    {
       "game_id": "6503828",
       "date_time_epoch": 1769040000,
       "home_team": "Navy",
@@ -211,32 +237,6 @@
       "home_elo_raw": 1552.7407199843897,
       "home_elo_with_hca": 1617.7407199843897,
       "away_elo": 1473.6054184367035,
-      "hca": 65.0
-    },
-    {
-      "game_id": "6505338",
-      "date_time_epoch": 1769043600,
-      "home_team": "Tulsa",
-      "away_team": "Memphis",
-      "neutral_site": false,
-      "pick_team": "Tulsa",
-      "win_prob": 0.6962195804081704,
-      "home_elo_raw": 1590.585085113467,
-      "home_elo_with_hca": 1655.585085113467,
-      "away_elo": 1511.5105028973185,
-      "hca": 65.0
-    },
-    {
-      "game_id": "6504351",
-      "date_time_epoch": 1769041800,
-      "home_team": "Wichita St.",
-      "away_team": "East Carolina",
-      "neutral_site": false,
-      "pick_team": "Wichita St.",
-      "win_prob": 0.6840515152418783,
-      "home_elo_raw": 1516.0526371043193,
-      "home_elo_with_hca": 1581.0526371043193,
-      "away_elo": 1446.8636241661115,
       "hca": 65.0
     },
     {
@@ -383,6 +383,19 @@
       "hca": 65.0
     },
     {
+      "game_id": "6537877",
+      "date_time_epoch": 1769040000,
+      "home_team": "Fla. Atlantic",
+      "away_team": "Tulane",
+      "neutral_site": false,
+      "pick_team": "Fla. Atlantic",
+      "win_prob": 0.6266913709352819,
+      "home_elo_raw": 1569.501294769432,
+      "home_elo_with_hca": 1634.501294769432,
+      "away_elo": 1544.5070203555367,
+      "hca": 65.0
+    },
+    {
       "game_id": "6505454",
       "date_time_epoch": 1769040000,
       "home_team": "Boston U.",
@@ -474,16 +487,16 @@
       "hca": 65.0
     },
     {
-      "game_id": "6537877",
-      "date_time_epoch": 1769040000,
-      "home_team": "Fla. Atlantic",
-      "away_team": "Tulane",
+      "game_id": "6530712",
+      "date_time_epoch": 1769049000,
+      "home_team": "San Diego",
+      "away_team": "Washington St.",
       "neutral_site": false,
-      "pick_team": "Fla. Atlantic",
-      "win_prob": 0.5961712605939529,
-      "home_elo_raw": 1559.3663356779655,
-      "home_elo_with_hca": 1624.3663356779655,
-      "away_elo": 1556.6968104578655,
+      "pick_team": "San Diego",
+      "win_prob": 0.5882592833145702,
+      "home_elo_raw": 1478.530028099917,
+      "home_elo_with_hca": 1543.530028099917,
+      "away_elo": 1481.5520387517045,
       "hca": 65.0
     },
     {
@@ -500,6 +513,19 @@
       "hca": 65.0
     },
     {
+      "game_id": "6502942",
+      "date_time_epoch": 1769040000,
+      "home_team": "American",
+      "away_team": "Colgate",
+      "neutral_site": false,
+      "pick_team": "American",
+      "win_prob": 0.5876935340967171,
+      "home_elo_raw": 1527.0605381133998,
+      "home_elo_with_hca": 1592.0605381133998,
+      "away_elo": 1530.4882313216137,
+      "hca": 65.0
+    },
+    {
       "game_id": "6504650",
       "date_time_epoch": 1769040000,
       "home_team": "The Citadel",
@@ -510,6 +536,19 @@
       "home_elo_raw": 1433.9211081677745,
       "home_elo_with_hca": 1498.9211081677745,
       "away_elo": 1559.7842763417543,
+      "hca": 65.0
+    },
+    {
+      "game_id": "6503639",
+      "date_time_epoch": 1769040000,
+      "home_team": "Bucknell",
+      "away_team": "Army West Point",
+      "neutral_site": false,
+      "pick_team": "Bucknell",
+      "win_prob": 0.5846067389954106,
+      "home_elo_raw": 1446.50169282919,
+      "home_elo_with_hca": 1511.50169282919,
+      "away_elo": 1452.1399445439313,
       "hca": 65.0
     },
     {
@@ -552,19 +591,6 @@
       "hca": 65.0
     },
     {
-      "game_id": "6530712",
-      "date_time_epoch": 1769049000,
-      "home_team": "San Diego",
-      "away_team": "Washington St.",
-      "neutral_site": false,
-      "pick_team": "San Diego",
-      "win_prob": 0.5754415882309407,
-      "home_elo_raw": 1478.530028099917,
-      "home_elo_with_hca": 1543.530028099917,
-      "away_elo": 1490.7045097060868,
-      "hca": 65.0
-    },
-    {
       "game_id": "6505098",
       "date_time_epoch": 1769040000,
       "home_team": "Presbyterian",
@@ -578,19 +604,6 @@
       "hca": 65.0
     },
     {
-      "game_id": "6502942",
-      "date_time_epoch": 1769040000,
-      "home_team": "American",
-      "away_team": "Colgate",
-      "neutral_site": false,
-      "pick_team": "American",
-      "win_prob": 0.5739717359471874,
-      "home_elo_raw": 1517.2690691101911,
-      "home_elo_with_hca": 1582.2690691101911,
-      "away_elo": 1530.4882313216137,
-      "hca": 65.0
-    },
-    {
       "game_id": "6505716",
       "date_time_epoch": 1769040000,
       "home_team": "Drake",
@@ -601,32 +614,6 @@
       "home_elo_raw": 1493.411274763708,
       "home_elo_with_hca": 1558.411274763708,
       "away_elo": 1610.145262691056,
-      "hca": 65.0
-    },
-    {
-      "game_id": "6503639",
-      "date_time_epoch": 1769040000,
-      "home_team": "Bucknell",
-      "away_team": "Army West Point",
-      "neutral_site": false,
-      "pick_team": "Bucknell",
-      "win_prob": 0.5708572257683108,
-      "home_elo_raw": 1446.50169282919,
-      "home_elo_with_hca": 1511.50169282919,
-      "away_elo": 1461.93141354714,
-      "hca": 65.0
-    },
-    {
-      "game_id": "6503881",
-      "date_time_epoch": 1769047200,
-      "home_team": "Arizona St.",
-      "away_team": "West Virginia",
-      "neutral_site": false,
-      "pick_team": "Arizona St.",
-      "win_prob": 0.5590163935343943,
-      "home_elo_raw": 1529.6226221163479,
-      "home_elo_with_hca": 1594.6226221163479,
-      "away_elo": 1553.4217824556417,
       "hca": 65.0
     },
     {
@@ -656,6 +643,19 @@
       "hca": 65.0
     },
     {
+      "game_id": "6503881",
+      "date_time_epoch": 1769047200,
+      "home_team": "Arizona St.",
+      "away_team": "West Virginia",
+      "neutral_site": false,
+      "pick_team": "Arizona St.",
+      "win_prob": 0.5454021254482729,
+      "home_elo_raw": 1520.0575525334555,
+      "home_elo_with_hca": 1585.0575525334555,
+      "away_elo": 1553.4217824556417,
+      "hca": 65.0
+    },
+    {
       "game_id": "6505882",
       "date_time_epoch": 1769054400,
       "home_team": "Grand Canyon",
@@ -669,29 +669,16 @@
       "hca": 65.0
     },
     {
-      "game_id": "6505075",
-      "date_time_epoch": 1769040000,
-      "home_team": "Detroit Mercy",
-      "away_team": "Purdue Fort Wayne",
-      "neutral_site": false,
-      "pick_team": "Detroit Mercy",
-      "win_prob": 0.5246872797865969,
-      "home_elo_raw": 1486.4465125110573,
-      "home_elo_with_hca": 1551.4465125110573,
-      "away_elo": 1534.2780730709367,
-      "hca": 65.0
-    },
-    {
       "game_id": "6504888",
       "date_time_epoch": 1769043600,
       "home_team": "Rice",
       "away_team": "Temple",
       "neutral_site": false,
       "pick_team": "Rice",
-      "win_prob": 0.5203725535656503,
+      "win_prob": 0.5349123126805246,
       "home_elo_raw": 1491.3563128001076,
       "home_elo_with_hca": 1556.3563128001076,
-      "away_elo": 1542.1921709086644,
+      "away_elo": 1532.0572118171979,
       "hca": 65.0
     },
     {
@@ -705,6 +692,19 @@
       "home_elo_raw": 1497.0207458186721,
       "home_elo_with_hca": 1562.0207458186721,
       "away_elo": 1549.9292795133113,
+      "hca": 65.0
+    },
+    {
+      "game_id": "6505075",
+      "date_time_epoch": 1769040000,
+      "home_team": "Detroit Mercy",
+      "away_team": "Purdue Fort Wayne",
+      "neutral_site": false,
+      "pick_team": "Detroit Mercy",
+      "win_prob": 0.5098163687881974,
+      "home_elo_raw": 1486.4465125110573,
+      "home_elo_with_hca": 1551.4465125110573,
+      "away_elo": 1544.6245242466587,
       "hca": 65.0
     },
     {
