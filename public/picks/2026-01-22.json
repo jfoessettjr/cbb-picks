@@ -1,7 +1,7 @@
 {
   "date": "2026-01-22",
   "season": "2025-2026",
-  "generated_at": "2026-01-19T14:45:22Z",
+  "generated_at": "2026-01-20T14:49:13Z",
   "model": {
     "type": "Elo",
     "mov": true,
@@ -90,10 +90,10 @@
       "away_team": "Niagara",
       "neutral_site": false,
       "pick_team": "Fairfield",
-      "win_prob": 0.6948395771687795,
-      "home_elo_raw": 1521.5631715283978,
-      "home_elo_with_hca": 1586.5631715283978,
-      "away_elo": 1443.6206357878934,
+      "win_prob": 0.6944457290379417,
+      "home_elo_raw": 1510.7331246067245,
+      "home_elo_with_hca": 1575.7331246067245,
+      "away_elo": 1433.113143523074,
       "hca": 65.0
     },
     {
@@ -168,23 +168,23 @@
       "away_team": "Binghamton",
       "neutral_site": false,
       "pick_team": "New Hampshire",
-      "win_prob": 0.6349417892559138,
-      "home_elo_raw": 1434.8300083314125,
-      "home_elo_with_hca": 1499.8300083314125,
-      "away_elo": 1403.6812920812663,
+      "win_prob": 0.6612464951993225,
+      "home_elo_raw": 1446.0012585623028,
+      "home_elo_with_hca": 1511.0012585623028,
+      "away_elo": 1394.8094241736544,
       "hca": 65.0
     },
     {
-      "game_id": "6504746",
-      "date_time_epoch": 1769126400,
-      "home_team": "Elon",
-      "away_team": "Towson",
+      "game_id": "6501023",
+      "date_time_epoch": 1769133600,
+      "home_team": "Montana St.",
+      "away_team": "Idaho St.",
       "neutral_site": false,
-      "pick_team": "Elon",
-      "win_prob": 0.6335608295712073,
-      "home_elo_raw": 1544.0922891424784,
-      "home_elo_with_hca": 1609.0922891424784,
-      "away_elo": 1513.9777181393217,
+      "pick_team": "Montana St.",
+      "win_prob": 0.6351569251873991,
+      "home_elo_raw": 1534.4233950083715,
+      "home_elo_with_hca": 1599.4233950083715,
+      "away_elo": 1503.1134228447718,
       "hca": 65.0
     },
     {
@@ -207,23 +207,23 @@
       "away_team": "NJIT",
       "neutral_site": false,
       "pick_team": "UMBC",
-      "win_prob": 0.6311652904834784,
-      "home_elo_raw": 1505.7348011529336,
-      "home_elo_with_hca": 1570.7348011529336,
-      "away_elo": 1477.4102716176947,
+      "win_prob": 0.6268306877599373,
+      "home_elo_raw": 1514.6066690605455,
+      "home_elo_with_hca": 1579.6066690605455,
+      "away_elo": 1489.5089378789462,
       "hca": 65.0
     },
     {
-      "game_id": "6501023",
-      "date_time_epoch": 1769133600,
-      "home_team": "Montana St.",
-      "away_team": "Idaho St.",
+      "game_id": "6504746",
+      "date_time_epoch": 1769126400,
+      "home_team": "Elon",
+      "away_team": "Towson",
       "neutral_site": false,
-      "pick_team": "Montana St.",
-      "win_prob": 0.6217230233140255,
-      "home_elo_raw": 1524.4282391939064,
-      "home_elo_with_hca": 1589.4282391939064,
-      "away_elo": 1503.1134228447718,
+      "pick_team": "Elon",
+      "win_prob": 0.6226572649059058,
+      "home_elo_raw": 1544.0922891424784,
+      "home_elo_with_hca": 1609.0922891424784,
+      "away_elo": 1522.0870624985057,
       "hca": 65.0
     },
     {
@@ -266,6 +266,19 @@
       "hca": 65.0
     },
     {
+      "game_id": "6503586",
+      "date_time_epoch": 1769126400,
+      "home_team": "Hampton",
+      "away_team": "Monmouth",
+      "neutral_site": false,
+      "pick_team": "Hampton",
+      "win_prob": 0.596061734482363,
+      "home_elo_raw": 1496.8781883388165,
+      "home_elo_with_hca": 1561.8781883388165,
+      "away_elo": 1494.2876899774537,
+      "hca": 65.0
+    },
+    {
       "game_id": "6502601",
       "date_time_epoch": 1769126400,
       "home_team": "Coastal Carolina",
@@ -276,19 +289,6 @@
       "home_elo_raw": 1518.2655329347012,
       "home_elo_with_hca": 1583.2655329347012,
       "away_elo": 1515.8118161939847,
-      "hca": 65.0
-    },
-    {
-      "game_id": "6503586",
-      "date_time_epoch": 1769126400,
-      "home_team": "Hampton",
-      "away_team": "Monmouth",
-      "neutral_site": false,
-      "pick_team": "Hampton",
-      "win_prob": 0.5946689877771888,
-      "home_elo_raw": 1484.541028146625,
-      "home_elo_with_hca": 1549.541028146625,
-      "away_elo": 1482.954845264504,
       "hca": 65.0
     },
     {
@@ -305,16 +305,29 @@
       "hca": 65.0
     },
     {
-      "game_id": "6501993",
-      "date_time_epoch": 1769126400,
-      "home_team": "Iona",
-      "away_team": "Merrimack",
+      "game_id": "6504988",
+      "date_time_epoch": 1769133600,
+      "home_team": "Montana",
+      "away_team": "Weber St.",
       "neutral_site": false,
-      "pick_team": "Iona",
-      "win_prob": 0.587256045169472,
-      "home_elo_raw": 1530.1395876989543,
-      "home_elo_with_hca": 1595.1395876989543,
-      "away_elo": 1533.8808777426564,
+      "pick_team": "Montana",
+      "win_prob": 0.5888443773223451,
+      "home_elo_raw": 1507.0261967235992,
+      "home_elo_with_hca": 1572.0261967235992,
+      "away_elo": 1509.6284772303477,
+      "hca": 65.0
+    },
+    {
+      "game_id": "6502986",
+      "date_time_epoch": 1769126400,
+      "home_team": "Siena",
+      "away_team": "Marist",
+      "neutral_site": false,
+      "pick_team": "Siena",
+      "win_prob": 0.5852445577975501,
+      "home_elo_raw": 1540.2903973986888,
+      "home_elo_with_hca": 1605.2903973986888,
+      "away_elo": 1545.472281176307,
       "hca": 65.0
     },
     {
@@ -344,16 +357,16 @@
       "hca": 65.0
     },
     {
-      "game_id": "6504988",
-      "date_time_epoch": 1769133600,
-      "home_team": "Montana",
-      "away_team": "Weber St.",
+      "game_id": "6501810",
+      "date_time_epoch": 1769126400,
+      "home_team": "Sacred Heart",
+      "away_team": "Canisius",
       "neutral_site": false,
-      "pick_team": "Montana",
-      "win_prob": 0.5738829140300606,
-      "home_elo_raw": 1496.3462158176944,
-      "home_elo_with_hca": 1561.3462158176944,
-      "away_elo": 1509.6284772303477,
+      "pick_team": "Sacred Heart",
+      "win_prob": 0.5732529201547637,
+      "home_elo_raw": 1455.7239823362827,
+      "home_elo_with_hca": 1520.7239823362827,
+      "away_elo": 1469.4536952521273,
       "hca": 65.0
     },
     {
@@ -383,16 +396,16 @@
       "hca": 65.0
     },
     {
-      "game_id": "6501810",
+      "game_id": "6501993",
       "date_time_epoch": 1769126400,
-      "home_team": "Sacred Heart",
-      "away_team": "Canisius",
+      "home_team": "Iona",
+      "away_team": "Merrimack",
       "neutral_site": false,
-      "pick_team": "Sacred Heart",
-      "win_prob": 0.5578489298645355,
-      "home_elo_raw": 1444.8320647820951,
-      "home_elo_with_hca": 1509.8320647820951,
-      "away_elo": 1469.4536952521273,
+      "pick_team": "Iona",
+      "win_prob": 0.5528494677731479,
+      "home_elo_raw": 1518.4428344139592,
+      "home_elo_with_hca": 1583.4428344139592,
+      "away_elo": 1546.5815768854989,
       "hca": 65.0
     },
     {
@@ -406,19 +419,6 @@
       "home_elo_raw": 1490.5252241906246,
       "home_elo_with_hca": 1555.5252241906246,
       "away_elo": 1591.8351939837564,
-      "hca": 65.0
-    },
-    {
-      "game_id": "6502986",
-      "date_time_epoch": 1769126400,
-      "home_team": "Siena",
-      "away_team": "Marist",
-      "neutral_site": false,
-      "pick_team": "Siena",
-      "win_prob": 0.5520326626588828,
-      "home_elo_raw": 1529.4603504770155,
-      "home_elo_with_hca": 1594.4603504770155,
-      "away_elo": 1558.1729803191495,
       "hca": 65.0
     },
     {
@@ -461,6 +461,19 @@
       "hca": 65.0
     },
     {
+      "game_id": "6502891",
+      "date_time_epoch": 1769126400,
+      "home_team": "N.C. A&T",
+      "away_team": "Hofstra",
+      "neutral_site": false,
+      "pick_team": "Hofstra",
+      "win_prob": 0.5458787808955091,
+      "home_elo_raw": 1462.8017592523156,
+      "home_elo_with_hca": 1527.8017592523156,
+      "away_elo": 1559.771526416897,
+      "hca": 65.0
+    },
+    {
       "game_id": "6505328",
       "date_time_epoch": 1769133600,
       "home_team": "UTEP",
@@ -487,16 +500,16 @@
       "hca": 65.0
     },
     {
-      "game_id": "6502891",
-      "date_time_epoch": 1769126400,
-      "home_team": "N.C. A&T",
-      "away_team": "Hofstra",
+      "game_id": "6504240",
+      "date_time_epoch": 1769122800,
+      "home_team": "UMass Lowell",
+      "away_team": "Vermont",
       "neutral_site": false,
-      "pick_team": "Hofstra",
-      "win_prob": 0.5282235591293405,
-      "home_elo_raw": 1475.138919444507,
-      "home_elo_with_hca": 1540.138919444507,
-      "away_elo": 1559.771526416897,
+      "pick_team": "UMass Lowell",
+      "win_prob": 0.5347229968913215,
+      "home_elo_raw": 1475.5615091628738,
+      "home_elo_with_hca": 1540.5615091628738,
+      "away_elo": 1516.394599270404,
       "hca": 65.0
     },
     {
@@ -526,6 +539,19 @@
       "hca": 65.0
     },
     {
+      "game_id": "6506147",
+      "date_time_epoch": 1769122800,
+      "home_team": "Maine",
+      "away_team": "UAlbany",
+      "neutral_site": false,
+      "pick_team": "UAlbany",
+      "win_prob": 0.5241804571814311,
+      "home_elo_raw": 1391.1329187813917,
+      "home_elo_with_hca": 1456.1329187813917,
+      "away_elo": 1472.9483387436505,
+      "hca": 65.0
+    },
+    {
       "game_id": "6504132",
       "date_time_epoch": 1769130000,
       "home_team": "Oral Roberts",
@@ -536,45 +562,6 @@
       "home_elo_raw": 1415.9734976084198,
       "home_elo_with_hca": 1480.9734976084198,
       "away_elo": 1496.6570069831703,
-      "hca": 65.0
-    },
-    {
-      "game_id": "6501541",
-      "date_time_epoch": 1769126400,
-      "home_team": "Northeastern",
-      "away_team": "Stony Brook",
-      "neutral_site": false,
-      "pick_team": "Northeastern",
-      "win_prob": 0.5179911206398828,
-      "home_elo_raw": 1467.166081886482,
-      "home_elo_with_hca": 1532.166081886482,
-      "away_elo": 1519.6591712980487,
-      "hca": 65.0
-    },
-    {
-      "game_id": "6504240",
-      "date_time_epoch": 1769122800,
-      "home_team": "UMass Lowell",
-      "away_team": "Vermont",
-      "neutral_site": false,
-      "pick_team": "UMass Lowell",
-      "win_prob": 0.516040826560227,
-      "home_elo_raw": 1475.5615091628738,
-      "home_elo_with_hca": 1540.5615091628738,
-      "away_elo": 1529.41137481586,
-      "hca": 65.0
-    },
-    {
-      "game_id": "6506147",
-      "date_time_epoch": 1769122800,
-      "home_team": "Maine",
-      "away_team": "UAlbany",
-      "neutral_site": false,
-      "pick_team": "Maine",
-      "win_prob": 0.5106084404046363,
-      "home_elo_raw": 1402.304169012282,
-      "home_elo_with_hca": 1467.304169012282,
-      "away_elo": 1459.9315631981945,
       "hca": 65.0
     },
     {
@@ -591,6 +578,19 @@
       "hca": 65.0
     },
     {
+      "game_id": "6502056",
+      "date_time_epoch": 1769126400,
+      "home_team": "Mount St. Mary's",
+      "away_team": "Quinnipiac",
+      "neutral_site": false,
+      "pick_team": "Mount St. Mary's",
+      "win_prob": 0.5089420608701357,
+      "home_elo_raw": 1482.5321968742621,
+      "home_elo_with_hca": 1547.5321968742621,
+      "away_elo": 1541.3179539844577,
+      "hca": 65.0
+    },
+    {
       "game_id": "6502478",
       "date_time_epoch": 1769126400,
       "home_team": "North Florida",
@@ -604,19 +604,6 @@
       "hca": 65.0
     },
     {
-      "game_id": "6502056",
-      "date_time_epoch": 1769126400,
-      "home_team": "Mount St. Mary's",
-      "away_team": "Quinnipiac",
-      "neutral_site": false,
-      "pick_team": "Mount St. Mary's",
-      "win_prob": 0.5059937916263189,
-      "home_elo_raw": 1472.0247046094428,
-      "home_elo_with_hca": 1537.0247046094428,
-      "away_elo": 1532.8595920835376,
-      "hca": 65.0
-    },
-    {
       "game_id": "6504085",
       "date_time_epoch": 1769126400,
       "home_team": "James Madison",
@@ -627,6 +614,19 @@
       "home_elo_raw": 1488.4925748429498,
       "home_elo_with_hca": 1553.4925748429498,
       "away_elo": 1550.8876515897089,
+      "hca": 65.0
+    },
+    {
+      "game_id": "6501541",
+      "date_time_epoch": 1769126400,
+      "home_team": "Northeastern",
+      "away_team": "Stony Brook",
+      "neutral_site": false,
+      "pick_team": "Northeastern",
+      "win_prob": 0.501689610183089,
+      "home_elo_raw": 1455.8332371735323,
+      "home_elo_with_hca": 1520.8332371735323,
+      "away_elo": 1519.6591712980487,
       "hca": 65.0
     },
     {
