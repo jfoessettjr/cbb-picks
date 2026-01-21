@@ -1,7 +1,7 @@
 {
   "date": "2026-01-22",
   "season": "2025-2026",
-  "generated_at": "2026-01-20T14:49:13Z",
+  "generated_at": "2026-01-21T14:49:31Z",
   "model": {
     "type": "Elo",
     "mov": true,
@@ -305,6 +305,19 @@
       "hca": 65.0
     },
     {
+      "game_id": "6502081",
+      "date_time_epoch": 1769131800,
+      "home_team": "Southeast Mo. St.",
+      "away_team": "Little Rock",
+      "neutral_site": false,
+      "pick_team": "Southeast Mo. St.",
+      "win_prob": 0.5903515630582775,
+      "home_elo_raw": 1504.2025609947864,
+      "home_elo_with_hca": 1569.2025609947864,
+      "away_elo": 1505.7227948561022,
+      "hca": 65.0
+    },
+    {
       "game_id": "6504988",
       "date_time_epoch": 1769133600,
       "home_team": "Montana",
@@ -380,19 +393,6 @@
       "home_elo_raw": 1477.8857602547516,
       "home_elo_with_hca": 1542.8857602547516,
       "away_elo": 1495.0125040179405,
-      "hca": 65.0
-    },
-    {
-      "game_id": "6502081",
-      "date_time_epoch": 1769131800,
-      "home_team": "Southeast Mo. St.",
-      "away_team": "Little Rock",
-      "neutral_site": false,
-      "pick_team": "Southeast Mo. St.",
-      "win_prob": 0.5684408117275552,
-      "home_elo_raw": 1488.5807482122377,
-      "home_elo_with_hca": 1553.5807482122377,
-      "away_elo": 1505.7227948561022,
       "hca": 65.0
     },
     {

@@ -1,7 +1,7 @@
 {
   "date": "2026-01-23",
   "season": "2025-2026",
-  "generated_at": "2026-01-20T14:49:14Z",
+  "generated_at": "2026-01-21T14:49:32Z",
   "model": {
     "type": "Elo",
     "mov": true,
@@ -38,9 +38,9 @@
       "away_team": "Marquette",
       "neutral_site": false,
       "pick_team": "Butler",
-      "win_prob": 0.6909574373981859,
-      "home_elo_raw": 1535.2511828782358,
-      "home_elo_with_hca": 1600.2511828782358,
+      "win_prob": 0.7042552182480131,
+      "home_elo_raw": 1546.2031763120058,
+      "home_elo_with_hca": 1611.2031763120058,
       "away_elo": 1460.4779830607586,
       "hca": 65.0
     },
@@ -64,10 +64,10 @@
       "away_team": "Ohio St.",
       "neutral_site": false,
       "pick_team": "Michigan",
-      "win_prob": 0.6832774310885837,
-      "home_elo_raw": 1631.7628767764115,
-      "home_elo_with_hca": 1696.7628767764115,
-      "away_elo": 1563.1956508713226,
+      "win_prob": 0.6825216904673772,
+      "home_elo_raw": 1640.8933482265875,
+      "home_elo_with_hca": 1705.8933482265875,
+      "away_elo": 1572.932388786504,
       "hca": 65.0
     },
     {
@@ -103,10 +103,10 @@
       "away_team": "Massachusetts",
       "neutral_site": false,
       "pick_team": "Buffalo",
-      "win_prob": 0.6462991492998807,
-      "home_elo_raw": 1558.8222472341715,
-      "home_elo_with_hca": 1623.8222472341715,
-      "away_elo": 1519.1032552654215,
+      "win_prob": 0.6185167768902645,
+      "home_elo_raw": 1547.2873034010922,
+      "home_elo_with_hca": 1612.2873034010922,
+      "away_elo": 1528.3368870756306,
       "hca": 65.0
     },
     {
@@ -129,10 +129,23 @@
       "away_team": "Saint Louis",
       "neutral_site": false,
       "pick_team": "Saint Louis",
-      "win_prob": 0.5715442647686133,
-      "home_elo_raw": 1522.4469799936285,
-      "home_elo_with_hca": 1587.4469799936285,
-      "away_elo": 1637.5045442071375,
+      "win_prob": 0.5682918923563476,
+      "home_elo_raw": 1531.4962834978853,
+      "home_elo_with_hca": 1596.4962834978853,
+      "away_elo": 1644.2487855759011,
+      "hca": 65.0
+    },
+    {
+      "game_id": "6503675",
+      "date_time_epoch": 1769194800,
+      "home_team": "Louisiana Tech",
+      "away_team": "Kennesaw St.",
+      "neutral_site": false,
+      "pick_team": "Louisiana Tech",
+      "win_prob": 0.5352772858496556,
+      "home_elo_raw": 1510.6272853897292,
+      "home_elo_with_hca": 1575.6272853897292,
+      "away_elo": 1551.0733194493082,
       "hca": 65.0
     },
     {
@@ -142,10 +155,10 @@
       "away_team": "Indiana",
       "neutral_site": false,
       "pick_team": "Rutgers",
-      "win_prob": 0.532679018880914,
-      "home_elo_raw": 1505.6579616352528,
-      "home_elo_with_hca": 1570.6579616352528,
-      "away_elo": 1547.9178370908114,
+      "win_prob": 0.5332887872410683,
+      "home_elo_raw": 1496.9530526352369,
+      "home_elo_with_hca": 1561.9530526352369,
+      "away_elo": 1538.7873656406355,
       "hca": 65.0
     },
     {
@@ -167,11 +180,11 @@
       "home_team": "Colorado St.",
       "away_team": "Utah St.",
       "neutral_site": false,
-      "pick_team": "Utah St.",
-      "win_prob": 0.5163195838347501,
-      "home_elo_raw": 1530.202356579979,
-      "home_elo_with_hca": 1595.202356579979,
-      "away_elo": 1606.546394380774,
+      "pick_team": "Colorado St.",
+      "win_prob": 0.5167924894251378,
+      "home_elo_raw": 1538.9209022863074,
+      "home_elo_with_hca": 1603.9209022863074,
+      "away_elo": 1592.2478953146049,
       "hca": 65.0
     },
     {
@@ -181,10 +194,10 @@
       "away_team": "Akron",
       "neutral_site": false,
       "pick_team": "Akron",
-      "win_prob": 0.5036938916844227,
-      "home_elo_raw": 1517.5019690985016,
-      "home_elo_with_hca": 1582.5019690985016,
-      "away_elo": 1585.0687946382009,
+      "win_prob": 0.5086599190525287,
+      "home_elo_raw": 1525.5856085635132,
+      "home_elo_with_hca": 1590.5856085635132,
+      "away_elo": 1596.6037384712802,
       "hca": 65.0
     }
   ]
