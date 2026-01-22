@@ -50,7 +50,7 @@ jobs:
           K_RAMP_MID_DAYS: "105"
 
           # --- Odds API (The Odds API) ---
-          ODDS_API_KEY: ${{ secrets.ODDS_API_KEY }}
+          ODDS_API_KEY: "2b7579c157ff9b4ae93f1dd5e11a1e39"
           ODDS_SPORT_KEY: "basketball_ncaab"
 
           # --- ROI sweet spot ---
