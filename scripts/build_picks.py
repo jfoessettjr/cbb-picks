@@ -252,9 +252,125 @@ def expected_value_per_dollar(p_win: float, dec_odds: float) -> float:
 def _norm_team_name(s: str) -> str:
     s = (s or "").lower().strip()
     s = s.replace("&", "and")
-    s = re.sub(r"[^a-z0-9 ]+", "", s)
+    # normalize some common abbreviations/formatting
+    s = s.replace("u.", "u").replace("st.", "st")
+    s = re.sub(r"[^a-z0-9 ]+", " ", s)
     s = re.sub(r"\s+", " ", s).strip()
     return s
+
+_STOP = {
+    "university", "college", "of", "the", "and", "at",
+    "state", "st", "saint", "mt", "mount",
+    "tech", "a", "m", "am",
+    "univ"
+}
+
+def _tokens(name: str) -> list[str]:
+    t = [x for x in _norm_team_name(name).split(" ") if x and x not in _STOP]
+    return t
+
+def _initials(tokens: list[str]) -> str:
+    # initials for multiword names (e.g., "ul monroe" -> "ulm")
+    return "".join([w[0] for w in tokens if w])[:8]
+
+def _abbr_match(short: str, long_name: str) -> bool:
+    """
+    True if short (like 'ULM') matches initials of long_name tokens
+    or is contained as a token-ish piece.
+    """
+    short_n = _norm_team_name(short).replace(" ", "")
+    if not short_n or len(short_n) > 6:
+        return False
+
+    toks = _tokens(long_name)
+    ini = _initials(toks)
+
+    if short_n == ini:
+        return True
+
+    # also allow 'ulmonroe' style join match
+    joined = "".join(toks)
+    if short_n in joined or joined in short_n:
+        return True
+    
+    return False
+
+def team_similarity(a: str, b: str) -> float:
+    """
+    Returns 0..1-ish similarity score.
+    Exact match -> 1.0
+    Strong acronym match -> 0.9
+    Token Jaccard overlap -> 0..0.85
+    """
+    an = _norm_team_name(a)
+    bn = _norm_team_name(b)
+    if not an or not bn:
+        return 0.0
+    if an == bn:
+        return 1.0
+
+    # abbreviation handling (ULM, UIC, etc.)
+    if len(an.replace(" ", "")) <= 5 and _abbr_match(an, b):
+        return 0.90
+    if len(bn.replace(" ", "")) <= 5 and _abbr_match(b, a):
+        return 0.90
+
+    ta = set(_tokens(a))
+    tb = set(_tokens(b))
+    if not ta or not tb:
+        return 0.0
+
+    inter = len(ta & tb)
+    union = len(ta | tb)
+    j = inter / union if union else 0.0
+
+    # Boost if one token set is contained in the other
+    if ta.issubset(tb) or tb.issubset(ta):
+        j = max(j, 0.80)
+
+    return min(0.85, j)
+
+def best_matching_odds_game(odds_games: list[dict], home_name: str, away_name: str, start_epoch: int) -> dict | None:
+    """
+    Match by:
+      1) commence_time within window
+      2) best team name similarity (handles abbreviations like ULM)
+    """
+    if not odds_games:
+        return None
+
+    start_epoch = int(start_epoch or 0)
+    best = None
+    best_score = -1.0
+
+    for og in odds_games:
+        ce = parse_iso_to_epoch(og.get("commence_time", ""))
+        if ce is None:
+            continue
+        if abs(ce - start_epoch) > ODDS_TIME_MATCH_WINDOW_SEC:
+            continue
+
+        oh = og.get("home_team", "") or ""
+        oa = og.get("away_team", "") or ""
+
+        # orientation 1: og home->ncaa home, og away->ncaa away
+        s1 = team_similarity(oh, home_name) + team_similarity(oa, away_name)
+
+        # orientation 2: swapped
+        s2 = team_similarity(oh, away_name) + team_similarity(oa, home_name)
+
+        score = max(s1, s2)
+
+        if score > best_score:
+            best_score = score
+            best = og
+
+    # require at least “pretty good” total similarity
+    # exact-exact would be 2.0; acronym+good token match often lands ~1.6+
+    if best is None or best_score < 1.35:
+        return None
+
+    return best
 
 def calibrate_prob_for_long_odds(p: float) -> float:
     # Conservative shrink to reduce longshot overconfidence
