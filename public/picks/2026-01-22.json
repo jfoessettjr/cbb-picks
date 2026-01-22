@@ -1,7 +1,7 @@
 {
   "date": "2026-01-22",
   "season": "2025-2026",
-  "generated_at": "2026-01-21T14:49:31Z",
+  "generated_at": "2026-01-22T14:48:05Z",
   "model": {
     "type": "Elo",
     "mov": true,
@@ -20,7 +20,7 @@
   "picks": [
     {
       "game_id": "6505832",
-      "date_time_epoch": 1769126400,
+      "date_time_epoch": 1769101200,
       "home_team": "Marshall",
       "away_team": "ULM",
       "neutral_site": false,
@@ -59,7 +59,7 @@
     },
     {
       "game_id": "6506436",
-      "date_time_epoch": 1769130000,
+      "date_time_epoch": 1769104800,
       "home_team": "Lipscomb",
       "away_team": "Stetson",
       "neutral_site": false,
@@ -72,7 +72,7 @@
     },
     {
       "game_id": "6502029",
-      "date_time_epoch": 1769124600,
+      "date_time_epoch": 1769101200,
       "home_team": "App State",
       "away_team": "Louisiana",
       "neutral_site": false,
@@ -137,7 +137,7 @@
     },
     {
       "game_id": "6502200",
-      "date_time_epoch": 1769130000,
+      "date_time_epoch": 1769104800,
       "home_team": "Austin Peay",
       "away_team": "FGCU",
       "neutral_site": false,
@@ -358,7 +358,7 @@
     },
     {
       "game_id": "6505558",
-      "date_time_epoch": 1769126400,
+      "date_time_epoch": 1769121000,
       "home_team": "West Ga.",
       "away_team": "Central Ark.",
       "neutral_site": false,

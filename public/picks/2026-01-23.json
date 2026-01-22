@@ -1,7 +1,7 @@
 {
   "date": "2026-01-23",
   "season": "2025-2026",
-  "generated_at": "2026-01-21T14:49:32Z",
+  "generated_at": "2026-01-22T14:48:05Z",
   "model": {
     "type": "Elo",
     "mov": true,
@@ -18,6 +18,45 @@
     }
   },
   "picks": [
+    {
+      "game_id": "6502030",
+      "date_time_epoch": 1769187600,
+      "home_team": "App State",
+      "away_team": "ULM",
+      "neutral_site": false,
+      "pick_team": "App State",
+      "win_prob": 0.7443863370340665,
+      "home_elo_raw": 1511.5268125026116,
+      "home_elo_with_hca": 1576.5268125026116,
+      "away_elo": 1390.8410807639207,
+      "hca": 65.0
+    },
+    {
+      "game_id": "6504728",
+      "date_time_epoch": 1769191200,
+      "home_team": "North Texas",
+      "away_team": "East Carolina",
+      "neutral_site": false,
+      "pick_team": "North Texas",
+      "win_prob": 0.7368628888947384,
+      "home_elo_raw": 1543.4304850148822,
+      "home_elo_with_hca": 1608.4304850148822,
+      "away_elo": 1429.5486522100884,
+      "hca": 65.0
+    },
+    {
+      "game_id": "6503044",
+      "date_time_epoch": 1769212800,
+      "home_team": "ETSU",
+      "away_team": "The Citadel",
+      "neutral_site": false,
+      "pick_team": "ETSU",
+      "win_prob": 0.7334958701194538,
+      "home_elo_raw": 1557.0144325681483,
+      "home_elo_with_hca": 1622.0144325681483,
+      "away_elo": 1446.1369407788259,
+      "hca": 65.0
+    },
     {
       "game_id": "6501440",
       "date_time_epoch": 1769144400,
@@ -45,6 +84,19 @@
       "hca": 65.0
     },
     {
+      "game_id": "6505544",
+      "date_time_epoch": 1769191200,
+      "home_team": "Austin Peay",
+      "away_team": "Stetson",
+      "neutral_site": false,
+      "pick_team": "Austin Peay",
+      "win_prob": 0.6900788073302911,
+      "home_elo_raw": 1540.979496629977,
+      "home_elo_with_hca": 1605.979496629977,
+      "away_elo": 1466.920530416539,
+      "hca": 65.0
+    },
+    {
       "game_id": "6503524",
       "date_time_epoch": 1769212800,
       "home_team": "Central Conn. St.",
@@ -55,6 +107,19 @@
       "home_elo_raw": 1517.2425967315912,
       "home_elo_with_hca": 1582.2425967315912,
       "away_elo": 1445.0764667454116,
+      "hca": 65.0
+    },
+    {
+      "game_id": "6502201",
+      "date_time_epoch": 1769191200,
+      "home_team": "Lipscomb",
+      "away_team": "FGCU",
+      "neutral_site": false,
+      "pick_team": "Lipscomb",
+      "win_prob": 0.6859358276028213,
+      "home_elo_raw": 1547.3848231180698,
+      "home_elo_with_hca": 1612.3848231180698,
+      "away_elo": 1476.6787865872957,
       "hca": 65.0
     },
     {
@@ -136,16 +201,42 @@
       "hca": 65.0
     },
     {
+      "game_id": "6505434",
+      "date_time_epoch": 1769214600,
+      "home_team": "Charlotte",
+      "away_team": "Tulane",
+      "neutral_site": false,
+      "pick_team": "Charlotte",
+      "win_prob": 0.5619568914052122,
+      "home_elo_raw": 1513.2209514578242,
+      "home_elo_with_hca": 1578.2209514578242,
+      "away_elo": 1534.9464918007595,
+      "hca": 65.0
+    },
+    {
       "game_id": "6503675",
       "date_time_epoch": 1769194800,
       "home_team": "Louisiana Tech",
       "away_team": "Kennesaw St.",
       "neutral_site": false,
       "pick_team": "Louisiana Tech",
-      "win_prob": 0.5352772858496556,
+      "win_prob": 0.5508662279706041,
       "home_elo_raw": 1510.6272853897292,
       "home_elo_with_hca": 1575.6272853897292,
-      "away_elo": 1551.0733194493082,
+      "away_elo": 1540.1591112534013,
+      "hca": 65.0
+    },
+    {
+      "game_id": "6506175",
+      "date_time_epoch": 1769212800,
+      "home_team": "Gardner-Webb",
+      "away_team": "USC Upstate",
+      "neutral_site": false,
+      "pick_team": "USC Upstate",
+      "win_prob": 0.550362145856313,
+      "home_elo_raw": 1369.7310625887237,
+      "home_elo_with_hca": 1434.7310625887237,
+      "away_elo": 1469.84533810057,
       "hca": 65.0
     },
     {
@@ -159,6 +250,19 @@
       "home_elo_raw": 1496.9530526352369,
       "home_elo_with_hca": 1561.9530526352369,
       "away_elo": 1538.7873656406355,
+      "hca": 65.0
+    },
+    {
+      "game_id": "6501961",
+      "date_time_epoch": 1769212800,
+      "home_team": "Radford",
+      "away_team": "High Point",
+      "neutral_site": false,
+      "pick_team": "High Point",
+      "win_prob": 0.5220738182700808,
+      "home_elo_raw": 1514.5115515767466,
+      "home_elo_with_hca": 1579.5115515767466,
+      "away_elo": 1594.8599881536338,
       "hca": 65.0
     },
     {
@@ -198,6 +302,19 @@
       "home_elo_raw": 1525.5856085635132,
       "home_elo_with_hca": 1590.5856085635132,
       "away_elo": 1596.6037384712802,
+      "hca": 65.0
+    },
+    {
+      "game_id": "6504651",
+      "date_time_epoch": 1769198400,
+      "home_team": "UNC Greensboro",
+      "away_team": "Furman",
+      "neutral_site": false,
+      "pick_team": "Furman",
+      "win_prob": 0.5085618827988077,
+      "home_elo_raw": 1476.6184566000802,
+      "home_elo_with_hca": 1541.6184566000802,
+      "away_elo": 1547.568443730703,
       "hca": 65.0
     }
   ]
