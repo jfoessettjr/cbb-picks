@@ -580,18 +580,20 @@ def write_picks_for_date(d: date, ratings: dict[str, float], odds_games_window: 
         # If odds enabled, evaluate BOTH sides and choose best EV play
         if ODDS_API_KEY and odds_games_window is not None:
             og = best_matching_odds_game(odds_games_window, home_name, away_name, g.get("start_epoch", 0))
+
             if og is None:
-                print(f"[odds] no match: {away_name} @ {home_name} start={g.get('start_epoch')}")
+                # Debug (optional)
+                # print(f"[odds] no match: {away_name} @ {home_name} start={g.get('start_epoch')}")
+                # Fallback: keep Elo pick, leave market fields None
+               og = None
+            else:
+                # ONLY run the market logic if og exists
+                og_home_norm = _norm_team_name(og.get("home_team", ""))
+                ncaa_home_norm = _norm_team_name(home_name)
+                swapped = (og_home_norm != ncaa_home_norm)
 
-                # Fallback to Elo-only for this game (keeps slate from going empty)
-                # Market fields will remain None.
-                og = None
+                # ...rest of your market evaluation logic...
 
-
-            # Determine mapping orientation
-            og_home_norm = _norm_team_name(og.get("home_team", ""))
-            ncaa_home_norm = _norm_team_name(home_name)
-            swapped = (og_home_norm != ncaa_home_norm)
 
             if not swapped:
                 og_home_name = og.get("home_team", home_name)
