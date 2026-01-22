@@ -26,12 +26,12 @@ MOV_CAP = float(os.getenv("MOV_CAP", "2.0"))
 
 # Season-phase K multipliers (higher early season, lower late season)
 K_EARLY_MULT = float(os.getenv("K_EARLY_MULT", "1.40"))  # very early season
-K_MID_MULT   = float(os.getenv("K_MID_MULT", "1.00"))    # mid-season baseline
-K_LATE_MULT  = float(os.getenv("K_LATE_MULT", "0.85"))    # late-season stability
+K_MID_MULT = float(os.getenv("K_MID_MULT", "1.00"))      # mid-season baseline
+K_LATE_MULT = float(os.getenv("K_LATE_MULT", "0.85"))    # late-season stability
 
 # Ramp breakpoints (days since season start)
 K_RAMP_EARLY_DAYS = int(os.getenv("K_RAMP_EARLY_DAYS", "45"))   # end of early ramp
-K_RAMP_MID_DAYS   = int(os.getenv("K_RAMP_MID_DAYS", "105"))    # end of mid ramp
+K_RAMP_MID_DAYS = int(os.getenv("K_RAMP_MID_DAYS", "105"))      # end of mid ramp
 
 SLEEP_SECONDS = float(os.getenv("API_SLEEP_SECONDS", "0.25"))
 SNAPSHOT_PATH = os.getenv("ELO_SNAPSHOT_PATH", "data/elo_snapshot.json")
@@ -73,12 +73,15 @@ def season_start_for(d: date) -> date:
     season_year = d.year if d.month >= 7 else (d.year - 1)
     return date(season_year, 11, 1)
 
+
 def season_label_for(d: date) -> str:
     ss = season_start_for(d)
     return f"{ss.year}-{ss.year + 1}"
 
+
 def scoreboard_path(d: date) -> str:
     return f"/scoreboard/{SPORT}/{DIVISION}/{d.year}/{d.month:02d}/{d.day:02d}/all-conf"
+
 
 def api_get(path: str) -> dict:
     url = f"{API_BASE}{path}"
@@ -114,6 +117,7 @@ def _looks_neutral(game_obj: dict) -> bool:
         return True
 
     return False
+
 
 def parse_games(scoreboard_json: dict) -> list[dict]:
     games_out = []
@@ -152,6 +156,7 @@ def parse_games(scoreboard_json: dict) -> list[dict]:
         })
     return games_out
 
+
 def is_final(game: dict) -> bool:
     return game.get("state") == "final" or (
         game["home"]["score"] is not None and game["away"]["score"] is not None
@@ -176,6 +181,7 @@ def load_snapshot(expected_season_start: date) -> tuple[dict[str, float], date |
     last_d = date.fromisoformat(last) if last else None
     return ratings, last_d
 
+
 def save_snapshot(season_start: date, last_finalized: date, ratings: dict[str, float]):
     os.makedirs(os.path.dirname(SNAPSHOT_PATH) or ".", exist_ok=True)
     payload = {
@@ -194,6 +200,7 @@ def save_snapshot(season_start: date, last_finalized: date, ratings: dict[str, f
 # -------------------------
 def lerp(a: float, b: float, t: float) -> float:
     return a + (b - a) * t
+
 
 def k_multiplier_ramp(game_day: date, season_start: date) -> float:
     """
@@ -232,10 +239,12 @@ def american_to_decimal(am: int | float | None) -> float | None:
         return 1.0 + amf / 100.0
     return 1.0 + 100.0 / abs(amf)
 
+
 def implied_prob_from_decimal(dec: float | None) -> float | None:
     if dec is None or dec <= 1.0:
         return None
     return 1.0 / dec
+
 
 def devig_two_way(p_a: float | None, p_b: float | None) -> tuple[float | None, float | None]:
     if p_a is None or p_b is None:
@@ -245,55 +254,47 @@ def devig_two_way(p_a: float | None, p_b: float | None) -> tuple[float | None, f
         return None, None
     return p_a / s, p_b / s
 
+
 def expected_value_per_dollar(p_win: float, dec_odds: float) -> float:
     # EV per $1: p*(dec-1) - (1-p)*1
     return p_win * (dec_odds - 1.0) - (1.0 - p_win)
 
+
 def _norm_team_name(s: str) -> str:
     s = (s or "").lower().strip()
     s = s.replace("&", "and")
-    # normalize some common abbreviations/formatting
     s = s.replace("u.", "u").replace("st.", "st")
     s = re.sub(r"[^a-z0-9 ]+", " ", s)
     s = re.sub(r"\s+", " ", s).strip()
     return s
 
+
 _STOP = {
     "university", "college", "of", "the", "and", "at",
     "state", "st", "saint", "mt", "mount",
-    "tech", "a", "m", "am",
-    "univ"
+    "tech", "a", "m", "am", "univ"
 }
 
+
 def _tokens(name: str) -> list[str]:
-    t = [x for x in _norm_team_name(name).split(" ") if x and x not in _STOP]
-    return t
+    return [x for x in _norm_team_name(name).split(" ") if x and x not in _STOP]
+
 
 def _initials(tokens: list[str]) -> str:
-    # initials for multiword names (e.g., "ul monroe" -> "ulm")
     return "".join([w[0] for w in tokens if w])[:8]
 
+
 def _abbr_match(short: str, long_name: str) -> bool:
-    """
-    True if short (like 'ULM') matches initials of long_name tokens
-    or is contained as a token-ish piece.
-    """
     short_n = _norm_team_name(short).replace(" ", "")
     if not short_n or len(short_n) > 6:
         return False
-
     toks = _tokens(long_name)
     ini = _initials(toks)
-
     if short_n == ini:
         return True
-
-    # also allow 'ulmonroe' style join match
     joined = "".join(toks)
-    if short_n in joined or joined in short_n:
-        return True
-    
-    return False
+    return short_n in joined or joined in short_n
+
 
 def team_similarity(a: str, b: str) -> float:
     """
@@ -309,8 +310,7 @@ def team_similarity(a: str, b: str) -> float:
     if an == bn:
         return 1.0
 
-    # abbreviation handling (ULM, UIC, etc.)
-    if len(an.replace(" ", "")) <= 5 and _abbr_match(an, b):
+    if len(an.replace(" ", "")) <= 5 and _abbr_match(a, b):
         return 0.90
     if len(bn.replace(" ", "")) <= 5 and _abbr_match(b, a):
         return 0.90
@@ -324,56 +324,13 @@ def team_similarity(a: str, b: str) -> float:
     union = len(ta | tb)
     j = inter / union if union else 0.0
 
-    # Boost if one token set is contained in the other
     if ta.issubset(tb) or tb.issubset(ta):
         j = max(j, 0.80)
 
     return min(0.85, j)
 
-def best_matching_odds_game(odds_games: list[dict], home_name: str, away_name: str, start_epoch: int) -> dict | None:
-    """
-    Match by:
-      1) commence_time within window
-      2) best team name similarity (handles abbreviations like ULM)
-    """
-    if not odds_games:
-        return None
-
-    start_epoch = int(start_epoch or 0)
-    best = None
-    best_score = -1.0
-
-    for og in odds_games:
-        ce = parse_iso_to_epoch(og.get("commence_time", ""))
-        if ce is None:
-            continue
-        if abs(ce - start_epoch) > ODDS_TIME_MATCH_WINDOW_SEC:
-            continue
-
-        oh = og.get("home_team", "") or ""
-        oa = og.get("away_team", "") or ""
-
-        # orientation 1: og home->ncaa home, og away->ncaa away
-        s1 = team_similarity(oh, home_name) + team_similarity(oa, away_name)
-
-        # orientation 2: swapped
-        s2 = team_similarity(oh, away_name) + team_similarity(oa, home_name)
-
-        score = max(s1, s2)
-
-        if score > best_score:
-            best_score = score
-            best = og
-
-    # require at least “pretty good” total similarity
-    # exact-exact would be 2.0; acronym+good token match often lands ~1.6+
-    if best is None or best_score < 1.35:
-        return None
-
-    return best
 
 def calibrate_prob_for_long_odds(p: float) -> float:
-    # Conservative shrink to reduce longshot overconfidence
     if p < 0.10:
         return p * 0.85
     if p < 0.20:
@@ -384,8 +341,8 @@ def calibrate_prob_for_long_odds(p: float) -> float:
         return p * 0.98
     return p
 
+
 def parse_iso_to_epoch(iso_str: str) -> int | None:
-    # The Odds API commence_time is ISO with Z
     try:
         s = (iso_str or "").strip()
         if not s:
@@ -399,6 +356,7 @@ def parse_iso_to_epoch(iso_str: str) -> int | None:
         return int(dt.timestamp())
     except Exception:
         return None
+
 
 def fetch_moneyline_odds_for_window(d_from: date, d_to_exclusive: date) -> list[dict]:
     """
@@ -425,12 +383,13 @@ def fetch_moneyline_odds_for_window(d_from: date, d_to_exclusive: date) -> list[
     r.raise_for_status()
     return r.json()
 
+
 def best_price_for_team(odds_game: dict, team_name: str) -> dict | None:
     """
     Find best (highest payout) American odds for team_name across bookmakers.
+    Uses fuzzy similarity to handle abbreviations (e.g., ULM vs UL Monroe).
     Returns {am, dec, book} or None.
     """
-    target = _norm_team_name(team_name)
     best = None
 
     for bk in odds_game.get("bookmakers", []) or []:
@@ -439,7 +398,7 @@ def best_price_for_team(odds_game: dict, team_name: str) -> dict | None:
             if m.get("key") != "h2h":
                 continue
             for o in m.get("outcomes", []) or []:
-                if _norm_team_name(o.get("name", "")) != target:
+                if team_similarity(o.get("name", ""), team_name) < 0.70:
                     continue
                 am = o.get("price")
                 dec = american_to_decimal(am)
@@ -449,32 +408,42 @@ def best_price_for_team(odds_game: dict, team_name: str) -> dict | None:
                     best = {"am": int(am), "dec": float(dec), "book": str(book)}
     return best
 
-def teams_match_odds_game(og: dict, home_name: str, away_name: str) -> bool:
-    oh = _norm_team_name(og.get("home_team", ""))
-    oa = _norm_team_name(og.get("away_team", ""))
-    nh = _norm_team_name(home_name)
-    na = _norm_team_name(away_name)
-    return (oh == nh and oa == na) or (oh == na and oa == nh)
 
 def best_matching_odds_game(odds_games: list[dict], home_name: str, away_name: str, start_epoch: int) -> dict | None:
     """
-    Match by team names (either orientation) and closest commence_time to NCAA start.
+    Match by:
+      1) commence_time within window
+      2) best team name similarity (handles abbreviations like ULM)
     """
-    candidates = []
+    if not odds_games:
+        return None
+
+    start_epoch = int(start_epoch or 0)
+    best = None
+    best_score = -1.0
+
     for og in odds_games:
-        if not teams_match_odds_game(og, home_name, away_name):
-            continue
         ce = parse_iso_to_epoch(og.get("commence_time", ""))
         if ce is None:
             continue
-        diff = abs(ce - int(start_epoch or 0))
-        if diff <= ODDS_TIME_MATCH_WINDOW_SEC:
-            candidates.append((diff, og))
+        if abs(ce - start_epoch) > ODDS_TIME_MATCH_WINDOW_SEC:
+            continue
 
-    if not candidates:
+        oh = og.get("home_team", "") or ""
+        oa = og.get("away_team", "") or ""
+
+        s1 = team_similarity(oh, home_name) + team_similarity(oa, away_name)
+        s2 = team_similarity(oh, away_name) + team_similarity(oa, home_name)
+        score = max(s1, s2)
+
+        if score > best_score:
+            best_score = score
+            best = og
+
+    if best is None or best_score < 1.35:
         return None
-    candidates.sort(key=lambda x: x[0])
-    return candidates[0][1]
+
+    return best
 
 
 # -------------------------
@@ -534,10 +503,9 @@ def _in_range_by_odds(am: int) -> tuple[bool, str]:
     Returns (in_range, kind) where kind is 'fav' or 'dog'.
     """
     if am < 0:
-        # favorite range: between FAV_MIN (more negative) and FAV_MAX (less negative)
         return (FAV_MIN <= am <= FAV_MAX), "fav"
-    else:
-        return (DOG_MIN <= am <= DOG_MAX), "dog"
+    return (DOG_MIN <= am <= DOG_MAX), "dog"
+
 
 def write_picks_for_date(d: date, ratings: dict[str, float], odds_games_window: list[dict] | None):
     try:
@@ -553,7 +521,6 @@ def write_picks_for_date(d: date, ratings: dict[str, float], odds_games_window: 
         hid = g["home"]["id"]
         aid = g["away"]["id"]
 
-        # Neutral site handling: set HCA=0 if neutral
         hca = 0.0 if g.get("neutral_site") else HCA
 
         home_elo_raw = ratings.get(hid, 1500.0)
@@ -577,117 +544,103 @@ def write_picks_for_date(d: date, ratings: dict[str, float], odds_games_window: 
         edge = None
         ev = None
 
-        # If odds enabled, evaluate BOTH sides and choose best EV play
         if ODDS_API_KEY and odds_games_window is not None:
-            og = best_matching_odds_game(odds_games_window, home_name, away_name, g.get("start_epoch", 0))
+            og = best_matching_odds_game(
+                odds_games_window,
+                home_name,
+                away_name,
+                g.get("start_epoch", 0),
+            )
 
-            if og is None:
-                # Debug (optional)
-                # print(f"[odds] no match: {away_name} @ {home_name} start={g.get('start_epoch')}")
-                # Fallback: keep Elo pick, leave market fields None
-               og = None
-            else:
-                # ONLY run the market logic if og exists
+            # If we can't match odds, fall back to Elo-only for this game
+            if og is not None:
                 og_home_norm = _norm_team_name(og.get("home_team", ""))
                 ncaa_home_norm = _norm_team_name(home_name)
                 swapped = (og_home_norm != ncaa_home_norm)
 
-                # ...rest of your market evaluation logic...
-
-
-            if not swapped:
-                og_home_name = og.get("home_team", home_name)
-                og_away_name = og.get("away_team", away_name)
-                home_best = best_price_for_team(og, og_home_name)
-                away_best = best_price_for_team(og, og_away_name)
-            else:
-                # swapped: odds API home corresponds to NCAA away
-                og_home_name = og.get("home_team", away_name)
-                og_away_name = og.get("away_team", home_name)
-                # Map to NCAA correctly:
-                # NCAA home corresponds to odds away
-                away_best = best_price_for_team(og, og_home_name)   # NCAA away
-                home_best = best_price_for_team(og, og_away_name)   # NCAA home
-
-            if not home_best or not away_best:
-                continue
-
-            # Market fair probs (de-vig)
-            p_home_raw = implied_prob_from_decimal(home_best["dec"])
-            p_away_raw = implied_prob_from_decimal(away_best["dec"])
-            p_home_mkt, p_away_mkt = devig_two_way(p_home_raw, p_away_raw)
-
-            candidates = []
-
-            # HOME candidate
-            am_home = int(home_best["am"])
-            in_range, kind = _in_range_by_odds(am_home)
-            if in_range and p_home_mkt is not None:
-                p_blend = (MARKET_BLEND_ALPHA * p_home_mkt) + ((1.0 - MARKET_BLEND_ALPHA) * p_home_elo)
-                p_blend = calibrate_prob_for_long_odds(p_blend)
-                ed = p_blend - p_home_mkt
-                evv = expected_value_per_dollar(p_blend, float(home_best["dec"]))
-
-                ok = True
-                if kind == "fav":
-                    ok = (ed >= FAV_MIN_EDGE) and (evv >= FAV_MIN_EV)
+                if not swapped:
+                    og_home_name = og.get("home_team", home_name)
+                    og_away_name = og.get("away_team", away_name)
+                    home_best = best_price_for_team(og, og_home_name)
+                    away_best = best_price_for_team(og, og_away_name)
                 else:
-                    ok = (ed >= DOG_MIN_EDGE) and (evv >= DOG_MIN_EV) and (p_blend >= DOG_MIN_FINAL_WINPROB)
+                    # swapped: odds API home corresponds to NCAA away
+                    og_home_name = og.get("home_team", away_name)
+                    og_away_name = og.get("away_team", home_name)
+                    away_best = best_price_for_team(og, og_home_name)   # NCAA away
+                    home_best = best_price_for_team(og, og_away_name)   # NCAA home
 
-                if ok:
-                    candidates.append({
-                        "side": "home",
-                        "team": home_name,
-                        "p_elo": p_home_elo,
-                        "p_mkt": p_home_mkt,
-                        "p_final": p_blend,
-                        "edge": ed,
-                        "ev": evv,
-                        "odds": home_best
-                    })
+                if home_best and away_best:
+                    p_home_raw = implied_prob_from_decimal(home_best["dec"])
+                    p_away_raw = implied_prob_from_decimal(away_best["dec"])
+                    p_home_mkt, p_away_mkt = devig_two_way(p_home_raw, p_away_raw)
 
-            # AWAY candidate
-            am_away = int(away_best["am"])
-            in_range, kind = _in_range_by_odds(am_away)
-            if in_range and p_away_mkt is not None:
-                p_blend = (MARKET_BLEND_ALPHA * p_away_mkt) + ((1.0 - MARKET_BLEND_ALPHA) * p_away_elo)
-                p_blend = calibrate_prob_for_long_odds(p_blend)
-                ed = p_blend - p_away_mkt
-                evv = expected_value_per_dollar(p_blend, float(away_best["dec"]))
+                    candidates = []
 
-                ok = True
-                if kind == "fav":
-                    ok = (ed >= FAV_MIN_EDGE) and (evv >= FAV_MIN_EV)
-                else:
-                    ok = (ed >= DOG_MIN_EDGE) and (evv >= DOG_MIN_EV) and (p_blend >= DOG_MIN_FINAL_WINPROB)
+                    # HOME candidate
+                    am_home = int(home_best["am"])
+                    in_range, kind = _in_range_by_odds(am_home)
+                    if in_range and p_home_mkt is not None:
+                        p_blend = (MARKET_BLEND_ALPHA * p_home_mkt) + ((1.0 - MARKET_BLEND_ALPHA) * p_home_elo)
+                        p_blend = calibrate_prob_for_long_odds(p_blend)
+                        ed = p_blend - p_home_mkt
+                        evv = expected_value_per_dollar(p_blend, float(home_best["dec"]))
 
-                if ok:
-                    candidates.append({
-                        "side": "away",
-                        "team": away_name,
-                        "p_elo": p_away_elo,
-                        "p_mkt": p_away_mkt,
-                        "p_final": p_blend,
-                        "edge": ed,
-                        "ev": evv,
-                        "odds": away_best
-                    })
+                        if kind == "fav":
+                            ok = (ed >= FAV_MIN_EDGE) and (evv >= FAV_MIN_EV)
+                        else:
+                            ok = (ed >= DOG_MIN_EDGE) and (evv >= DOG_MIN_EV) and (p_blend >= DOG_MIN_FINAL_WINPROB)
 
-            if not candidates:
-                continue
+                        if ok:
+                            candidates.append({
+                                "side": "home",
+                                "team": home_name,
+                                "p_elo": p_home_elo,
+                                "p_mkt": p_home_mkt,
+                                "p_final": p_blend,
+                                "edge": ed,
+                                "ev": evv,
+                                "odds": home_best
+                            })
 
-            # Choose the best play per game: EV first, then edge, then win prob
-            candidates.sort(key=lambda c: (c["ev"], c["edge"], c["p_final"]), reverse=True)
-            best = candidates[0]
+                    # AWAY candidate
+                    am_away = int(away_best["am"])
+                    in_range, kind = _in_range_by_odds(am_away)
+                    if in_range and p_away_mkt is not None:
+                        p_blend = (MARKET_BLEND_ALPHA * p_away_mkt) + ((1.0 - MARKET_BLEND_ALPHA) * p_away_elo)
+                        p_blend = calibrate_prob_for_long_odds(p_blend)
+                        ed = p_blend - p_away_mkt
+                        evv = expected_value_per_dollar(p_blend, float(away_best["dec"]))
 
-            pick_side = best["side"]
-            pick_team = best["team"]
-            win_prob_final = best["p_final"]
-            elo_win_prob = best["p_elo"]
-            market_p_pick = best["p_mkt"]
-            edge = best["edge"]
-            ev = best["ev"]
-            pick_odds = best["odds"]
+                        if kind == "fav":
+                            ok = (ed >= FAV_MIN_EDGE) and (evv >= FAV_MIN_EV)
+                        else:
+                            ok = (ed >= DOG_MIN_EDGE) and (evv >= DOG_MIN_EV) and (p_blend >= DOG_MIN_FINAL_WINPROB)
+
+                        if ok:
+                            candidates.append({
+                                "side": "away",
+                                "team": away_name,
+                                "p_elo": p_away_elo,
+                                "p_mkt": p_away_mkt,
+                                "p_final": p_blend,
+                                "edge": ed,
+                                "ev": evv,
+                                "odds": away_best
+                            })
+
+                    if candidates:
+                        candidates.sort(key=lambda c: (c["ev"], c["edge"], c["p_final"]), reverse=True)
+                        best = candidates[0]
+
+                        pick_side = best["side"]
+                        pick_team = best["team"]
+                        win_prob_final = best["p_final"]
+                        elo_win_prob = best["p_elo"]
+                        market_p_pick = best["p_mkt"]
+                        edge = best["edge"]
+                        ev = best["ev"]
+                        pick_odds = best["odds"]
 
         picks.append({
             "game_id": g["game_id"],
@@ -699,17 +652,14 @@ def write_picks_for_date(d: date, ratings: dict[str, float], odds_games_window: 
             "pick_team": pick_team,
             "pick_side": pick_side,
 
-            # Final prob (blended if odds enabled & matched)
             "win_prob": win_prob_final,
             "elo_win_prob": elo_win_prob,
 
-            # Elo info
             "home_elo_raw": home_elo_raw,
             "home_elo_with_hca": home_elo_with_hca,
             "away_elo": away_elo,
             "hca": hca,
 
-            # Market fields (None if odds disabled)
             "pick_odds_american": (pick_odds["am"] if pick_odds else None),
             "pick_odds_decimal": (pick_odds["dec"] if pick_odds else None),
             "pick_book": (pick_odds["book"] if pick_odds else None),
@@ -718,7 +668,6 @@ def write_picks_for_date(d: date, ratings: dict[str, float], odds_games_window: 
             "ev": ev,
         })
 
-    # Sort: for ROI mode, EV-first when odds enabled; otherwise win_prob
     if ODDS_API_KEY:
         picks.sort(key=lambda x: (x["ev"] if x["ev"] is not None else -999), reverse=True)
     else:
@@ -809,28 +758,26 @@ def main():
 
     yesterday = today - timedelta(days=1)
 
-    # Build/catch up Elo snapshot
     if last_finalized is None:
         print(f"No snapshot found for season {season_start.isoformat()}. Building initial snapshot...")
-        d = season_start
-        while d <= yesterday:
-            apply_finals_for_date(d, as_of=today, ratings=ratings)
-            d += timedelta(days=1)
+        d0 = season_start
+        while d0 <= yesterday:
+            apply_finals_for_date(d0, as_of=today, ratings=ratings)
+            d0 += timedelta(days=1)
             time.sleep(SLEEP_SECONDS)
         save_snapshot(season_start, yesterday, ratings)
         last_finalized = yesterday
         print("Initial snapshot built.")
     else:
-        d = last_finalized + timedelta(days=1)
-        while d <= yesterday:
-            apply_finals_for_date(d, as_of=today, ratings=ratings)
-            last_finalized = d
-            d += timedelta(days=1)
+        d0 = last_finalized + timedelta(days=1)
+        while d0 <= yesterday:
+            apply_finals_for_date(d0, as_of=today, ratings=ratings)
+            last_finalized = d0
+            d0 += timedelta(days=1)
             time.sleep(SLEEP_SECONDS)
         save_snapshot(season_start, last_finalized, ratings)
         print(f"Snapshot caught up through {last_finalized.isoformat()}.")
 
-    # Fetch odds once for the full window (today .. today+FUTURE_DAYS)
     odds_window = None
     if ODDS_API_KEY:
         try:
