@@ -49,8 +49,33 @@ jobs:
           K_RAMP_EARLY_DAYS: "45"
           K_RAMP_MID_DAYS: "105"
 
+          # --- Odds API (The Odds API) ---
+          ODDS_API_KEY: ${{ secrets.ODDS_API_KEY }}
+          ODDS_SPORT_KEY: "basketball_ncaab"
+
+          # --- ROI sweet spot ---
+          # Underdogs: +125 to +325
+          DOG_MIN: "125"
+          DOG_MAX: "325"
+
+          # Light favorites only: -120 to -220
+          FAV_MIN: "-220"
+          FAV_MAX: "-120"
+
+          # Market anchoring
+          MARKET_BLEND_ALPHA: "0.65"
+
+          # Gates (ROI-driven)
+          DOG_MIN_EDGE: "0.03"
+          DOG_MIN_EV: "0.02"
+          DOG_MIN_FINAL_WINPROB: "0.23"
+
+          FAV_MIN_EDGE: "0.015"
+          FAV_MIN_EV: "0.01"
+
         run: |
           python scripts/build_picks.py
+
 
 
       - name: Commit generated picks + snapshot (if changed)
