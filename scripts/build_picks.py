@@ -581,8 +581,12 @@ def write_picks_for_date(d: date, ratings: dict[str, float], odds_games_window: 
         if ODDS_API_KEY and odds_games_window is not None:
             og = best_matching_odds_game(odds_games_window, home_name, away_name, g.get("start_epoch", 0))
             if og is None:
-                # user wants market filtering; if we cannot find odds, skip the game
-                continue
+                print(f"[odds] no match: {away_name} @ {home_name} start={g.get('start_epoch')}")
+
+                # Fallback to Elo-only for this game (keeps slate from going empty)
+                # Market fields will remain None.
+                og = None
+
 
             # Determine mapping orientation
             og_home_norm = _norm_team_name(og.get("home_team", ""))
