@@ -9,6 +9,16 @@ function isoTodayLocal() {
   return `${yyyy}-${mm}-${dd}`;
 }
 
+function fmtAmerican(am) {
+  if (am == null) return "—";
+  return am > 0 ? `+${am}` : `${am}`;
+}
+
+function pct(x) {
+  if (x == null) return "—";
+  return `${Math.round(x * 100)}%`;
+}
+
 export default function App() {
   const urlParams = new URLSearchParams(window.location.search);
   const dateFromQuery = urlParams.get("date");
@@ -18,7 +28,6 @@ export default function App() {
   const [data, setData] = useState(null);
   const [err, setErr] = useState("");
 
-  // Load manifest for available dates
   useEffect(() => {
     fetch(`${import.meta.env.BASE_URL}picks/manifest.json`)
       .then((r) => (r.ok ? r.json() : Promise.reject(new Error(`HTTP ${r.status}`))))
@@ -26,7 +35,6 @@ export default function App() {
       .catch(() => setManifest(null));
   }, []);
 
-  // Load data for selected date
   useEffect(() => {
     setErr("");
     setData(null);
@@ -49,6 +57,9 @@ export default function App() {
       });
   }, [selectedDate]);
 
+  const marketEnabled = Boolean(data?.model?.market?.enabled);
+  const requireOdds = Boolean(data?.model?.market?.require_odds);
+
   const top5 = useMemo(() => (data?.picks ?? []).slice(0, 5), [data]);
 
   const onChangeDate = (e) => {
@@ -69,7 +80,7 @@ export default function App() {
 
   return (
     <div style={{ maxWidth: 980, margin: "0 auto", padding: 16, fontFamily: "system-ui, Arial" }}>
-      <h1 style={{ marginBottom: 8 }}>NCAAB Top 5 Picks</h1>
+      <h1 style={{ marginBottom: 8 }}>NCAAB Picks</h1>
 
       <div style={{ display: "flex", gap: 12, alignItems: "center", flexWrap: "wrap", marginBottom: 12 }}>
         <label style={{ fontWeight: 700 }}>
@@ -88,6 +99,12 @@ export default function App() {
           Showing: <b>{data?.date ?? "—"}</b> • Season: <b>{data?.season ?? "—"}</b> • Updated:{" "}
           <b>{data?.generated_at ?? "—"}</b>
         </div>
+
+        {marketEnabled && (
+          <div style={{ opacity: 0.8 }}>
+            Market: <b>ON</b> • Require Odds: <b>{requireOdds ? "Yes" : "No"}</b>
+          </div>
+        )}
       </div>
 
       {manifest?.min_date && manifest?.max_date && (
@@ -96,22 +113,18 @@ export default function App() {
         </div>
       )}
 
-      {err && (
-        <div style={{ color: "crimson", marginBottom: 12 }}>
-          {err}
-        </div>
-      )}
+      {err && <div style={{ color: "crimson", marginBottom: 12 }}>{err}</div>}
 
       {!data && !err && <div>Loading…</div>}
 
       {data && (
         <>
-          <h2 style={{ marginTop: 0 }}>Top 5 Most Likely Winners</h2>
+          <h2 style={{ marginTop: 0 }}>
+            Top 5 {marketEnabled ? "EV Picks" : "Most Likely Winners"}
+          </h2>
 
           <div style={{ display: "grid", gap: 12 }}>
-            {top5.length === 0 && (
-              <div style={cardStyle}>No games found for this date.</div>
-            )}
+            {top5.length === 0 && <div style={cardStyle}>No games found for this date.</div>}
 
             {top5.map((p) => (
               <div key={p.game_id} style={cardStyle}>
@@ -120,11 +133,26 @@ export default function App() {
                 </div>
 
                 <div style={{ marginTop: 6 }}>
-                  Pick: <b>{p.pick_team}</b> • Confidence: <b>{Math.round(p.win_prob * 100)}%</b>
+                  Pick: <b>{p.pick_team}</b>{" "}
+                  • Win: <b>{pct(p.win_prob)}</b>
+                  {marketEnabled && (
+                    <>
+                      {" "}
+                      • Odds: <b>{fmtAmerican(p.pick_odds_american)}</b>{" "}
+                      • EV: <b>{p.ev == null ? "—" : p.ev.toFixed(3)}</b>{" "}
+                      • Edge: <b>{p.edge == null ? "—" : (p.edge * 100).toFixed(1) + "%"}</b>
+                    </>
+                  )}
                 </div>
 
                 <div style={{ marginTop: 8, opacity: 0.75, fontSize: 13 }}>
-                  Elo (raw): {Math.round(p.home_elo_raw)} vs {Math.round(p.away_elo)} • HCA: +{p.hca}
+                  Elo: {Math.round(p.home_elo_raw)} vs {Math.round(p.away_elo)} • HCA: +{p.hca}
+                  {marketEnabled && (
+                    <>
+                      {" "}
+                      • Market p: <b>{pct(p.market_p_pick)}</b> • Book: <b>{p.pick_book ?? "—"}</b>
+                    </>
+                  )}
                 </div>
               </div>
             ))}
@@ -132,12 +160,20 @@ export default function App() {
 
           <h2 style={{ marginTop: 22 }}>All Games</h2>
           <div style={{ overflowX: "auto" }}>
-            <table style={{ width: "100%", borderCollapse: "collapse", minWidth: 520 }}>
+            <table style={{ width: "100%", borderCollapse: "collapse", minWidth: 760 }}>
               <thead>
                 <tr style={{ borderBottom: "2px solid var(--table-border)" }}>
                   <th align="left" style={{ padding: "8px 0" }}>Matchup</th>
                   <th align="left" style={{ padding: "8px 0" }}>Pick</th>
                   <th align="left" style={{ padding: "8px 0" }}>Win %</th>
+                  {marketEnabled && (
+                    <>
+                      <th align="left" style={{ padding: "8px 0" }}>Odds</th>
+                      <th align="left" style={{ padding: "8px 0" }}>EV</th>
+                      <th align="left" style={{ padding: "8px 0" }}>Edge</th>
+                      <th align="left" style={{ padding: "8px 0" }}>Book</th>
+                    </>
+                  )}
                 </tr>
               </thead>
               <tbody>
@@ -145,7 +181,15 @@ export default function App() {
                   <tr key={`row-${p.game_id}`} style={{ borderTop: "1px solid var(--table-border)" }}>
                     <td style={{ padding: "10px 0" }}>{p.away_team} @ {p.home_team}</td>
                     <td>{p.pick_team}</td>
-                    <td>{Math.round(p.win_prob * 100)}%</td>
+                    <td>{pct(p.win_prob)}</td>
+                    {marketEnabled && (
+                      <>
+                        <td>{fmtAmerican(p.pick_odds_american)}</td>
+                        <td>{p.ev == null ? "—" : p.ev.toFixed(3)}</td>
+                        <td>{p.edge == null ? "—" : (p.edge * 100).toFixed(1) + "%"}</td>
+                        <td>{p.pick_book ?? "—"}</td>
+                      </>
+                    )}
                   </tr>
                 ))}
               </tbody>

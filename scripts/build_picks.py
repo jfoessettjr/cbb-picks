@@ -24,14 +24,14 @@ K = float(os.getenv("ELO_K", "20"))
 HALF_LIFE_DAYS = float(os.getenv("HALF_LIFE_DAYS", "30"))
 MOV_CAP = float(os.getenv("MOV_CAP", "2.0"))
 
-# Season-phase K multipliers (higher early season, lower late season)
-K_EARLY_MULT = float(os.getenv("K_EARLY_MULT", "1.40"))  # very early season
-K_MID_MULT = float(os.getenv("K_MID_MULT", "1.00"))      # mid-season baseline
-K_LATE_MULT = float(os.getenv("K_LATE_MULT", "0.85"))    # late-season stability
+# Season-phase K multipliers
+K_EARLY_MULT = float(os.getenv("K_EARLY_MULT", "1.40"))
+K_MID_MULT = float(os.getenv("K_MID_MULT", "1.00"))
+K_LATE_MULT = float(os.getenv("K_LATE_MULT", "0.85"))
 
 # Ramp breakpoints (days since season start)
-K_RAMP_EARLY_DAYS = int(os.getenv("K_RAMP_EARLY_DAYS", "45"))   # end of early ramp
-K_RAMP_MID_DAYS = int(os.getenv("K_RAMP_MID_DAYS", "105"))      # end of mid ramp
+K_RAMP_EARLY_DAYS = int(os.getenv("K_RAMP_EARLY_DAYS", "45"))
+K_RAMP_MID_DAYS = int(os.getenv("K_RAMP_MID_DAYS", "105"))
 
 SLEEP_SECONDS = float(os.getenv("API_SLEEP_SECONDS", "0.25"))
 SNAPSHOT_PATH = os.getenv("ELO_SNAPSHOT_PATH", "data/elo_snapshot.json")
@@ -44,12 +44,14 @@ ODDS_API_KEY = os.getenv("ODDS_API_KEY", "").strip()
 ODDS_API_BASE = os.getenv("ODDS_API_BASE", "https://api.the-odds-api.com/v4")
 ODDS_SPORT_KEY = os.getenv("ODDS_SPORT_KEY", "basketball_ncaab")
 
+# Market-only mode: if enabled, drop games that aren't in the Odds API market
+REQUIRE_ODDS = os.getenv("REQUIRE_ODDS", "1").lower() in ("1", "true", "yes")
+
 # "Sweet spot" ranges (ROI defaults)
-# Underdogs primarily (+125..+325), light favorites only (-120..-220)
 DOG_MIN = int(os.getenv("DOG_MIN", "125"))
 DOG_MAX = int(os.getenv("DOG_MAX", "325"))
-FAV_MIN = int(os.getenv("FAV_MIN", "-220"))   # most negative allowed (exclude heavier chalk)
-FAV_MAX = int(os.getenv("FAV_MAX", "-120"))   # least negative allowed
+FAV_MIN = int(os.getenv("FAV_MIN", "-220"))  # most negative allowed
+FAV_MAX = int(os.getenv("FAV_MAX", "-120"))  # least negative allowed
 
 # Market anchoring (higher = closer to market)
 MARKET_BLEND_ALPHA = float(os.getenv("MARKET_BLEND_ALPHA", "0.65"))
@@ -94,11 +96,6 @@ def api_get(path: str) -> dict:
 # NCAA parsing
 # -------------------------
 def _looks_neutral(game_obj: dict) -> bool:
-    """
-    Neutral-site detection:
-    - If upstream provides a neutral-site boolean, use it.
-    - Otherwise try some best-effort heuristics on strings/fields.
-    """
     for key in ("neutralSite", "isNeutral", "neutral", "neutral_site"):
         val = game_obj.get(key)
         if isinstance(val, bool):
@@ -203,12 +200,6 @@ def lerp(a: float, b: float, t: float) -> float:
 
 
 def k_multiplier_ramp(game_day: date, season_start: date) -> float:
-    """
-    Smooth piecewise-linear ramp by days since season start:
-      0 .. K_RAMP_EARLY_DAYS : K_EARLY_MULT -> K_MID_MULT
-      K_RAMP_EARLY_DAYS .. K_RAMP_MID_DAYS : K_MID_MULT -> K_LATE_MULT
-      beyond K_RAMP_MID_DAYS : K_LATE_MULT
-    """
     days = max(0, (game_day - season_start).days)
 
     e = max(1, K_RAMP_EARLY_DAYS)
@@ -297,12 +288,6 @@ def _abbr_match(short: str, long_name: str) -> bool:
 
 
 def team_similarity(a: str, b: str) -> float:
-    """
-    Returns 0..1-ish similarity score.
-    Exact match -> 1.0
-    Strong acronym match -> 0.9
-    Token Jaccard overlap -> 0..0.85
-    """
     an = _norm_team_name(a)
     bn = _norm_team_name(b)
     if not an or not bn:
@@ -359,9 +344,6 @@ def parse_iso_to_epoch(iso_str: str) -> int | None:
 
 
 def fetch_moneyline_odds_for_window(d_from: date, d_to_exclusive: date) -> list[dict]:
-    """
-    Fetch odds once for a whole window (UTC day bounds).
-    """
     if not ODDS_API_KEY:
         return []
 
@@ -385,11 +367,6 @@ def fetch_moneyline_odds_for_window(d_from: date, d_to_exclusive: date) -> list[
 
 
 def best_price_for_team(odds_game: dict, team_name: str) -> dict | None:
-    """
-    Find best (highest payout) American odds for team_name across bookmakers.
-    Uses fuzzy similarity to handle abbreviations (e.g., ULM vs UL Monroe).
-    Returns {am, dec, book} or None.
-    """
     best = None
 
     for bk in odds_game.get("bookmakers", []) or []:
@@ -410,15 +387,12 @@ def best_price_for_team(odds_game: dict, team_name: str) -> dict | None:
 
 
 def best_matching_odds_game(odds_games: list[dict], home_name: str, away_name: str, start_epoch: int) -> dict | None:
-    """
-    Match by:
-      1) commence_time within window
-      2) best team name similarity (handles abbreviations like ULM)
-    """
     if not odds_games:
         return None
 
     start_epoch = int(start_epoch or 0)
+    use_time = start_epoch > 1_000_000_000  # ignore 0/garbage epochs
+
     best = None
     best_score = -1.0
 
@@ -426,7 +400,8 @@ def best_matching_odds_game(odds_games: list[dict], home_name: str, away_name: s
         ce = parse_iso_to_epoch(og.get("commence_time", ""))
         if ce is None:
             continue
-        if abs(ce - start_epoch) > ODDS_TIME_MATCH_WINDOW_SEC:
+
+        if use_time and abs(ce - start_epoch) > ODDS_TIME_MATCH_WINDOW_SEC:
             continue
 
         oh = og.get("home_team", "") or ""
@@ -450,10 +425,6 @@ def best_matching_odds_game(odds_games: list[dict], home_name: str, away_name: s
 # Elo finalization
 # -------------------------
 def apply_finals_for_date(d: date, as_of: date, ratings: dict[str, float]):
-    """
-    Apply Elo updates from final games on date d into ratings.
-    as_of: used to compute recency decay (days_ago = as_of - d)
-    """
     try:
         sb = api_get(scoreboard_path(d))
     except requests.HTTPError as e:
@@ -499,9 +470,6 @@ def apply_finals_for_date(d: date, as_of: date, ratings: dict[str, float]):
 # Picks generation (Elo + Market)
 # -------------------------
 def _in_range_by_odds(am: int) -> tuple[bool, str]:
-    """
-    Returns (in_range, kind) where kind is 'fav' or 'dog'.
-    """
     if am < 0:
         return (FAV_MIN <= am <= FAV_MAX), "fav"
     return (DOG_MIN <= am <= DOG_MAX), "dog"
@@ -516,6 +484,11 @@ def write_picks_for_date(d: date, ratings: dict[str, float], odds_games_window: 
 
     games = parse_games(sb)
     picks = []
+
+    matched = 0
+    no_match = 0
+    no_prices = 0
+    no_candidates = 0
 
     for g in games:
         hid = g["home"]["id"]
@@ -533,7 +506,7 @@ def write_picks_for_date(d: date, ratings: dict[str, float], odds_games_window: 
         home_name = g["home"]["name"]
         away_name = g["away"]["name"]
 
-        # Default (no odds): pick highest Elo win prob
+        # Default (Elo-only)
         pick_team = home_name if p_home_elo >= 0.5 else away_name
         pick_side = "home" if p_home_elo >= 0.5 else "away"
         win_prob_final = max(p_home_elo, p_away_elo)
@@ -552,8 +525,11 @@ def write_picks_for_date(d: date, ratings: dict[str, float], odds_games_window: 
                 g.get("start_epoch", 0),
             )
 
-            # If we can't match odds, fall back to Elo-only for this game
-            if og is not None:
+            if og is None:
+                no_match += 1
+                if REQUIRE_ODDS:
+                    continue
+            else:
                 og_home_norm = _norm_team_name(og.get("home_team", ""))
                 ncaa_home_norm = _norm_team_name(home_name)
                 swapped = (og_home_norm != ncaa_home_norm)
@@ -564,13 +540,16 @@ def write_picks_for_date(d: date, ratings: dict[str, float], odds_games_window: 
                     home_best = best_price_for_team(og, og_home_name)
                     away_best = best_price_for_team(og, og_away_name)
                 else:
-                    # swapped: odds API home corresponds to NCAA away
                     og_home_name = og.get("home_team", away_name)
                     og_away_name = og.get("away_team", home_name)
                     away_best = best_price_for_team(og, og_home_name)   # NCAA away
                     home_best = best_price_for_team(og, og_away_name)   # NCAA home
 
-                if home_best and away_best:
+                if not home_best or not away_best:
+                    no_prices += 1
+                    if REQUIRE_ODDS:
+                        continue
+                else:
                     p_home_raw = implied_prob_from_decimal(home_best["dec"])
                     p_away_raw = implied_prob_from_decimal(away_best["dec"])
                     p_home_mkt, p_away_mkt = devig_two_way(p_home_raw, p_away_raw)
@@ -629,7 +608,11 @@ def write_picks_for_date(d: date, ratings: dict[str, float], odds_games_window: 
                                 "odds": away_best
                             })
 
-                    if candidates:
+                    if not candidates:
+                        no_candidates += 1
+                        if REQUIRE_ODDS:
+                            continue
+                    else:
                         candidates.sort(key=lambda c: (c["ev"], c["edge"], c["p_final"]), reverse=True)
                         best = candidates[0]
 
@@ -641,6 +624,7 @@ def write_picks_for_date(d: date, ratings: dict[str, float], odds_games_window: 
                         edge = best["edge"]
                         ev = best["ev"]
                         pick_odds = best["odds"]
+                        matched += 1
 
         picks.append({
             "game_id": g["game_id"],
@@ -673,6 +657,13 @@ def write_picks_for_date(d: date, ratings: dict[str, float], odds_games_window: 
     else:
         picks.sort(key=lambda x: x["win_prob"], reverse=True)
 
+    if ODDS_API_KEY:
+        print(
+            f"[odds] {d.isoformat()} total={len(games)} "
+            f"matched={matched} no_match={no_match} no_prices={no_prices} no_candidates={no_candidates} "
+            f"require_odds={REQUIRE_ODDS}"
+        )
+
     out = {
         "date": d.isoformat(),
         "season": season_label_for(d),
@@ -695,6 +686,7 @@ def write_picks_for_date(d: date, ratings: dict[str, float], odds_games_window: 
                 "enabled": bool(ODDS_API_KEY),
                 "provider": ("the-odds-api" if ODDS_API_KEY else None),
                 "sport_key": (ODDS_SPORT_KEY if ODDS_API_KEY else None),
+                "require_odds": (REQUIRE_ODDS if ODDS_API_KEY else None),
                 "ranges": {
                     "dog_min": (DOG_MIN if ODDS_API_KEY else None),
                     "dog_max": (DOG_MAX if ODDS_API_KEY else None),
@@ -807,5 +799,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  
