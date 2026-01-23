@@ -1,7 +1,7 @@
 {
   "date": "2026-01-24",
   "season": "2025-2026",
-  "generated_at": "2026-01-23T14:31:16Z",
+  "generated_at": "2026-01-23T14:41:40Z",
   "model": {
     "type": "Elo",
     "mov": true,
@@ -37,5 +37,48 @@
       }
     }
   },
-  "picks": []
+  "picks": [
+    {
+      "game_id": "6506022",
+      "date_time_epoch": 1769288400,
+      "home_team": "Florida",
+      "away_team": "Auburn",
+      "neutral_site": false,
+      "pick_team": "Florida",
+      "pick_side": "home",
+      "win_prob": 0.3777703931940881,
+      "elo_win_prob": 0.6506085793255137,
+      "home_elo_raw": 1594.1635447101714,
+      "home_elo_with_hca": 1659.1635447101714,
+      "away_elo": 1551.1605250281036,
+      "hca": 65.0,
+      "pick_odds_american": 290,
+      "pick_odds_decimal": 3.9,
+      "pick_book": "betrivers",
+      "market_p_pick": 0.24271844660194178,
+      "edge": 0.13505194659214634,
+      "ev": 0.4733045334569437
+    },
+    {
+      "game_id": "6502537",
+      "date_time_epoch": 1769274000,
+      "home_team": "Virginia",
+      "away_team": "North Carolina",
+      "neutral_site": false,
+      "pick_team": "Virginia",
+      "pick_side": "home",
+      "win_prob": 0.4133807136003459,
+      "elo_win_prob": 0.6389712267183809,
+      "home_elo_raw": 1626.775775872828,
+      "home_elo_with_hca": 1691.775775872828,
+      "away_elo": 1592.5999813359547,
+      "hca": 65.0,
+      "pick_odds_american": 210,
+      "pick_odds_decimal": 3.1,
+      "pick_book": "betrivers",
+      "market_p_pick": 0.30488788514276494,
+      "edge": 0.10849282845758096,
+      "ev": 0.28148021216107233
+    }
+  ]
 }

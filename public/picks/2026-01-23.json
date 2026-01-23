@@ -1,7 +1,7 @@
 {
   "date": "2026-01-23",
   "season": "2025-2026",
-  "generated_at": "2026-01-23T14:31:15Z",
+  "generated_at": "2026-01-23T14:41:39Z",
   "model": {
     "type": "Elo",
     "mov": true,
@@ -60,27 +60,6 @@
       "ev": 0.5399945925209214
     },
     {
-      "game_id": "6502649",
-      "date_time_epoch": 1769216400,
-      "home_team": "Butler",
-      "away_team": "Marquette",
-      "neutral_site": false,
-      "pick_team": "Butler",
-      "pick_side": "home",
-      "win_prob": 0.4092987819913742,
-      "elo_win_prob": 0.7042552182480131,
-      "home_elo_raw": 1546.2031763120058,
-      "home_elo_with_hca": 1611.2031763120058,
-      "away_elo": 1460.4779830607586,
-      "hca": 65.0,
-      "pick_odds_american": 270,
-      "pick_odds_decimal": 3.7,
-      "pick_book": "fanduel",
-      "market_p_pick": 0.26332691072575465,
-      "edge": 0.14597187126561956,
-      "ev": 0.5144054933680846
-    },
-    {
       "game_id": "6504587",
       "date_time_epoch": 1769207400,
       "home_team": "St. Bonaventure",
@@ -100,6 +79,27 @@
       "market_p_pick": 0.23437499999999994,
       "edge": 0.1098459940782272,
       "ev": 0.4457281751285541
+    },
+    {
+      "game_id": "6502649",
+      "date_time_epoch": 1769216400,
+      "home_team": "Butler",
+      "away_team": "Marquette",
+      "neutral_site": false,
+      "pick_team": "Butler",
+      "pick_side": "home",
+      "win_prob": 0.4293069082801211,
+      "elo_win_prob": 0.7042552182480131,
+      "home_elo_raw": 1546.2031763120058,
+      "home_elo_with_hca": 1611.2031763120058,
+      "away_elo": 1460.4779830607586,
+      "hca": 65.0,
+      "pick_odds_american": 235,
+      "pick_odds_decimal": 3.35,
+      "pick_book": "fanduel",
+      "market_p_pick": 0.2947368421052631,
+      "edge": 0.134570066174858,
+      "ev": 0.4381781427384057
     },
     {
       "game_id": "6501961",
