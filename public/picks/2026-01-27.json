@@ -1,7 +1,7 @@
 {
-  "date": "2026-01-25",
+  "date": "2026-01-27",
   "season": "2025-2026",
-  "generated_at": "2026-01-24T14:32:46Z",
+  "generated_at": "2026-01-24T14:32:47Z",
   "model": {
     "type": "Elo",
     "mov": true,
