@@ -1,7 +1,7 @@
 {
   "date": "2026-01-26",
   "season": "2025-2026",
-  "generated_at": "2026-01-25T14:33:04Z",
+  "generated_at": "2026-01-26T14:46:12Z",
   "model": {
     "type": "Elo",
     "mov": true,
@@ -37,5 +37,69 @@
       }
     }
   },
-  "picks": []
+  "picks": [
+    {
+      "game_id": "6503354",
+      "date_time_epoch": 1769472000,
+      "home_team": "Duke",
+      "away_team": "Louisville",
+      "neutral_site": false,
+      "pick_team": "Duke",
+      "pick_side": "home",
+      "win_prob": 0.3974067472978789,
+      "elo_win_prob": 0.6844091924157185,
+      "home_elo_raw": 1653.8464504868864,
+      "home_elo_with_hca": 1718.8464504868864,
+      "away_elo": 1584.369854789668,
+      "hca": 65.0,
+      "pick_odds_american": 280,
+      "pick_odds_decimal": 3.8,
+      "pick_book": "fanduel",
+      "market_p_pick": 0.25534441805225655,
+      "edge": 0.14206232924562234,
+      "ev": 0.5101456397319397
+    },
+    {
+      "game_id": "6504479",
+      "date_time_epoch": 1769472000,
+      "home_team": "Florida A&M",
+      "away_team": "Jackson St.",
+      "neutral_site": false,
+      "pick_team": "Florida A&M",
+      "pick_side": "home",
+      "win_prob": 0.4348400242314022,
+      "elo_win_prob": 0.6811547737718743,
+      "home_elo_raw": 1499.3293187408763,
+      "home_elo_with_hca": 1564.3293187408763,
+      "away_elo": 1432.462964513115,
+      "hca": 65.0,
+      "pick_odds_american": 205,
+      "pick_odds_decimal": 3.05,
+      "pick_book": "draftkings",
+      "market_p_pick": 0.315861753261616,
+      "edge": 0.11897827096978625,
+      "ev": 0.32626207390577666
+    },
+    {
+      "game_id": "6501945",
+      "date_time_epoch": 1769475600,
+      "home_team": "Tarleton St.",
+      "away_team": "Abilene Christian",
+      "neutral_site": false,
+      "pick_team": "Tarleton St.",
+      "pick_side": "home",
+      "win_prob": 0.4341966024604108,
+      "elo_win_prob": 0.6052533061900133,
+      "home_elo_raw": 1512.2577442100414,
+      "home_elo_with_hca": 1577.2577442100414,
+      "away_elo": 1503.0102765399283,
+      "hca": 65.0,
+      "pick_odds_american": 174,
+      "pick_odds_decimal": 2.74,
+      "pick_book": "betonlineag",
+      "market_p_pick": 0.3557216929940914,
+      "edge": 0.07847490946631941,
+      "ev": 0.18969869074152568
+    }
+  ]
 }
