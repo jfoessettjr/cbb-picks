@@ -1,7 +1,7 @@
 {
   "date": "2026-01-28",
   "season": "2025-2026",
-  "generated_at": "2026-01-28T18:17:58Z",
+  "generated_at": "2026-01-28T18:31:02Z",
   "model": {
     "type": "Elo",
     "mov": true,
@@ -43,10 +43,62 @@
         "elo_winprob": 0.64,
         "max_fav": -450,
         "min_ev": -0.02
+      },
+      "tiers": {
+        "tier_a_min_ev": 0.03,
+        "tier_a_min_edge": 0.025,
+        "tier_a_min_winprob": 0.4,
+        "tier_b_min_ev": 0.0,
+        "tier_b_min_edge": 0.01,
+        "tier_b_min_winprob": 0.25
       }
     }
   },
   "picks": [
+    {
+      "game_id": "6505024",
+      "date_time_epoch": 1769644800,
+      "home_team": "Florida St.",
+      "away_team": "California",
+      "neutral_site": false,
+      "pick_team": "California",
+      "pick_side": "away",
+      "win_prob": 0.4660683185132851,
+      "elo_win_prob": 0.5658373015473186,
+      "home_elo_raw": 1476.6353003702654,
+      "home_elo_with_hca": 1541.6353003702654,
+      "away_elo": 1587.650926809019,
+      "hca": 65.0,
+      "pick_odds_american": 145,
+      "pick_odds_decimal": 2.45,
+      "pick_book": "draftkings",
+      "market_p_pick": 0.4017329657345411,
+      "edge": 0.06433535277874403,
+      "ev": 0.14186738035754864,
+      "confidence_tier": "A"
+    },
+    {
+      "game_id": "6502609",
+      "date_time_epoch": 1769648400,
+      "home_team": "Texas St.",
+      "away_team": "Marshall",
+      "neutral_site": false,
+      "pick_team": "Texas St.",
+      "pick_side": "home",
+      "win_prob": 0.4387382743873003,
+      "elo_win_prob": 0.5168065898449379,
+      "home_elo_raw": 1493.0309951805689,
+      "home_elo_with_hca": 1558.0309951805689,
+      "away_elo": 1546.3481791602303,
+      "hca": 65.0,
+      "pick_odds_american": 150,
+      "pick_odds_decimal": 2.5,
+      "pick_book": "bovada",
+      "market_p_pick": 0.3911439114391144,
+      "edge": 0.047594362948185864,
+      "ev": 0.09684568596825072,
+      "confidence_tier": "A"
+    },
     {
       "game_id": "6504039",
       "date_time_epoch": 1769652000,
@@ -66,28 +118,8 @@
       "pick_book": "draftkings",
       "market_p_pick": 0.23170731707317072,
       "edge": 0.09780576543168285,
-      "ev": 0.3839549465203851
-    },
-    {
-      "game_id": "6505024",
-      "date_time_epoch": 1769644800,
-      "home_team": "Florida St.",
-      "away_team": "California",
-      "neutral_site": false,
-      "pick_team": "California",
-      "pick_side": "away",
-      "win_prob": 0.4695342499823674,
-      "elo_win_prob": 0.5658373015473186,
-      "home_elo_raw": 1476.6353003702654,
-      "home_elo_with_hca": 1541.6353003702654,
-      "away_elo": 1587.650926809019,
-      "hca": 65.0,
-      "pick_odds_american": 145,
-      "pick_odds_decimal": 2.45,
-      "pick_book": "draftkings",
-      "market_p_pick": 0.4081632653061224,
-      "edge": 0.06137098467624502,
-      "ev": 0.15035891245680022
+      "ev": 0.3839549465203851,
+      "confidence_tier": "B"
     },
     {
       "game_id": "6506023",
@@ -97,39 +129,19 @@
       "neutral_site": false,
       "pick_team": "Texas",
       "pick_side": "away",
-      "win_prob": 0.30718324868730307,
+      "win_prob": 0.30863480656097236,
       "elo_win_prob": 0.38615377363053105,
       "home_elo_raw": 1563.645773838128,
       "home_elo_with_hca": 1628.645773838128,
       "away_elo": 1548.1260510059917,
       "hca": 65.0,
-      "pick_odds_american": 260,
-      "pick_odds_decimal": 3.6,
-      "pick_book": "fanduel",
-      "market_p_pick": 0.27196652719665276,
-      "edge": 0.035216721490650305,
-      "ev": 0.10585969527429107
-    },
-    {
-      "game_id": "6502609",
-      "date_time_epoch": 1769648400,
-      "home_team": "Texas St.",
-      "away_team": "Marshall",
-      "neutral_site": false,
-      "pick_team": "Texas St.",
-      "pick_side": "home",
-      "win_prob": 0.44613032960339893,
-      "elo_win_prob": 0.5168065898449379,
-      "home_elo_raw": 1493.0309951805689,
-      "home_elo_with_hca": 1558.0309951805689,
-      "away_elo": 1546.3481791602303,
-      "hca": 65.0,
-      "pick_odds_american": 145,
-      "pick_odds_decimal": 2.45,
-      "pick_book": "betonlineag",
-      "market_p_pick": 0.40485829959514164,
-      "edge": 0.0412720300082573,
-      "ev": 0.09301930752832743
+      "pick_odds_american": 255,
+      "pick_odds_decimal": 3.55,
+      "pick_book": "bovada",
+      "market_p_pick": 0.27474462839027824,
+      "edge": 0.03389017817069412,
+      "ev": 0.0956535632914518,
+      "confidence_tier": "B"
     },
     {
       "game_id": "6503630",
@@ -150,7 +162,8 @@
       "pick_book": "fanduel",
       "market_p_pick": 0.3488372093023256,
       "edge": 0.038292204423937715,
-      "ev": 0.08396235843353717
+      "ev": 0.08396235843353717,
+      "confidence_tier": "B"
     }
   ],
   "debug": {
@@ -160,7 +173,7 @@
       "matched": 34,
       "no_match": 20,
       "no_prices": 0,
-      "no_candidates": 11,
+      "no_candidates": 12,
       "require_odds": true
     }
   }
