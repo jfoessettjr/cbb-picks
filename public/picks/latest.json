@@ -1,7 +1,7 @@
 {
   "date": "2026-01-28",
   "season": "2025-2026",
-  "generated_at": "2026-01-28T16:53:52Z",
+  "generated_at": "2026-01-28T18:11:00Z",
   "model": {
     "type": "Elo",
     "mov": true,
@@ -22,18 +22,27 @@
       "sport_key": "basketball_ncaab",
       "require_odds": true,
       "ranges": {
-        "dog_min": 125,
-        "dog_max": 325,
-        "fav_min": -220,
-        "fav_max": -120
+        "dog_min": 110,
+        "dog_max": 350,
+        "fav_min": -320,
+        "fav_max": -115
       },
-      "blend_alpha": 0.65,
+      "blend_alpha": 0.55,
       "gates": {
-        "dog_min_edge": 0.03,
-        "dog_min_ev": 0.02,
-        "dog_min_final_winprob": 0.23,
-        "fav_min_edge": 0.015,
-        "fav_min_ev": 0.01
+        "disable_gates": true,
+        "only_positive_ev": true,
+        "max_picks_per_day": 5,
+        "dog_min_edge": 0.02,
+        "dog_min_ev": 0.01,
+        "dog_min_final_winprob": 0.22,
+        "fav_min_edge": 0.01,
+        "fav_min_ev": 0.004
+      },
+      "elo_fallback": {
+        "enabled": true,
+        "elo_winprob": 0.66,
+        "max_fav": -450,
+        "min_ev": -0.01
       }
     }
   },
@@ -46,7 +55,7 @@
       "neutral_site": false,
       "pick_team": "TCU",
       "pick_side": "home",
-      "win_prob": 0.30520394221922215,
+      "win_prob": 0.32951308250485356,
       "elo_win_prob": 0.4875930042903435,
       "home_elo_raw": 1555.843592476433,
       "home_elo_with_hca": 1620.843592476433,
@@ -56,13 +65,8 @@
       "pick_odds_decimal": 4.2,
       "pick_book": "draftkings",
       "market_p_pick": 0.23170731707317072,
-      "edge": 0.07349662514605143,
-      "ev": 0.281856557320733,
-      "odds_event_home": "TCU Horned Frogs",
-      "odds_event_away": "Houston Cougars",
-      "odds_swapped": false,
-      "odds_score_same": 1.7000000000000002,
-      "odds_score_swap": 0.0
+      "edge": 0.09780576543168285,
+      "ev": 0.3839549465203851
     },
     {
       "game_id": "6505024",
@@ -72,23 +76,18 @@
       "neutral_site": false,
       "pick_team": "California",
       "pick_side": "away",
-      "win_prob": 0.44074866772335836,
+      "win_prob": 0.4660683185132851,
       "elo_win_prob": 0.5658373015473186,
       "home_elo_raw": 1476.6353003702654,
       "home_elo_with_hca": 1541.6353003702654,
       "away_elo": 1587.650926809019,
       "hca": 65.0,
-      "pick_odds_american": 153,
-      "pick_odds_decimal": 2.5300000000000002,
-      "pick_book": "betonlineag",
-      "market_p_pick": 0.3872315122333251,
-      "edge": 0.053517155490033275,
-      "ev": 0.11509412934009666,
-      "odds_event_home": "Florida St Seminoles",
-      "odds_event_away": "California Golden Bears",
-      "odds_swapped": false,
-      "odds_score_same": 1.6,
-      "odds_score_swap": 0.0
+      "pick_odds_american": 145,
+      "pick_odds_decimal": 2.45,
+      "pick_book": "draftkings",
+      "market_p_pick": 0.4017329657345411,
+      "edge": 0.06433535277874403,
+      "ev": 0.14186738035754864
     },
     {
       "game_id": "6502609",
@@ -98,7 +97,7 @@
       "neutral_site": false,
       "pick_team": "Texas St.",
       "pick_side": "home",
-      "win_prob": 0.4270685818854412,
+      "win_prob": 0.4362018993407208,
       "elo_win_prob": 0.5168065898449379,
       "home_elo_raw": 1493.0309951805689,
       "home_elo_with_hca": 1558.0309951805689,
@@ -107,14 +106,62 @@
       "pick_odds_american": 155,
       "pick_odds_decimal": 2.55,
       "pick_book": "bovada",
-      "market_p_pick": 0.3921568627450981,
-      "edge": 0.034911719140343134,
-      "ev": 0.08902488380787499,
-      "odds_event_home": "Texas State Bobcats",
-      "odds_event_away": "Marshall Thundering Herd",
-      "odds_swapped": false,
-      "odds_score_same": 1.6,
-      "odds_score_swap": 0.0
+      "market_p_pick": 0.38643820634341963,
+      "edge": 0.04976369299730116,
+      "ev": 0.11231484331883801
+    },
+    {
+      "game_id": "6506023",
+      "date_time_epoch": 1769644800,
+      "home_team": "Auburn",
+      "away_team": "Texas",
+      "neutral_site": false,
+      "pick_team": "Texas",
+      "pick_side": "away",
+      "win_prob": 0.30764806636312575,
+      "elo_win_prob": 0.38615377363053105,
+      "home_elo_raw": 1563.645773838128,
+      "home_elo_with_hca": 1628.645773838128,
+      "away_elo": 1548.1260510059917,
+      "hca": 65.0,
+      "pick_odds_american": 260,
+      "pick_odds_decimal": 3.6,
+      "pick_book": "fanduel",
+      "market_p_pick": 0.27285613040396883,
+      "edge": 0.03479193595915692,
+      "ev": 0.10753303890725274
+    },
+    {
+      "game_id": "6503630",
+      "date_time_epoch": 1769659200,
+      "home_team": "Oregon",
+      "away_team": "UCLA",
+      "neutral_site": false,
+      "pick_team": "Oregon",
+      "pick_side": "home",
+      "win_prob": 0.3871294137262633,
+      "elo_win_prob": 0.4514878864224713,
+      "home_elo_raw": 1472.7437764885674,
+      "home_elo_with_hca": 1537.7437764885674,
+      "away_elo": 1571.559824740364,
+      "hca": 65.0,
+      "pick_odds_american": 180,
+      "pick_odds_decimal": 2.8,
+      "pick_book": "fanduel",
+      "market_p_pick": 0.3488372093023256,
+      "edge": 0.038292204423937715,
+      "ev": 0.08396235843353717
     }
-  ]
+  ],
+  "debug": {
+    "odds": {
+      "date": "2026-01-28",
+      "total": 54,
+      "matched": 34,
+      "no_match": 20,
+      "no_prices": 0,
+      "no_candidates": 12,
+      "require_odds": true
+    }
+  }
 }
