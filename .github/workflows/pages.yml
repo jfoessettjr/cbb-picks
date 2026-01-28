@@ -3,7 +3,7 @@ name: Build picks and deploy Pages
 on:
   workflow_dispatch:
   schedule:
-    # Daily at 9:10am Eastern = 14:10 UTC (adjust anytime)
+    # Daily at 9:10am Eastern = 14:10 UTC
     - cron: "10 14 * * *"
 
 permissions:
@@ -51,24 +51,32 @@ jobs:
 
           # ---- Odds API ----
           ODDS_API_KEY: ${{ secrets.ODDS_API_KEY }}
-          REQUIRE_ODDS: "1"
           ODDS_SPORT_KEY: "basketball_ncaab"
-          DOG_MIN: "125"
-          DOG_MAX: "325"
-          FAV_MIN: "-220"
-          FAV_MAX: "-120"
-          MARKET_BLEND_ALPHA: "0.65"
-          DOG_MIN_EDGE: "0.03"
-          DOG_MIN_EV: "0.02"
-          DOG_MIN_FINAL_WINPROB: "0.23"
-          FAV_MIN_EDGE: "0.015"
-          FAV_MIN_EV: "0.01"
+
+          # Require odds + publish policy
+          REQUIRE_ODDS: "true"
+          MAX_PICKS_PER_DAY: "5"
+          ONLY_POSITIVE_EV: "true"
+          DISABLE_GATES: "true"
+
+          # Odds ranges (balanced volume, avoids -600 / -1100 chalk)
+          DOG_MIN: "110"
+          DOG_MAX: "350"
+          FAV_MIN: "-320"
+          FAV_MAX: "-115"
+
+          # Blend (let Elo speak a bit more while respecting market)
+          MARKET_BLEND_ALPHA: "0.55"
+
+          # Gates (kept for documentation / if DISABLE_GATES is turned off later)
+          DOG_MIN_EDGE: "0.02"
+          DOG_MIN_EV: "0.01"
+          DOG_MIN_FINAL_WINPROB: "0.22"
+          FAV_MIN_EDGE: "0.01"
+          FAV_MIN_EV: "0.004"
 
         run: |
           python scripts/build_picks.py
-
-
-
 
       - name: Commit generated picks + snapshot (if changed)
         run: |
@@ -83,8 +91,6 @@ jobs:
             git commit -m "Update picks + Elo snapshot"
             git push
           fi
-
-
 
       - name: Setup Node
         uses: actions/setup-node@v4
