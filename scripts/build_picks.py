@@ -50,7 +50,7 @@ REQUIRE_ODDS = os.getenv("REQUIRE_ODDS", "1").lower() in ("1", "true", "yes")
 # "Sweet spot" ranges (ROI defaults)
 DOG_MIN = int(os.getenv("DOG_MIN", "125"))
 DOG_MAX = int(os.getenv("DOG_MAX", "325"))
-FAV_MIN = int(os.getenv("FAV_MIN", "-220"))  # most negative allowed (exclude heavier chalk)
+FAV_MIN = int(os.getenv("FAV_MIN", "-400"))  # most negative allowed (exclude heavier chalk)
 FAV_MAX = int(os.getenv("FAV_MAX", "-120"))  # least negative allowed
 
 # Market anchoring (higher = closer to market)
