@@ -48,21 +48,21 @@ ODDS_SPORT_KEY = os.getenv("ODDS_SPORT_KEY", "basketball_ncaab")
 REQUIRE_ODDS = os.getenv("REQUIRE_ODDS", "1").lower() in ("1", "true", "yes")
 
 # "Sweet spot" ranges (ROI defaults)
-DOG_MIN = int(os.getenv("DOG_MIN", "125"))
-DOG_MAX = int(os.getenv("DOG_MAX", "325"))
-FAV_MIN = int(os.getenv("FAV_MIN", "-400"))  # most negative allowed (exclude heavier chalk)
-FAV_MAX = int(os.getenv("FAV_MAX", "-120"))  # least negative allowed
+DOG_MIN = int(os.getenv("DOG_MIN", "110"))
+DOG_MAX = int(os.getenv("DOG_MAX", "350"))
+FAV_MIN = int(os.getenv("FAV_MIN", "-320"))  # most negative allowed (exclude heavier chalk)
+FAV_MAX = int(os.getenv("FAV_MAX", "-115"))  # least negative allowed
 
 # Market anchoring (higher = closer to market)
-MARKET_BLEND_ALPHA = float(os.getenv("MARKET_BLEND_ALPHA", "0.60"))
+MARKET_BLEND_ALPHA = float(os.getenv("MARKET_BLEND_ALPHA", "0.55"))
 
 # Gates for ROI-driven selection
-DOG_MIN_EDGE = float(os.getenv("DOG_MIN_EDGE", "0.03"))
-DOG_MIN_EV = float(os.getenv("DOG_MIN_EV", "0.02"))
-DOG_MIN_FINAL_WINPROB = float(os.getenv("DOG_MIN_FINAL_WINPROB", "0.23"))
+DOG_MIN_EDGE = float(os.getenv("DOG_MIN_EDGE", "0.020"))
+DOG_MIN_EV = float(os.getenv("DOG_MIN_EV", "0.010"))
+DOG_MIN_FINAL_WINPROB = float(os.getenv("DOG_MIN_FINAL_WINPROB", "0.22"))
 
-FAV_MIN_EDGE = float(os.getenv("FAV_MIN_EDGE", "0.015"))
-FAV_MIN_EV = float(os.getenv("FAV_MIN_EV", "0.01"))
+FAV_MIN_EDGE = float(os.getenv("FAV_MIN_EDGE", "0.010"))
+FAV_MIN_EV = float(os.getenv("FAV_MIN_EV", "0.004"))
 
 # How close (seconds) odds game time must be to NCAA time to match reliably
 ODDS_TIME_MATCH_WINDOW_SEC = int(os.getenv("ODDS_TIME_MATCH_WINDOW_SEC", str(6 * 3600)))
