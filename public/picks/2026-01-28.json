@@ -1,7 +1,7 @@
 {
   "date": "2026-01-28",
   "season": "2025-2026",
-  "generated_at": "2026-01-28T16:43:59Z",
+  "generated_at": "2026-01-28T16:47:05Z",
   "model": {
     "type": "Elo",
     "mov": true,
@@ -38,6 +38,32 @@
     }
   },
   "picks": [
+    {
+      "game_id": "6504039",
+      "date_time_epoch": 1769652000,
+      "home_team": "TCU",
+      "away_team": "Houston",
+      "neutral_site": false,
+      "pick_team": "TCU",
+      "pick_side": "home",
+      "win_prob": 0.30520394221922215,
+      "elo_win_prob": 0.4875930042903435,
+      "home_elo_raw": 1555.843592476433,
+      "home_elo_with_hca": 1620.843592476433,
+      "away_elo": 1629.4666262372266,
+      "hca": 65.0,
+      "pick_odds_american": 320,
+      "pick_odds_decimal": 4.2,
+      "pick_book": "draftkings",
+      "market_p_pick": 0.23170731707317072,
+      "edge": 0.07349662514605143,
+      "ev": 0.281856557320733,
+      "odds_event_home": "TCU Horned Frogs",
+      "odds_event_away": "Houston Cougars",
+      "odds_swapped": false,
+      "odds_score_same": 1.7000000000000002,
+      "odds_score_swap": 0.0
+    },
     {
       "game_id": "6505024",
       "date_time_epoch": 1769644800,
