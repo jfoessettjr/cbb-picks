@@ -1,6 +1,61 @@
 {
   "date": "2026-01-30",
   "season": "2025-2026",
-  "generated_at": "2026-01-28T17:38:11Z",
-  "picks": []
+  "generated_at": "2026-01-28T18:11:01Z",
+  "model": {
+    "type": "Elo",
+    "mov": true,
+    "recency_half_life_days": 30.0,
+    "mov_cap": 2.0,
+    "home_court_adv_elo": 65.0,
+    "neutral_site_hca": 0,
+    "k_ramp": {
+      "k_early_mult": 1.4,
+      "k_mid_mult": 1.0,
+      "k_late_mult": 0.85,
+      "k_ramp_early_days": 45,
+      "k_ramp_mid_days": 105
+    },
+    "market": {
+      "enabled": true,
+      "provider": "the-odds-api",
+      "sport_key": "basketball_ncaab",
+      "require_odds": true,
+      "ranges": {
+        "dog_min": 110,
+        "dog_max": 350,
+        "fav_min": -320,
+        "fav_max": -115
+      },
+      "blend_alpha": 0.55,
+      "gates": {
+        "disable_gates": true,
+        "only_positive_ev": true,
+        "max_picks_per_day": 5,
+        "dog_min_edge": 0.02,
+        "dog_min_ev": 0.01,
+        "dog_min_final_winprob": 0.22,
+        "fav_min_edge": 0.01,
+        "fav_min_ev": 0.004
+      },
+      "elo_fallback": {
+        "enabled": true,
+        "elo_winprob": 0.66,
+        "max_fav": -450,
+        "min_ev": -0.01
+      }
+    }
+  },
+  "picks": [],
+  "debug": {
+    "odds": {
+      "date": "2026-01-30",
+      "total": 21,
+      "matched": 1,
+      "no_match": 20,
+      "no_prices": 0,
+      "no_candidates": 0,
+      "require_odds": true
+    }
+  }
 }
