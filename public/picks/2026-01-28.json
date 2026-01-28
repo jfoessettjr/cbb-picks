@@ -1,7 +1,7 @@
 {
   "date": "2026-01-28",
   "season": "2025-2026",
-  "generated_at": "2026-01-28T18:11:00Z",
+  "generated_at": "2026-01-28T18:17:58Z",
   "model": {
     "type": "Elo",
     "mov": true,
@@ -39,10 +39,10 @@
         "fav_min_ev": 0.004
       },
       "elo_fallback": {
-        "enabled": true,
-        "elo_winprob": 0.66,
+        "enabled": false,
+        "elo_winprob": 0.64,
         "max_fav": -450,
-        "min_ev": -0.01
+        "min_ev": -0.02
       }
     }
   },
@@ -76,7 +76,7 @@
       "neutral_site": false,
       "pick_team": "California",
       "pick_side": "away",
-      "win_prob": 0.4660683185132851,
+      "win_prob": 0.4695342499823674,
       "elo_win_prob": 0.5658373015473186,
       "home_elo_raw": 1476.6353003702654,
       "home_elo_with_hca": 1541.6353003702654,
@@ -85,30 +85,9 @@
       "pick_odds_american": 145,
       "pick_odds_decimal": 2.45,
       "pick_book": "draftkings",
-      "market_p_pick": 0.4017329657345411,
-      "edge": 0.06433535277874403,
-      "ev": 0.14186738035754864
-    },
-    {
-      "game_id": "6502609",
-      "date_time_epoch": 1769648400,
-      "home_team": "Texas St.",
-      "away_team": "Marshall",
-      "neutral_site": false,
-      "pick_team": "Texas St.",
-      "pick_side": "home",
-      "win_prob": 0.4362018993407208,
-      "elo_win_prob": 0.5168065898449379,
-      "home_elo_raw": 1493.0309951805689,
-      "home_elo_with_hca": 1558.0309951805689,
-      "away_elo": 1546.3481791602303,
-      "hca": 65.0,
-      "pick_odds_american": 155,
-      "pick_odds_decimal": 2.55,
-      "pick_book": "bovada",
-      "market_p_pick": 0.38643820634341963,
-      "edge": 0.04976369299730116,
-      "ev": 0.11231484331883801
+      "market_p_pick": 0.4081632653061224,
+      "edge": 0.06137098467624502,
+      "ev": 0.15035891245680022
     },
     {
       "game_id": "6506023",
@@ -118,7 +97,7 @@
       "neutral_site": false,
       "pick_team": "Texas",
       "pick_side": "away",
-      "win_prob": 0.30764806636312575,
+      "win_prob": 0.30718324868730307,
       "elo_win_prob": 0.38615377363053105,
       "home_elo_raw": 1563.645773838128,
       "home_elo_with_hca": 1628.645773838128,
@@ -127,9 +106,30 @@
       "pick_odds_american": 260,
       "pick_odds_decimal": 3.6,
       "pick_book": "fanduel",
-      "market_p_pick": 0.27285613040396883,
-      "edge": 0.03479193595915692,
-      "ev": 0.10753303890725274
+      "market_p_pick": 0.27196652719665276,
+      "edge": 0.035216721490650305,
+      "ev": 0.10585969527429107
+    },
+    {
+      "game_id": "6502609",
+      "date_time_epoch": 1769648400,
+      "home_team": "Texas St.",
+      "away_team": "Marshall",
+      "neutral_site": false,
+      "pick_team": "Texas St.",
+      "pick_side": "home",
+      "win_prob": 0.44613032960339893,
+      "elo_win_prob": 0.5168065898449379,
+      "home_elo_raw": 1493.0309951805689,
+      "home_elo_with_hca": 1558.0309951805689,
+      "away_elo": 1546.3481791602303,
+      "hca": 65.0,
+      "pick_odds_american": 145,
+      "pick_odds_decimal": 2.45,
+      "pick_book": "betonlineag",
+      "market_p_pick": 0.40485829959514164,
+      "edge": 0.0412720300082573,
+      "ev": 0.09301930752832743
     },
     {
       "game_id": "6503630",
@@ -160,7 +160,7 @@
       "matched": 34,
       "no_match": 20,
       "no_prices": 0,
-      "no_candidates": 12,
+      "no_candidates": 11,
       "require_odds": true
     }
   }

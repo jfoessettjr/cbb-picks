@@ -1,7 +1,7 @@
 {
   "date": "2026-01-29",
   "season": "2025-2026",
-  "generated_at": "2026-01-28T18:11:00Z",
+  "generated_at": "2026-01-28T18:17:59Z",
   "model": {
     "type": "Elo",
     "mov": true,
@@ -39,10 +39,10 @@
         "fav_min_ev": 0.004
       },
       "elo_fallback": {
-        "enabled": true,
-        "elo_winprob": 0.66,
+        "enabled": false,
+        "elo_winprob": 0.64,
         "max_fav": -450,
-        "min_ev": -0.01
+        "min_ev": -0.02
       }
     }
   },
