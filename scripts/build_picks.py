@@ -54,7 +54,7 @@ FAV_MIN = int(os.getenv("FAV_MIN", "-400"))  # most negative allowed (exclude he
 FAV_MAX = int(os.getenv("FAV_MAX", "-120"))  # least negative allowed
 
 # Market anchoring (higher = closer to market)
-MARKET_BLEND_ALPHA = float(os.getenv("MARKET_BLEND_ALPHA", "0.65"))
+MARKET_BLEND_ALPHA = float(os.getenv("MARKET_BLEND_ALPHA", "0.60"))
 
 # Gates for ROI-driven selection
 DOG_MIN_EDGE = float(os.getenv("DOG_MIN_EDGE", "0.03"))
