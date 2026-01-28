@@ -1,41 +1,6 @@
 {
   "date": "2026-01-31",
   "season": "2025-2026",
-  "generated_at": "2026-01-28T16:53:55Z",
-  "model": {
-    "type": "Elo",
-    "mov": true,
-    "recency_half_life_days": 30.0,
-    "mov_cap": 2.0,
-    "home_court_adv_elo": 65.0,
-    "neutral_site_hca": 0,
-    "k_ramp": {
-      "k_early_mult": 1.4,
-      "k_mid_mult": 1.0,
-      "k_late_mult": 0.85,
-      "k_ramp_early_days": 45,
-      "k_ramp_mid_days": 105
-    },
-    "market": {
-      "enabled": true,
-      "provider": "the-odds-api",
-      "sport_key": "basketball_ncaab",
-      "require_odds": true,
-      "ranges": {
-        "dog_min": 125,
-        "dog_max": 325,
-        "fav_min": -220,
-        "fav_max": -120
-      },
-      "blend_alpha": 0.65,
-      "gates": {
-        "dog_min_edge": 0.03,
-        "dog_min_ev": 0.02,
-        "dog_min_final_winprob": 0.23,
-        "fav_min_edge": 0.015,
-        "fav_min_ev": 0.01
-      }
-    }
-  },
+  "generated_at": "2026-01-28T17:38:12Z",
   "picks": []
 }
