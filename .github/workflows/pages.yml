@@ -75,6 +75,12 @@ jobs:
           FAV_MIN_EDGE: "0.01"
           FAV_MIN_EV: "0.004"
 
+          ELO_FALLBACK_ENABLED: "true"
+          ELO_FALLBACK_WINPROB: "0.66"
+          ELO_FALLBACK_MAX_FAV: "-450"
+          ELO_FALLBACK_MIN_EV: "-0.01"
+
+
         run: |
           python scripts/build_picks.py
 
