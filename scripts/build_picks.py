@@ -1,3 +1,4 @@
+```python
 import json
 import os
 import re
@@ -24,7 +25,7 @@ K = float(os.getenv("ELO_K", "20"))
 HALF_LIFE_DAYS = float(os.getenv("HALF_LIFE_DAYS", "30"))
 MOV_CAP = float(os.getenv("MOV_CAP", "2.0"))
 
-# Season-phase K multipliers
+# Season-phase K multipliers (higher early season, lower late season)
 K_EARLY_MULT = float(os.getenv("K_EARLY_MULT", "1.40"))
 K_MID_MULT = float(os.getenv("K_MID_MULT", "1.00"))
 K_LATE_MULT = float(os.getenv("K_LATE_MULT", "0.85"))
@@ -50,7 +51,7 @@ REQUIRE_ODDS = os.getenv("REQUIRE_ODDS", "1").lower() in ("1", "true", "yes")
 # "Sweet spot" ranges (ROI defaults)
 DOG_MIN = int(os.getenv("DOG_MIN", "125"))
 DOG_MAX = int(os.getenv("DOG_MAX", "325"))
-FAV_MIN = int(os.getenv("FAV_MIN", "-220"))  # most negative allowed
+FAV_MIN = int(os.getenv("FAV_MIN", "-220"))  # most negative allowed (exclude heavier chalk)
 FAV_MAX = int(os.getenv("FAV_MAX", "-120"))  # least negative allowed
 
 # Market anchoring (higher = closer to market)
@@ -247,7 +248,6 @@ def devig_two_way(p_a: float | None, p_b: float | None) -> tuple[float | None, f
 
 
 def expected_value_per_dollar(p_win: float, dec_odds: float) -> float:
-    # EV per $1: p*(dec-1) - (1-p)*1
     return p_win * (dec_odds - 1.0) - (1.0 - p_win)
 
 
@@ -368,13 +368,13 @@ def fetch_moneyline_odds_for_window(d_from: date, d_to_exclusive: date) -> list[
 
 def best_price_for_team(odds_game: dict, team_name: str) -> dict | None:
     best = None
-
     for bk in odds_game.get("bookmakers", []) or []:
         book = bk.get("key") or bk.get("title") or "book"
         for m in bk.get("markets", []) or []:
             if m.get("key") != "h2h":
                 continue
             for o in m.get("outcomes", []) or []:
+                # Similarity-based match to avoid name formatting issues
                 if team_similarity(o.get("name", ""), team_name) < 0.70:
                     continue
                 am = o.get("price")
@@ -517,6 +517,13 @@ def write_picks_for_date(d: date, ratings: dict[str, float], odds_games_window: 
         edge = None
         ev = None
 
+        # Debug additions (per-game)
+        odds_event_home = None
+        odds_event_away = None
+        odds_swapped = None
+        odds_score_same = None
+        odds_score_swap = None
+
         if ODDS_API_KEY and odds_games_window is not None:
             og = best_matching_odds_game(
                 odds_games_window,
@@ -530,20 +537,31 @@ def write_picks_for_date(d: date, ratings: dict[str, float], odds_games_window: 
                 if REQUIRE_ODDS:
                     continue
             else:
-                og_home_norm = _norm_team_name(og.get("home_team", ""))
-                ncaa_home_norm = _norm_team_name(home_name)
-                swapped = (og_home_norm != ncaa_home_norm)
+                odds_event_home = og.get("home_team")
+                odds_event_away = og.get("away_team")
+
+                # ---- FIX #1: robust swap detection by similarity, not string equality ----
+                oh = og.get("home_team", "") or ""
+                oa = og.get("away_team", "") or ""
+
+                s_same = team_similarity(oh, home_name) + team_similarity(oa, away_name)
+                s_swap = team_similarity(oh, away_name) + team_similarity(oa, home_name)
+
+                odds_score_same = float(s_same)
+                odds_score_swap = float(s_swap)
+
+                # only flip if it's clearly better to avoid noisy name differences
+                swapped = s_swap > (s_same + 0.15)
+                odds_swapped = bool(swapped)
 
                 if not swapped:
-                    og_home_name = og.get("home_team", home_name)
-                    og_away_name = og.get("away_team", away_name)
-                    home_best = best_price_for_team(og, og_home_name)
-                    away_best = best_price_for_team(og, og_away_name)
+                    # Odds API home->NCAA home, away->away
+                    home_best = best_price_for_team(og, oh)  # NCAA home
+                    away_best = best_price_for_team(og, oa)  # NCAA away
                 else:
-                    og_home_name = og.get("home_team", away_name)
-                    og_away_name = og.get("away_team", home_name)
-                    away_best = best_price_for_team(og, og_home_name)   # NCAA away
-                    home_best = best_price_for_team(og, og_away_name)   # NCAA home
+                    # Odds API home->NCAA away, away->home
+                    home_best = best_price_for_team(og, oa)  # NCAA home
+                    away_best = best_price_for_team(og, oh)  # NCAA away
 
                 if not home_best or not away_best:
                     no_prices += 1
@@ -650,6 +668,13 @@ def write_picks_for_date(d: date, ratings: dict[str, float], odds_games_window: 
             "market_p_pick": market_p_pick,
             "edge": edge,
             "ev": ev,
+
+            # ---- FIX #2: debug fields to validate mapping/matching ----
+            "odds_event_home": odds_event_home,
+            "odds_event_away": odds_event_away,
+            "odds_swapped": odds_swapped,
+            "odds_score_same": odds_score_same,
+            "odds_score_swap": odds_score_swap,
         })
 
     if ODDS_API_KEY:
@@ -750,6 +775,7 @@ def main():
 
     yesterday = today - timedelta(days=1)
 
+    # Build/catch up Elo snapshot
     if last_finalized is None:
         print(f"No snapshot found for season {season_start.isoformat()}. Building initial snapshot...")
         d0 = season_start
@@ -770,6 +796,7 @@ def main():
         save_snapshot(season_start, last_finalized, ratings)
         print(f"Snapshot caught up through {last_finalized.isoformat()}.")
 
+    # Fetch odds once for the full window (today .. today+FUTURE_DAYS)
     odds_window = None
     if ODDS_API_KEY:
         try:
@@ -799,3 +826,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+```
