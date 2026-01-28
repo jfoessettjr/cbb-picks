@@ -26,12 +26,12 @@ MOV_CAP = float(os.getenv("MOV_CAP", "2.0"))
 
 # Season-phase K multipliers (higher early season, lower late season)
 K_EARLY_MULT = float(os.getenv("K_EARLY_MULT", "1.40"))  # very early season
-K_MID_MULT   = float(os.getenv("K_MID_MULT", "1.00"))    # mid-season baseline
-K_LATE_MULT  = float(os.getenv("K_LATE_MULT", "0.85"))   # late-season stability
+K_MID_MULT = float(os.getenv("K_MID_MULT", "1.00"))      # mid-season baseline
+K_LATE_MULT = float(os.getenv("K_LATE_MULT", "0.85"))    # late-season stability
 
 # Ramp breakpoints (days since season start)
 K_RAMP_EARLY_DAYS = int(os.getenv("K_RAMP_EARLY_DAYS", "45"))   # end of early ramp
-K_RAMP_MID_DAYS   = int(os.getenv("K_RAMP_MID_DAYS", "105"))    # end of mid ramp
+K_RAMP_MID_DAYS = int(os.getenv("K_RAMP_MID_DAYS", "105"))      # end of mid ramp
 
 SLEEP_SECONDS = float(os.getenv("API_SLEEP_SECONDS", "0.25"))
 SNAPSHOT_PATH = os.getenv("ELO_SNAPSHOT_PATH", "data/elo_snapshot.json")
@@ -68,11 +68,24 @@ MAX_PICKS_PER_DAY = int(os.getenv("MAX_PICKS_PER_DAY", "5"))
 ONLY_POSITIVE_EV = os.getenv("ONLY_POSITIVE_EV", "1").lower() in ("1", "true", "yes")
 DISABLE_GATES = os.getenv("DISABLE_GATES", "1").lower() in ("1", "true", "yes")
 
-# Elo fallback (NEW) — prevents empty slates
+# Elo fallback — prevents empty slates
 ELO_FALLBACK_ENABLED = os.getenv("ELO_FALLBACK_ENABLED", "1").lower() in ("1", "true", "yes")
 ELO_FALLBACK_WINPROB = float(os.getenv("ELO_FALLBACK_WINPROB", "0.66"))
 ELO_FALLBACK_MAX_FAV = int(os.getenv("ELO_FALLBACK_MAX_FAV", "-450"))  # don't allow heavier chalk than this
 ELO_FALLBACK_MIN_EV = float(os.getenv("ELO_FALLBACK_MIN_EV", "-0.01"))  # allow slightly negative EV, not awful
+
+# -------------------------
+# Confidence tiers (A/B)
+# -------------------------
+# Tier A: higher conviction / larger stake
+TIER_A_MIN_EV = float(os.getenv("TIER_A_MIN_EV", "0.03"))
+TIER_A_MIN_EDGE = float(os.getenv("TIER_A_MIN_EDGE", "0.025"))
+TIER_A_MIN_WINPROB = float(os.getenv("TIER_A_MIN_WINPROB", "0.40"))
+
+# Tier B: playable / smaller stake
+TIER_B_MIN_EV = float(os.getenv("TIER_B_MIN_EV", "0.00"))
+TIER_B_MIN_EDGE = float(os.getenv("TIER_B_MIN_EDGE", "0.010"))
+TIER_B_MIN_WINPROB = float(os.getenv("TIER_B_MIN_WINPROB", "0.25"))
 
 # How close (seconds) odds game time must be to NCAA time to match reliably
 ODDS_TIME_MATCH_WINDOW_SEC = int(os.getenv("ODDS_TIME_MATCH_WINDOW_SEC", str(6 * 3600)))
@@ -277,8 +290,7 @@ _STOP = {
 }
 
 def _tokens(name: str) -> list[str]:
-    t = [x for x in _norm_team_name(name).split(" ") if x and x not in _STOP]
-    return t
+    return [x for x in _norm_team_name(name).split(" ") if x and x not in _STOP]
 
 def _initials(tokens: list[str]) -> str:
     return "".join([w[0] for w in tokens if w])[:8]
@@ -444,8 +456,7 @@ def _in_range_by_odds(am: int) -> tuple[bool, str]:
     """
     if am < 0:
         return (FAV_MIN <= am <= FAV_MAX), "fav"
-    else:
-        return (DOG_MIN <= am <= DOG_MAX), "dog"
+    return (DOG_MIN <= am <= DOG_MAX), "dog"
 
 def _elo_fallback_ok(kind: str, am: int, p_elo: float, evv: float) -> bool:
     """
@@ -461,9 +472,23 @@ def _elo_fallback_ok(kind: str, am: int, p_elo: float, evv: float) -> bool:
     if evv < ELO_FALLBACK_MIN_EV:
         return False
     if kind == "fav" and am < ELO_FALLBACK_MAX_FAV:
-        # am is negative; "more negative" = heavier favorite
         return False
     return True
+
+def assign_confidence_tier(ev: float | None, edge: float | None, win_prob: float) -> str:
+    """
+    Tier A: stronger EV+edge, avoids ultra-longshot low win_prob.
+    Tier B: smaller edge/EV but still +EV by default.
+    Tier C: everything else.
+    """
+    if ev is None or edge is None:
+        return "ELO"
+
+    if (ev >= TIER_A_MIN_EV) and (edge >= TIER_A_MIN_EDGE) and (win_prob >= TIER_A_MIN_WINPROB):
+        return "A"
+    if (ev >= TIER_B_MIN_EV) and (edge >= TIER_B_MIN_EDGE) and (win_prob >= TIER_B_MIN_WINPROB):
+        return "B"
+    return "C"
 
 
 # -------------------------
@@ -524,11 +549,7 @@ def write_picks_for_date(d: date, ratings: dict[str, float], odds_games_window: 
     games = parse_games(sb)
     picks = []
 
-    total = 0
-    matched = 0
-    no_match = 0
-    no_prices = 0
-    no_candidates = 0
+    total = matched = no_match = no_prices = no_candidates = 0
 
     for g in games:
         total += 1
@@ -548,7 +569,6 @@ def write_picks_for_date(d: date, ratings: dict[str, float], odds_games_window: 
         home_name = g["home"]["name"]
         away_name = g["away"]["name"]
 
-        # Default Elo pick
         pick_team = home_name if p_home_elo >= 0.5 else away_name
         pick_side = "home" if p_home_elo >= 0.5 else "away"
         win_prob_final = max(p_home_elo, p_away_elo)
@@ -568,7 +588,6 @@ def write_picks_for_date(d: date, ratings: dict[str, float], odds_games_window: 
             else:
                 matched += 1
 
-                # Determine if odds API home/away are swapped relative to NCAA
                 og_home = og.get("home_team", "") or ""
                 og_away = og.get("away_team", "") or ""
                 s_same = team_similarity(og_home, home_name) + team_similarity(og_away, away_name)
@@ -576,19 +595,17 @@ def write_picks_for_date(d: date, ratings: dict[str, float], odds_games_window: 
                 swapped = s_swap > (s_same + 0.15)
 
                 if not swapped:
-                    home_best = best_price_for_team(og, og_home)  # NCAA home
-                    away_best = best_price_for_team(og, og_away)  # NCAA away
+                    home_best = best_price_for_team(og, og_home)
+                    away_best = best_price_for_team(og, og_away)
                 else:
-                    # swapped: odds home corresponds to NCAA away
-                    away_best = best_price_for_team(og, og_home)  # NCAA away
-                    home_best = best_price_for_team(og, og_away)  # NCAA home
+                    away_best = best_price_for_team(og, og_home)
+                    home_best = best_price_for_team(og, og_away)
 
                 if not home_best or not away_best:
                     no_prices += 1
                     if REQUIRE_ODDS:
                         continue
                 else:
-                    # Market fair probs (de-vig)
                     p_home_raw = implied_prob_from_decimal(home_best["dec"])
                     p_away_raw = implied_prob_from_decimal(away_best["dec"])
                     p_home_mkt, p_away_mkt = devig_two_way(p_home_raw, p_away_raw)
@@ -612,7 +629,6 @@ def write_picks_for_date(d: date, ratings: dict[str, float], odds_games_window: 
                             else:
                                 ok = (ed >= DOG_MIN_EDGE) and (evv >= DOG_MIN_EV) and (p_blend >= DOG_MIN_FINAL_WINPROB)
 
-                        # NEW: Elo fallback if gates fail
                         if (not ok) and _elo_fallback_ok(kind, am_home, p_home_elo, evv):
                             ok = True
 
@@ -645,7 +661,6 @@ def write_picks_for_date(d: date, ratings: dict[str, float], odds_games_window: 
                             else:
                                 ok = (ed >= DOG_MIN_EDGE) and (evv >= DOG_MIN_EV) and (p_blend >= DOG_MIN_FINAL_WINPROB)
 
-                        # NEW: Elo fallback if gates fail
                         if (not ok) and _elo_fallback_ok(kind, am_away, p_away_elo, evv):
                             ok = True
 
@@ -666,7 +681,6 @@ def write_picks_for_date(d: date, ratings: dict[str, float], odds_games_window: 
                         if REQUIRE_ODDS:
                             continue
                     else:
-                        # Choose best per game: EV first, then edge, then win prob
                         candidates.sort(key=lambda c: (c["ev"], c["edge"], c["p_final"]), reverse=True)
                         best = candidates[0]
 
@@ -678,6 +692,8 @@ def write_picks_for_date(d: date, ratings: dict[str, float], odds_games_window: 
                         edge = best["edge"]
                         ev = best["ev"]
                         pick_odds = best["odds"]
+
+        confidence_tier = assign_confidence_tier(ev, edge, win_prob_final)
 
         picks.append({
             "game_id": g["game_id"],
@@ -703,6 +719,8 @@ def write_picks_for_date(d: date, ratings: dict[str, float], odds_games_window: 
             "market_p_pick": market_p_pick,
             "edge": edge,
             "ev": ev,
+
+            "confidence_tier": confidence_tier,
         })
 
     if ODDS_API_KEY:
@@ -710,6 +728,7 @@ def write_picks_for_date(d: date, ratings: dict[str, float], odds_games_window: 
             picks = [p for p in picks if p.get("ev") is not None]
         if ONLY_POSITIVE_EV:
             picks = [p for p in picks if (p.get("ev") is not None and p["ev"] > 0)]
+
         picks.sort(
             key=lambda x: (
                 x["ev"] if x.get("ev") is not None else -999,
@@ -718,8 +737,22 @@ def write_picks_for_date(d: date, ratings: dict[str, float], odds_games_window: 
             ),
             reverse=True,
         )
+
+        # Tier-aware publish: A first, then B, then (optionally) C
         if MAX_PICKS_PER_DAY and MAX_PICKS_PER_DAY > 0:
-            picks = picks[:MAX_PICKS_PER_DAY]
+            a = [p for p in picks if p.get("confidence_tier") == "A"]
+            b = [p for p in picks if p.get("confidence_tier") == "B"]
+            c = [p for p in picks if p.get("confidence_tier") not in ("A", "B")]
+
+            published = a[:MAX_PICKS_PER_DAY]
+            if len(published) < MAX_PICKS_PER_DAY:
+                published += b[: (MAX_PICKS_PER_DAY - len(published))]
+
+            # If you want to fill remaining slots with C on thin days, uncomment:
+            # if len(published) < MAX_PICKS_PER_DAY:
+            #     published += c[: (MAX_PICKS_PER_DAY - len(published))]
+
+            picks = published
     else:
         picks.sort(key=lambda x: x["win_prob"], reverse=True)
 
@@ -768,6 +801,14 @@ def write_picks_for_date(d: date, ratings: dict[str, float], odds_games_window: 
                     "elo_winprob": (ELO_FALLBACK_WINPROB if ODDS_API_KEY else None),
                     "max_fav": (ELO_FALLBACK_MAX_FAV if ODDS_API_KEY else None),
                     "min_ev": (ELO_FALLBACK_MIN_EV if ODDS_API_KEY else None),
+                },
+                "tiers": {
+                    "tier_a_min_ev": (TIER_A_MIN_EV if ODDS_API_KEY else None),
+                    "tier_a_min_edge": (TIER_A_MIN_EDGE if ODDS_API_KEY else None),
+                    "tier_a_min_winprob": (TIER_A_MIN_WINPROB if ODDS_API_KEY else None),
+                    "tier_b_min_ev": (TIER_B_MIN_EV if ODDS_API_KEY else None),
+                    "tier_b_min_edge": (TIER_B_MIN_EDGE if ODDS_API_KEY else None),
+                    "tier_b_min_winprob": (TIER_B_MIN_WINPROB if ODDS_API_KEY else None),
                 }
             }
         },
@@ -789,7 +830,11 @@ def write_picks_for_date(d: date, ratings: dict[str, float], odds_games_window: 
     with open(out_path, "w", encoding="utf-8") as f:
         json.dump(out, f, indent=2)
 
-    print(f"[odds] {d.isoformat()} total={total} matched={matched} no_match={no_match} no_prices={no_prices} no_candidates={no_candidates} require_odds={REQUIRE_ODDS}")
+    print(
+        f"[odds] {d.isoformat()} total={total} matched={matched} "
+        f"no_match={no_match} no_prices={no_prices} no_candidates={no_candidates} "
+        f"require_odds={REQUIRE_ODDS}"
+    )
     return out
 
 
