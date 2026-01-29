@@ -53,33 +53,39 @@ jobs:
           ODDS_API_KEY: ${{ secrets.ODDS_API_KEY }}
           ODDS_SPORT_KEY: "basketball_ncaab"
 
+          # IMPORTANT: your debug showed matched=0 (no_match=56).
+          # These make matching much more tolerant.
+          ODDS_TIME_MATCH_WINDOW_SEC: "43200" # 12 hours
+
           # Require odds + publish policy
           REQUIRE_ODDS: "true"
           MAX_PICKS_PER_DAY: "5"
           ONLY_POSITIVE_EV: "true"
-          DISABLE_GATES: "true"
 
-          # Odds ranges (balanced volume, avoids -600 / -1100 chalk)
+          # Turn gates back ON (DISABLE_GATES=false) so it stops taking bad plays.
+          DISABLE_GATES: "false"
+
+          # Odds ranges (avoid -600 / -1100 chalk, still allow dogs)
           DOG_MIN: "110"
-          DOG_MAX: "350"
+          DOG_MAX: "260"
           FAV_MIN: "-320"
           FAV_MAX: "-115"
 
-          # Blend (let Elo speak a bit more while respecting market)
-          MARKET_BLEND_ALPHA: "0.55"
+          # Blend (respect market, but let Elo help a bit)
+          MARKET_BLEND_ALPHA: "0.65"
 
-          # Gates (kept for documentation / if DISABLE_GATES is turned off later)
+          # Gates (these actually apply now)
           DOG_MIN_EDGE: "0.02"
-          DOG_MIN_EV: "0.01"
-          DOG_MIN_FINAL_WINPROB: "0.22"
+          DOG_MIN_EV: "0.02"
+          DOG_MIN_FINAL_WINPROB: "0.32"
           FAV_MIN_EDGE: "0.01"
-          FAV_MIN_EV: "0.004"
+          FAV_MIN_EV: "0.01"
 
+          # Fallback: keep OFF while we fix matching; otherwise it can mask problems.
           ELO_FALLBACK_ENABLED: "false"
-          ELO_FALLBACK_WINPROB: "0.64"
+          ELO_FALLBACK_WINPROB: "0.66"
           ELO_FALLBACK_MAX_FAV: "-450"
-          ELO_FALLBACK_MIN_EV: "-0.02"
-
+          ELO_FALLBACK_MIN_EV: "-0.01"
 
         run: |
           python scripts/build_picks.py
