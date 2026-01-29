@@ -1,7 +1,7 @@
 {
   "date": "2026-01-29",
   "season": "2025-2026",
-  "generated_at": "2026-01-29T14:55:58Z",
+  "generated_at": "2026-01-29T14:56:20Z",
   "model": {
     "type": "Elo",
     "mov": true,
@@ -76,18 +76,18 @@
       "neutral_site": false,
       "pick_team": "Penn St.",
       "pick_side": "away",
-      "win_prob": 0.2927036060933715,
+      "win_prob": 0.2880289846052329,
       "elo_win_prob": 0.38355958370853926,
       "home_elo_raw": 1489.7883671946345,
       "home_elo_with_hca": 1554.7883671946345,
       "away_elo": 1472.3650606115928,
       "hca": 65.0,
-      "pick_odds_american": 300,
-      "pick_odds_decimal": 4.0,
+      "pick_odds_american": 320,
+      "pick_odds_decimal": 4.2,
       "pick_book": "bovada",
-      "market_p_pick": 0.2463768115942029,
-      "edge": 0.04632679449916857,
-      "ev": 0.17081442437348593
+      "market_p_pick": 0.23743016759776536,
+      "edge": 0.050598817007467545,
+      "ev": 0.20972173534197824
     },
     {
       "game_id": "6504241",
@@ -111,6 +111,27 @@
       "ev": 0.16773546801900474
     },
     {
+      "game_id": "6502744",
+      "date_time_epoch": 1769742000,
+      "home_team": "Sacramento St.",
+      "away_team": "Montana St.",
+      "neutral_site": false,
+      "pick_team": "Sacramento St.",
+      "pick_side": "home",
+      "win_prob": 0.359249293701537,
+      "elo_win_prob": 0.4367391172479999,
+      "home_elo_raw": 1444.0318868928525,
+      "home_elo_with_hca": 1509.0318868928525,
+      "away_elo": 1553.226886700065,
+      "hca": 65.0,
+      "pick_odds_american": 225,
+      "pick_odds_decimal": 3.25,
+      "pick_book": "betrivers",
+      "market_p_pick": 0.30917874396135264,
+      "edge": 0.05007054974018438,
+      "ev": 0.16756020452999532
+    },
+    {
       "game_id": "6501946",
       "date_time_epoch": 1769734800,
       "home_team": "Tarleton St.",
@@ -130,27 +151,6 @@
       "market_p_pick": 0.3549190535491905,
       "edge": 0.06182718242471086,
       "ev": 0.1668894607269238
-    },
-    {
-      "game_id": "6502744",
-      "date_time_epoch": 1769742000,
-      "home_team": "Sacramento St.",
-      "away_team": "Montana St.",
-      "neutral_site": false,
-      "pick_team": "Sacramento St.",
-      "pick_side": "home",
-      "win_prob": 0.35554170974251254,
-      "elo_win_prob": 0.4367391172479999,
-      "home_elo_raw": 1444.0318868928525,
-      "home_elo_with_hca": 1509.0318868928525,
-      "away_elo": 1553.226886700065,
-      "hca": 65.0,
-      "pick_odds_american": 225,
-      "pick_odds_decimal": 3.25,
-      "pick_book": "betrivers",
-      "market_p_pick": 0.3023001095290252,
-      "edge": 0.05324160021348734,
-      "ev": 0.1555105566631657
     }
   ],
   "debug": {
