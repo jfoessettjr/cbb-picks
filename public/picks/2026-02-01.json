@@ -1,7 +1,7 @@
 {
   "date": "2026-02-01",
   "season": "2025-2026",
-  "generated_at": "2026-01-29T14:56:21Z",
+  "generated_at": "2026-01-29T15:02:23Z",
   "model": {
     "type": "Elo",
     "mov": true,
@@ -23,26 +23,26 @@
       "require_odds": true,
       "ranges": {
         "dog_min": 110,
-        "dog_max": 350,
+        "dog_max": 260,
         "fav_min": -320,
         "fav_max": -115
       },
-      "blend_alpha": 0.55,
+      "blend_alpha": 0.65,
       "gates": {
-        "disable_gates": true,
+        "disable_gates": false,
         "only_positive_ev": true,
         "max_picks_per_day": 5,
         "dog_min_edge": 0.02,
-        "dog_min_ev": 0.01,
-        "dog_min_final_winprob": 0.22,
+        "dog_min_ev": 0.02,
+        "dog_min_final_winprob": 0.32,
         "fav_min_edge": 0.01,
-        "fav_min_ev": 0.004
+        "fav_min_ev": 0.01
       },
       "elo_fallback": {
         "enabled": false,
-        "elo_winprob": 0.64,
+        "elo_winprob": 0.66,
         "max_fav": -450,
-        "min_ev": -0.02
+        "min_ev": -0.01
       }
     }
   },
