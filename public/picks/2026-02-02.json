@@ -1,7 +1,7 @@
 {
-  "date": "2026-01-30",
+  "date": "2026-02-02",
   "season": "2025-2026",
-  "generated_at": "2026-01-30T14:52:55Z",
+  "generated_at": "2026-01-30T14:52:58Z",
   "model": {
     "type": "Elo",
     "mov": true,
@@ -46,37 +46,15 @@
       }
     }
   },
-  "picks": [
-    {
-      "game_id": "6501166",
-      "date_time_epoch": 1769817600,
-      "home_team": "Brown",
-      "away_team": "Harvard",
-      "neutral_site": false,
-      "pick_team": "Brown",
-      "pick_side": "home",
-      "win_prob": 0.46055426154475376,
-      "elo_win_prob": 0.5346723755417365,
-      "home_elo_raw": 1467.054583643812,
-      "home_elo_with_hca": 1532.054583643812,
-      "away_elo": 1507.9230192819368,
-      "hca": 65.0,
-      "pick_odds_american": 126,
-      "pick_odds_decimal": 2.26,
-      "pick_book": "fanduel",
-      "market_p_pick": 0.43510461025735975,
-      "edge": 0.025449651287394015,
-      "ev": 0.040852631091143454
-    }
-  ],
+  "picks": [],
   "debug": {
     "odds": {
-      "date": "2026-01-30",
-      "total": 23,
-      "matched": 19,
-      "no_match": 4,
+      "date": "2026-02-02",
+      "total": 18,
+      "matched": 0,
+      "no_match": 18,
       "no_prices": 0,
-      "no_candidates": 18,
+      "no_candidates": 0,
       "require_odds": true,
       "time_window_sec": 43200
     }
