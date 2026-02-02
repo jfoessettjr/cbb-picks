@@ -1,7 +1,7 @@
 {
   "date": "2026-02-03",
   "season": "2025-2026",
-  "generated_at": "2026-02-02T14:58:11Z",
+  "generated_at": "2026-02-02T17:48:33Z",
   "model": {
     "type": "Elo",
     "mov": true,
@@ -22,27 +22,28 @@
       "sport_key": "basketball_ncaab",
       "require_odds": true,
       "ranges": {
-        "dog_min": 110,
-        "dog_max": 260,
-        "fav_min": -320,
-        "fav_max": -115
+        "dog_min": 100,
+        "dog_max": 160,
+        "fav_min": -420,
+        "fav_max": -120
       },
-      "blend_alpha": 0.65,
+      "blend_alpha": 0.75,
       "gates": {
         "disable_gates": false,
-        "only_positive_ev": true,
+        "only_positive_ev": false,
         "max_picks_per_day": 5,
-        "dog_min_edge": 0.02,
-        "dog_min_ev": 0.02,
-        "dog_min_final_winprob": 0.32,
-        "fav_min_edge": 0.01,
-        "fav_min_ev": 0.01
+        "dog_min_edge": 0.01,
+        "dog_min_ev": -0.01,
+        "dog_min_final_winprob": 0.42,
+        "fav_min_edge": 0.005,
+        "fav_min_ev": -0.01,
+        "fav_min_final_winprob": 0.62
       },
       "elo_fallback": {
-        "enabled": false,
-        "elo_winprob": 0.66,
-        "max_fav": -450,
-        "min_ev": -0.01
+        "enabled": true,
+        "elo_winprob": 0.68,
+        "max_fav": -480,
+        "min_ev": -0.03
       }
     }
   },
