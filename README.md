@@ -1,61 +1,140 @@
-## Market (Odds API) EV Picks
+# NCAAB Picks Engine – Model & Odds Integration (Updated)
 
-This project can optionally blend the Elo model with real betting markets from **The Odds API** and then surface picks based on **expected value (EV)** instead of “most likely winner”.
+This project generates daily **college basketball picks** using a blended **Elo + betting market** model, with strict safeguards to avoid bad data, extreme variance, and empty slates.
 
-### What changes when Market is enabled
-- Pulls **moneyline (h2h)** odds for the date window.
-- Matches each NCAA game to an Odds API event (team-name similarity + time proximity).
-- Computes a **de-vigged market probability** (removes bookmaker margin).
-- Blends Elo + market into a conservative final win probability:
-  - `p_final = alpha * p_market + (1 - alpha) * p_elo`
-- Evaluates both sides (home/away) and selects the side with the best EV *if it qualifies*.
+Recent updates focused on **correct odds matching**, **controlled pick volume**, and **better win-rate vs. ROI balance**.
 
-### Key environment variables (tuning knobs)
+---
 
-#### Required
-- `ODDS_API_KEY` — your The Odds API key (recommended to store as `GitHub Secrets`).
-- `REQUIRE_ODDS` — `"1"` to **only include games that exist in the market** (recommended).
-  - When `REQUIRE_ODDS=1`, any game without odds (or without a qualifying bet) is dropped.
+## 🔢 Model Overview
 
-#### Sweet-spot odds ranges (default ROI-style)
-These ranges are designed to avoid heavy chalk and focus on lines where your model edge is most likely to matter:
-- Underdogs: `DOG_MIN=125` to `DOG_MAX=325`
-- Favorites: `FAV_MIN=-220` to `FAV_MAX=-120`
+### Core signals
+- **Elo ratings**
+  - Margin-of-victory adjusted
+  - Recency-weighted (half-life decay)
+  - Season-phase K-factor ramp (early → late season)
+  - Home court advantage (disabled for neutral sites)
 
-Examples:
-- `-1100` is excluded (too heavy favorite)
-- `+450` is excluded (too long a longshot)
-- `-150` is included (light favorite)
-- `+180` is included (underdog)
+- **Market odds (The Odds API)**
+  - Best available moneyline across books
+  - De-vigged implied probabilities
+  - Blended with Elo to reduce overconfidence
 
-#### Blend strength (how much you trust market)
-- `MARKET_BLEND_ALPHA=0.65`
-  - Higher = closer to market (more conservative)
-  - Lower = more Elo-driven (more aggressive)
+Final win probability is computed as:
 
-#### Qualification gates (filters to avoid thin edges)
-Favorites must meet:
-- `FAV_MIN_EDGE=0.015` (final prob minus market prob)
-- `FAV_MIN_EV=0.01`
+```
+P_final = α · P_market + (1 − α) · P_elo
+```
 
-Underdogs must meet:
-- `DOG_MIN_EDGE=0.03`
-- `DOG_MIN_EV=0.02`
-- `DOG_MIN_FINAL_WINPROB=0.23`
+Where `α` (MARKET_BLEND_ALPHA) controls market anchoring.
 
-### Debugging / sanity checks
-When Market is enabled, the build logs print a daily summary:
+---
 
-`[odds] YYYY-MM-DD total=.. matched=.. no_match=.. no_prices=.. no_candidates=.. require_odds=True`
+## 🎯 Pick Selection Philosophy
 
-- `matched`: games where we found odds AND a qualifying bet
-- `no_match`: NCAA games that didn’t match an Odds API event
-- `no_prices`: matched event but couldn’t extract both sides’ prices
-- `no_candidates`: odds existed but both sides failed range/gates
+The engine is **EV-first**, but not EV-only.
 
-If your JSON shows `pick_odds_american: null` for every game, odds matching is failing (check the `[odds]` summary + matching window).
+Key principles:
+- Rank by **expected value (EV)** to target long-term profitability
+- Enforce **odds ranges** to avoid extreme chalk and lottery longshots
+- Require **minimum confidence** (win probability floors)
+- Cap daily output instead of over-filtering
 
-### UI behavior
-- When Market is enabled, the UI labels Top 5 as **EV Picks** and shows:
-  - Odds (American), EV, edge, market probability, and book.
-- When Market is off, it shows **Most Likely Winners** based on Elo win probability.
+This avoids:
+- “-1100 favorites that add no value”
+- “+600 longshots with awful hit rate”
+- Empty slates caused by overly strict filters
+
+---
+
+## 🧱 Odds Safety & Matching (Critical Update)
+
+Odds matching is now robust to:
+- NCAA games missing or misformatted start times
+- Small time discrepancies between NCAA and sportsbooks
+- Team name variations (e.g. `ULM` vs `UL Monroe`, `St.` vs `Saint`)
+
+Matching rules:
+1. Match by team similarity (both orientations)
+2. Use start time if available (±12 hours)
+3. Fall back to team-only matching if NCAA time is missing
+4. Enforce hard odds-range checks before publishing
+
+If odds cannot be matched and `REQUIRE_ODDS=true`, the game is excluded.
+
+---
+
+## 📊 Odds Ranges (Current Defaults)
+
+- **Underdogs:** `+110` to `+260`
+- **Favorites:** `-115` to `-320`
+
+These ranges intentionally exclude:
+- Massive chalk (`-600`, `-1100`)
+- Ultra-low-probability lottery bets
+
+---
+
+## 🚦 Gates & Filters
+
+A play must pass:
+- Odds range check
+- Minimum EV
+- Minimum edge vs market
+- Minimum final win probability
+
+---
+
+## 📈 Volume Control
+
+Instead of eliminating plays early, the model:
+1. Evaluates all viable candidates
+2. Sorts by EV (then edge, then win probability)
+3. Publishes only the top N picks
+
+---
+
+## 🧠 Elo Fallback (Optional)
+
+An optional Elo fallback can admit high-confidence plays even when EV is marginal.
+Disabled by default.
+
+---
+
+## 🧪 Debugging & Transparency
+
+Each daily output includes:
+
+```json
+"debug": {
+  "odds": {
+    "total": 56,
+    "matched": 48,
+    "no_match": 8,
+    "no_prices": 0,
+    "no_candidates": 5
+  }
+}
+```
+
+If `matched = 0`, odds matching failed — not the model.
+
+---
+
+## 🔧 Key Environment Variables
+
+- `REQUIRE_ODDS`
+- `MARKET_BLEND_ALPHA`
+- `DOG_MIN / DOG_MAX`
+- `FAV_MIN / FAV_MAX`
+- `MAX_PICKS_PER_DAY`
+- `ONLY_POSITIVE_EV`
+
+---
+
+## 🧭 Roadmap
+
+- Confidence tiers (A / B plays)
+- ROI tracking by odds band
+- Closing-line value (CLV)
+- Auto-tuning from historical results

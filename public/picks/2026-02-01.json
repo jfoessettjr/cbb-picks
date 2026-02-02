@@ -1,7 +1,7 @@
 {
   "date": "2026-02-01",
   "season": "2025-2026",
-  "generated_at": "2026-01-29T15:02:23Z",
+  "generated_at": "2026-02-01T14:42:54Z",
   "model": {
     "type": "Elo",
     "mov": true,
@@ -46,15 +46,79 @@
       }
     }
   },
-  "picks": [],
+  "picks": [
+    {
+      "game_id": "6502647",
+      "date_time_epoch": 1769972400,
+      "home_team": "Green Bay",
+      "away_team": "Wright St.",
+      "neutral_site": false,
+      "pick_team": "Green Bay",
+      "pick_side": "home",
+      "win_prob": 0.42214445927201255,
+      "elo_win_prob": 0.5243597258493927,
+      "home_elo_raw": 1509.0925664702118,
+      "home_elo_with_hca": 1574.0925664702118,
+      "away_elo": 1557.1522836818958,
+      "hca": 65.0,
+      "pick_odds_american": 156,
+      "pick_odds_decimal": 2.56,
+      "pick_book": "fanduel",
+      "market_p_pick": 0.380359612724758,
+      "edge": 0.04178484654725456,
+      "ev": 0.08068981573635214
+    },
+    {
+      "game_id": "6504118",
+      "date_time_epoch": 1769972400,
+      "home_team": "Fairfield",
+      "away_team": "Quinnipiac",
+      "neutral_site": false,
+      "pick_team": "Fairfield",
+      "pick_side": "home",
+      "win_prob": 0.5033979749370293,
+      "elo_win_prob": 0.6020151465772957,
+      "home_elo_raw": 1534.3677230278886,
+      "home_elo_with_hca": 1599.3677230278886,
+      "away_elo": 1527.4713733389112,
+      "hca": 65.0,
+      "pick_odds_american": 110,
+      "pick_odds_decimal": 2.1,
+      "pick_book": "bovada",
+      "market_p_pick": 0.4661016949152542,
+      "edge": 0.0372962800217751,
+      "ev": 0.05713574736776161
+    },
+    {
+      "game_id": "6505738",
+      "date_time_epoch": 1769979600,
+      "home_team": "Nebraska",
+      "away_team": "Illinois",
+      "neutral_site": false,
+      "pick_team": "Nebraska",
+      "pick_side": "home",
+      "win_prob": 0.5680285733685277,
+      "elo_win_prob": 0.6209623435220545,
+      "home_elo_raw": 1658.143551158847,
+      "home_elo_with_hca": 1723.143551158847,
+      "away_elo": 1637.390388674185,
+      "hca": 65.0,
+      "pick_odds_american": -121,
+      "pick_odds_decimal": 1.8264462809917354,
+      "pick_book": "betrivers",
+      "market_p_pick": 0.5395257740550902,
+      "edge": 0.028502799313437577,
+      "ev": 0.037473675325988665
+    }
+  ],
   "debug": {
     "odds": {
       "date": "2026-02-01",
-      "total": 22,
-      "matched": 0,
-      "no_match": 22,
+      "total": 25,
+      "matched": 20,
+      "no_match": 5,
       "no_prices": 0,
-      "no_candidates": 0,
+      "no_candidates": 17,
       "require_odds": true,
       "time_window_sec": 43200
     }
