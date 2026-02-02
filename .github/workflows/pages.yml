@@ -60,32 +60,35 @@ jobs:
           # Require odds + publish policy
           REQUIRE_ODDS: "true"
           MAX_PICKS_PER_DAY: "5"
-          ONLY_POSITIVE_EV: "true"
+          ONLY_POSITIVE_EV: "false"
 
           # Turn gates back ON (DISABLE_GATES=false) so it stops taking bad plays.
           DISABLE_GATES: "false"
 
           # Odds ranges (avoid -600 / -1100 chalk, still allow dogs)
-          DOG_MIN: "110"
-          DOG_MAX: "260"
-          FAV_MIN: "-320"
-          FAV_MAX: "-115"
+          DOG_MIN: "100"
+          DOG_MAX: "160"
+          FAV_MIN: "-420"
+          FAV_MAX: "-120"
 
           # Blend (respect market, but let Elo help a bit)
-          MARKET_BLEND_ALPHA: "0.65"
+          MARKET_BLEND_ALPHA: "0.75"
 
           # Gates (these actually apply now)
-          DOG_MIN_EDGE: "0.02"
-          DOG_MIN_EV: "0.02"
-          DOG_MIN_FINAL_WINPROB: "0.32"
-          FAV_MIN_EDGE: "0.01"
-          FAV_MIN_EV: "0.01"
+          DOG_MIN_EDGE: "0.01"
+          DOG_MIN_EV: "-0.01"
+          DOG_MIN_FINAL_WINPROB: "0.42"
+          FAV_MIN_EDGE: "0.005"
+          FAV_MIN_EV: "-0.01"
+          FAV_MIN_FINAL_WINPROB "0.62"
 
           # Fallback: keep OFF while we fix matching; otherwise it can mask problems.
-          ELO_FALLBACK_ENABLED: "false"
-          ELO_FALLBACK_WINPROB: "0.66"
-          ELO_FALLBACK_MAX_FAV: "-450"
-          ELO_FALLBACK_MIN_EV: "-0.01"
+          ELO_FALLBACK_ENABLED: "true"
+          ELO_FALLBACK_WINPROB: "0.68"
+          ELO_FALLBACK_MAX_FAV: "-480"
+          ELO_FALLBACK_MIN_EV: "-0.03"
+
+          ODDS_TIME_MAYCH_WINDOW_SEC: "43200"
 
         run: |
           python scripts/build_picks.py

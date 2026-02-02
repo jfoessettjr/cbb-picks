@@ -61,7 +61,9 @@ DOG_MIN_EV = float(os.getenv("DOG_MIN_EV", "0.02"))
 DOG_MIN_FINAL_WINPROB = float(os.getenv("DOG_MIN_FINAL_WINPROB", "0.32"))
 
 FAV_MIN_EDGE = float(os.getenv("FAV_MIN_EDGE", "0.01"))
-FAV_MIN_EV = float(os.getenv("FAV_MIN_EV", "0.01"))
+FAV_MIN_EV = float(os.getenv("FAV_MIN_EV", "0.004"))
+FAV_MIN_FINAL_WINPROB = float(os.getenv("FAV_MIN_FINAL_WINPROB", "0.60"))
+
 
 # Publish policy (cap instead of over-filtering)
 MAX_PICKS_PER_DAY = int(os.getenv("MAX_PICKS_PER_DAY", "5"))
@@ -674,9 +676,11 @@ def write_picks_for_date(d: date, ratings: dict[str, float], odds_games_window: 
                             ok = True
                         else:
                             if kind == "fav":
-                                ok = (ed >= FAV_MIN_EDGE) and (evv >= FAV_MIN_EV)
-                            else:
-                                ok = (ed >= DOG_MIN_EDGE) and (evv >= DOG_MIN_EV) and (p_blend >= DOG_MIN_FINAL_WINPROB)
+                                ok = (
+                                    (ed >= FAV_MIN_EDGE)
+                                    and (evv >= FAV_MIN_EV)
+                                    and (p_blend >= FAV_MIN_FINAL_WINPROB)
+                                )
 
                         if (not ok) and _elo_fallback_ok(kind, am_home, p_home_elo, evv):
                             ok = True
@@ -706,9 +710,12 @@ def write_picks_for_date(d: date, ratings: dict[str, float], odds_games_window: 
                             ok = True
                         else:
                             if kind == "fav":
-                                ok = (ed >= FAV_MIN_EDGE) and (evv >= FAV_MIN_EV)
-                            else:
-                                ok = (ed >= DOG_MIN_EDGE) and (evv >= DOG_MIN_EV) and (p_blend >= DOG_MIN_FINAL_WINPROB)
+                                ok = (
+                                    (ed >= FAV_MIN_EDGE)
+                                    and (evv >= FAV_MIN_EV)
+                                    and (p_blend >= FAV_MIN_FINAL_WINPROB)
+                                )
+
 
                         if (not ok) and _elo_fallback_ok(kind, am_away, p_away_elo, evv):
                             ok = True
@@ -825,12 +832,16 @@ def write_picks_for_date(d: date, ratings: dict[str, float], odds_games_window: 
                     "disable_gates": (DISABLE_GATES if ODDS_API_KEY else None),
                     "only_positive_ev": (ONLY_POSITIVE_EV if ODDS_API_KEY else None),
                     "max_picks_per_day": (MAX_PICKS_PER_DAY if ODDS_API_KEY else None),
+
                     "dog_min_edge": (DOG_MIN_EDGE if ODDS_API_KEY else None),
                     "dog_min_ev": (DOG_MIN_EV if ODDS_API_KEY else None),
                     "dog_min_final_winprob": (DOG_MIN_FINAL_WINPROB if ODDS_API_KEY else None),
+
                     "fav_min_edge": (FAV_MIN_EDGE if ODDS_API_KEY else None),
                     "fav_min_ev": (FAV_MIN_EV if ODDS_API_KEY else None),
+                    "fav_min_final_winprob": (FAV_MIN_FINAL_WINPROB if ODDS_API_KEY else None),
                 },
+
                 "elo_fallback": {
                     "enabled": (ELO_FALLBACK_ENABLED if ODDS_API_KEY else None),
                     "elo_winprob": (ELO_FALLBACK_WINPROB if ODDS_API_KEY else None),
