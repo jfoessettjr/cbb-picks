@@ -80,7 +80,7 @@ jobs:
           DOG_MIN_FINAL_WINPROB: "0.42"
           FAV_MIN_EDGE: "0.005"
           FAV_MIN_EV: "-0.01"
-          FAV_MIN_FINAL_WINPROB "0.62"
+          FAV_MIN_FINAL_WINPROB: "0.62"
 
           # Fallback: keep OFF while we fix matching; otherwise it can mask problems.
           ELO_FALLBACK_ENABLED: "true"
