@@ -1,7 +1,7 @@
 {
-  "date": "2026-02-02",
+  "date": "2026-02-03",
   "season": "2025-2026",
-  "generated_at": "2026-02-02T17:48:32Z",
+  "generated_at": "2026-02-03T14:58:18Z",
   "model": {
     "type": "Elo",
     "mov": true,
@@ -47,37 +47,15 @@
       }
     }
   },
-  "picks": [
-    {
-      "game_id": "6501026",
-      "date_time_epoch": 1770087600,
-      "home_team": "Portland St.",
-      "away_team": "Idaho St.",
-      "neutral_site": false,
-      "pick_team": "Portland St.",
-      "pick_side": "home",
-      "win_prob": 0.7194407622228847,
-      "elo_win_prob": 0.7159983430091861,
-      "home_elo_raw": 1569.2481227194762,
-      "home_elo_with_hca": 1634.2481227194762,
-      "away_elo": 1473.611665388169,
-      "hca": 65.0,
-      "pick_odds_american": -280,
-      "pick_odds_decimal": 1.3571428571428572,
-      "pick_book": "betonlineag",
-      "market_p_pick": 0.7205882352941176,
-      "edge": -0.001147473071232974,
-      "ev": -0.02361610841179934
-    }
-  ],
+  "picks": [],
   "debug": {
     "odds": {
-      "date": "2026-02-02",
-      "total": 18,
-      "matched": 11,
-      "no_match": 7,
+      "date": "2026-02-03",
+      "total": 31,
+      "matched": 23,
+      "no_match": 8,
       "no_prices": 0,
-      "no_candidates": 10,
+      "no_candidates": 23,
       "require_odds": true,
       "time_window_sec": 43200
     }
