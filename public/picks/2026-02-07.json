@@ -1,7 +1,7 @@
 {
   "date": "2026-02-07",
   "season": "2025-2026",
-  "generated_at": "2026-02-05T14:58:10Z",
+  "generated_at": "2026-02-06T14:54:14Z",
   "model": {
     "type": "Elo",
     "mov": true,
@@ -52,10 +52,10 @@
     "odds": {
       "date": "2026-02-07",
       "total": 154,
-      "matched": 1,
-      "no_match": 153,
+      "matched": 10,
+      "no_match": 144,
       "no_prices": 0,
-      "no_candidates": 1,
+      "no_candidates": 10,
       "require_odds": true,
       "time_window_sec": 43200
     }

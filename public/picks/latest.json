@@ -1,7 +1,7 @@
 {
-  "date": "2026-02-05",
+  "date": "2026-02-06",
   "season": "2025-2026",
-  "generated_at": "2026-02-05T14:58:08Z",
+  "generated_at": "2026-02-06T14:54:13Z",
   "model": {
     "type": "Elo",
     "mov": true,
@@ -47,37 +47,15 @@
       }
     }
   },
-  "picks": [
-    {
-      "game_id": "6501611",
-      "date_time_epoch": 1770336000,
-      "home_team": "UNCW",
-      "away_team": "William & Mary",
-      "neutral_site": false,
-      "pick_team": "UNCW",
-      "pick_side": "home",
-      "win_prob": 0.6745411162160598,
-      "elo_win_prob": 0.6915419483079481,
-      "home_elo_raw": 1621.5053549823144,
-      "home_elo_with_hca": 1686.5053549823144,
-      "away_elo": 1546.2563877738949,
-      "hca": 65.0,
-      "pick_odds_american": -200,
-      "pick_odds_decimal": 1.5,
-      "pick_book": "bovada",
-      "market_p_pick": 0.6688741721854304,
-      "edge": 0.005666944030629395,
-      "ev": 0.01181167432408975
-    }
-  ],
+  "picks": [],
   "debug": {
     "odds": {
-      "date": "2026-02-05",
-      "total": 51,
-      "matched": 34,
-      "no_match": 17,
+      "date": "2026-02-06",
+      "total": 9,
+      "matched": 5,
+      "no_match": 4,
       "no_prices": 0,
-      "no_candidates": 33,
+      "no_candidates": 5,
       "require_odds": true,
       "time_window_sec": 43200
     }
