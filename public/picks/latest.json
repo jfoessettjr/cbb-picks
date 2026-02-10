@@ -1,7 +1,7 @@
 {
-  "date": "2026-02-09",
+  "date": "2026-02-10",
   "season": "2025-2026",
-  "generated_at": "2026-02-09T15:07:13Z",
+  "generated_at": "2026-02-10T15:15:05Z",
   "model": {
     "type": "Elo",
     "mov": true,
@@ -47,37 +47,15 @@
       }
     }
   },
-  "picks": [
-    {
-      "game_id": "6503928",
-      "date_time_epoch": 1770681600,
-      "home_team": "Lamar University",
-      "away_team": "Northwestern St.",
-      "neutral_site": false,
-      "pick_team": "Lamar University",
-      "pick_side": "home",
-      "win_prob": 0.7481900904337473,
-      "elo_win_prob": 0.7115764293882658,
-      "home_elo_raw": 1500.8189721303136,
-      "home_elo_with_hca": 1565.8189721303136,
-      "away_elo": 1408.942650185962,
-      "hca": 65.0,
-      "pick_odds_american": -325,
-      "pick_odds_decimal": 1.3076923076923077,
-      "pick_book": "betmgm",
-      "market_p_pick": 0.7603946441155744,
-      "edge": -0.012204553681827157,
-      "ev": -0.02159757404817661
-    }
-  ],
+  "picks": [],
   "debug": {
     "odds": {
-      "date": "2026-02-09",
-      "total": 28,
-      "matched": 14,
-      "no_match": 14,
+      "date": "2026-02-10",
+      "total": 22,
+      "matched": 17,
+      "no_match": 5,
       "no_prices": 0,
-      "no_candidates": 13,
+      "no_candidates": 17,
       "require_odds": true,
       "time_window_sec": 43200
     }
