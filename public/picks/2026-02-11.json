@@ -1,7 +1,7 @@
 {
   "date": "2026-02-11",
   "season": "2025-2026",
-  "generated_at": "2026-02-10T15:15:06Z",
+  "generated_at": "2026-02-11T15:09:16Z",
   "model": {
     "type": "Elo",
     "mov": true,
@@ -47,15 +47,58 @@
       }
     }
   },
-  "picks": [],
+  "picks": [
+    {
+      "game_id": "6503118",
+      "date_time_epoch": 1770856200,
+      "home_team": "Seton Hall",
+      "away_team": "Providence",
+      "neutral_site": false,
+      "pick_team": "Seton Hall",
+      "pick_side": "home",
+      "win_prob": 0.6457162866412328,
+      "elo_win_prob": 0.6642245698399059,
+      "home_elo_raw": 1555.049877643378,
+      "home_elo_with_hca": 1620.049877643378,
+      "away_elo": 1501.5434688122928,
+      "hca": 65.0,
+      "pick_odds_american": -180,
+      "pick_odds_decimal": 1.5555555555555556,
+      "pick_book": "betonlineag",
+      "market_p_pick": 0.6395468589083418,
+      "edge": 0.006169427732890975,
+      "ev": 0.00444755699747329
+    },
+    {
+      "game_id": "6504881",
+      "date_time_epoch": 1770856200,
+      "home_team": "Old Dominion",
+      "away_team": "Marshall",
+      "neutral_site": false,
+      "pick_team": "Old Dominion",
+      "pick_side": "home",
+      "win_prob": 0.41572871914776166,
+      "elo_win_prob": 0.4420503783971458,
+      "home_elo_raw": 1440.822957869928,
+      "home_elo_with_hca": 1505.822957869928,
+      "away_elo": 1546.2722461574854,
+      "hca": 65.0,
+      "pick_odds_american": 135,
+      "pick_odds_decimal": 2.35,
+      "pick_book": "bovada",
+      "market_p_pick": 0.41826717883055914,
+      "edge": -0.002538459682797478,
+      "ev": -0.02303751000276011
+    }
+  ],
   "debug": {
     "odds": {
       "date": "2026-02-11",
       "total": 54,
-      "matched": 0,
-      "no_match": 54,
+      "matched": 35,
+      "no_match": 19,
       "no_prices": 0,
-      "no_candidates": 0,
+      "no_candidates": 33,
       "require_odds": true,
       "time_window_sec": 43200
     }
