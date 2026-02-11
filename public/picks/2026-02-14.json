@@ -1,7 +1,7 @@
 {
   "date": "2026-02-14",
   "season": "2025-2026",
-  "generated_at": "2026-02-11T15:09:19Z",
+  "generated_at": "2026-02-11T19:12:13Z",
   "model": {
     "type": "Elo",
     "mov": true,
@@ -24,20 +24,30 @@
       "ranges": {
         "dog_min": 100,
         "dog_max": 160,
-        "fav_min": -420,
-        "fav_max": -120
+        "fav_min": -260,
+        "fav_max": -115
       },
       "blend_alpha": 0.75,
       "gates": {
         "disable_gates": false,
         "only_positive_ev": false,
-        "max_picks_per_day": 5,
+        "max_picks_per_day": 3,
         "dog_min_edge": 0.01,
         "dog_min_ev": -0.01,
         "dog_min_final_winprob": 0.42,
         "fav_min_edge": 0.005,
         "fav_min_ev": -0.01,
         "fav_min_final_winprob": 0.62
+      },
+      "win_rate_mode": {
+        "enabled": true,
+        "disable_dogs": true,
+        "min_final_prob_fav": 0.62,
+        "min_final_prob_dog": 0.54,
+        "min_edge_fav": 0.005,
+        "min_edge_dog": 0.01,
+        "min_ev_fav": -0.01,
+        "min_ev_dog": -0.01
       },
       "elo_fallback": {
         "enabled": true,

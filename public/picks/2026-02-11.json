@@ -1,7 +1,7 @@
 {
   "date": "2026-02-11",
   "season": "2025-2026",
-  "generated_at": "2026-02-11T15:09:16Z",
+  "generated_at": "2026-02-11T19:12:11Z",
   "model": {
     "type": "Elo",
     "mov": true,
@@ -24,20 +24,30 @@
       "ranges": {
         "dog_min": 100,
         "dog_max": 160,
-        "fav_min": -420,
-        "fav_max": -120
+        "fav_min": -260,
+        "fav_max": -115
       },
       "blend_alpha": 0.75,
       "gates": {
         "disable_gates": false,
         "only_positive_ev": false,
-        "max_picks_per_day": 5,
+        "max_picks_per_day": 3,
         "dog_min_edge": 0.01,
         "dog_min_ev": -0.01,
         "dog_min_final_winprob": 0.42,
         "fav_min_edge": 0.005,
         "fav_min_ev": -0.01,
         "fav_min_final_winprob": 0.62
+      },
+      "win_rate_mode": {
+        "enabled": true,
+        "disable_dogs": true,
+        "min_final_prob_fav": 0.62,
+        "min_final_prob_dog": 0.54,
+        "min_edge_fav": 0.005,
+        "min_edge_dog": 0.01,
+        "min_ev_fav": -0.01,
+        "min_ev_dog": -0.01
       },
       "elo_fallback": {
         "enabled": true,
@@ -47,50 +57,7 @@
       }
     }
   },
-  "picks": [
-    {
-      "game_id": "6503118",
-      "date_time_epoch": 1770856200,
-      "home_team": "Seton Hall",
-      "away_team": "Providence",
-      "neutral_site": false,
-      "pick_team": "Seton Hall",
-      "pick_side": "home",
-      "win_prob": 0.6457162866412328,
-      "elo_win_prob": 0.6642245698399059,
-      "home_elo_raw": 1555.049877643378,
-      "home_elo_with_hca": 1620.049877643378,
-      "away_elo": 1501.5434688122928,
-      "hca": 65.0,
-      "pick_odds_american": -180,
-      "pick_odds_decimal": 1.5555555555555556,
-      "pick_book": "betonlineag",
-      "market_p_pick": 0.6395468589083418,
-      "edge": 0.006169427732890975,
-      "ev": 0.00444755699747329
-    },
-    {
-      "game_id": "6504881",
-      "date_time_epoch": 1770856200,
-      "home_team": "Old Dominion",
-      "away_team": "Marshall",
-      "neutral_site": false,
-      "pick_team": "Old Dominion",
-      "pick_side": "home",
-      "win_prob": 0.41572871914776166,
-      "elo_win_prob": 0.4420503783971458,
-      "home_elo_raw": 1440.822957869928,
-      "home_elo_with_hca": 1505.822957869928,
-      "away_elo": 1546.2722461574854,
-      "hca": 65.0,
-      "pick_odds_american": 135,
-      "pick_odds_decimal": 2.35,
-      "pick_book": "bovada",
-      "market_p_pick": 0.41826717883055914,
-      "edge": -0.002538459682797478,
-      "ev": -0.02303751000276011
-    }
-  ],
+  "picks": [],
   "debug": {
     "odds": {
       "date": "2026-02-11",
@@ -98,7 +65,7 @@
       "matched": 35,
       "no_match": 19,
       "no_prices": 0,
-      "no_candidates": 33,
+      "no_candidates": 35,
       "require_odds": true,
       "time_window_sec": 43200
     }
