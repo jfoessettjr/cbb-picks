@@ -1,7 +1,7 @@
 {
-  "date": "2026-02-05",
+  "date": "2026-02-09",
   "season": "2025-2026",
-  "generated_at": "2026-02-05T14:58:08Z",
+  "generated_at": "2026-02-09T15:07:13Z",
   "model": {
     "type": "Elo",
     "mov": true,
@@ -49,35 +49,35 @@
   },
   "picks": [
     {
-      "game_id": "6501611",
-      "date_time_epoch": 1770336000,
-      "home_team": "UNCW",
-      "away_team": "William & Mary",
+      "game_id": "6503928",
+      "date_time_epoch": 1770681600,
+      "home_team": "Lamar University",
+      "away_team": "Northwestern St.",
       "neutral_site": false,
-      "pick_team": "UNCW",
+      "pick_team": "Lamar University",
       "pick_side": "home",
-      "win_prob": 0.6745411162160598,
-      "elo_win_prob": 0.6915419483079481,
-      "home_elo_raw": 1621.5053549823144,
-      "home_elo_with_hca": 1686.5053549823144,
-      "away_elo": 1546.2563877738949,
+      "win_prob": 0.7481900904337473,
+      "elo_win_prob": 0.7115764293882658,
+      "home_elo_raw": 1500.8189721303136,
+      "home_elo_with_hca": 1565.8189721303136,
+      "away_elo": 1408.942650185962,
       "hca": 65.0,
-      "pick_odds_american": -200,
-      "pick_odds_decimal": 1.5,
-      "pick_book": "bovada",
-      "market_p_pick": 0.6688741721854304,
-      "edge": 0.005666944030629395,
-      "ev": 0.01181167432408975
+      "pick_odds_american": -325,
+      "pick_odds_decimal": 1.3076923076923077,
+      "pick_book": "betmgm",
+      "market_p_pick": 0.7603946441155744,
+      "edge": -0.012204553681827157,
+      "ev": -0.02159757404817661
     }
   ],
   "debug": {
     "odds": {
-      "date": "2026-02-05",
-      "total": 51,
-      "matched": 34,
-      "no_match": 17,
+      "date": "2026-02-09",
+      "total": 28,
+      "matched": 14,
+      "no_match": 14,
       "no_prices": 0,
-      "no_candidates": 33,
+      "no_candidates": 13,
       "require_odds": true,
       "time_window_sec": 43200
     }

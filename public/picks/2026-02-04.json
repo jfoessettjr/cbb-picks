@@ -1,7 +1,7 @@
 {
   "date": "2026-02-04",
   "season": "2025-2026",
-  "generated_at": "2026-02-02T17:48:34Z",
+  "generated_at": "2026-02-04T14:54:52Z",
   "model": {
     "type": "Elo",
     "mov": true,
@@ -47,15 +47,58 @@
       }
     }
   },
-  "picks": [],
+  "picks": [
+    {
+      "game_id": "6531066",
+      "date_time_epoch": 1770249600,
+      "home_team": "George Mason",
+      "away_team": "Duquesne",
+      "neutral_site": false,
+      "pick_team": "George Mason",
+      "pick_side": "home",
+      "win_prob": 0.7410580831298588,
+      "elo_win_prob": 0.7359365125837442,
+      "home_elo_raw": 1637.1598095792067,
+      "home_elo_with_hca": 1702.1598095792067,
+      "away_elo": 1524.1070112391033,
+      "hca": 65.0,
+      "pick_odds_american": -300,
+      "pick_odds_decimal": 1.3333333333333333,
+      "pick_book": "betonlineag",
+      "market_p_pick": 0.742765273311897,
+      "edge": -0.001707190182038243,
+      "ev": -0.01192255582685503
+    },
+    {
+      "game_id": "6504621",
+      "date_time_epoch": 1770253200,
+      "home_team": "California",
+      "away_team": "Georgia Tech",
+      "neutral_site": false,
+      "pick_team": "California",
+      "pick_side": "home",
+      "win_prob": 0.7454745178555938,
+      "elo_win_prob": 0.7073603758320481,
+      "home_elo_raw": 1584.8690464488159,
+      "home_elo_with_hca": 1649.8690464488159,
+      "away_elo": 1496.5460072752885,
+      "hca": 65.0,
+      "pick_odds_american": -325,
+      "pick_odds_decimal": 1.3076923076923077,
+      "pick_book": "betmgm",
+      "market_p_pick": 0.7581792318634424,
+      "edge": -0.012704714007848561,
+      "ev": -0.025148707419608063
+    }
+  ],
   "debug": {
     "odds": {
       "date": "2026-02-04",
       "total": 62,
-      "matched": 0,
-      "no_match": 62,
+      "matched": 41,
+      "no_match": 21,
       "no_prices": 0,
-      "no_candidates": 0,
+      "no_candidates": 39,
       "require_odds": true,
       "time_window_sec": 43200
     }
