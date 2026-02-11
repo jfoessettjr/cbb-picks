@@ -59,7 +59,7 @@ jobs:
 
           # Require odds + publish policy
           REQUIRE_ODDS: "true"
-          MAX_PICKS_PER_DAY: "5"
+          MAX_PICKS_PER_DAY: "3"
           ONLY_POSITIVE_EV: "false"
 
           # Turn gates back ON (DISABLE_GATES=false) so it stops taking bad plays.
@@ -68,11 +68,17 @@ jobs:
           # Odds ranges (avoid -600 / -1100 chalk, still allow dogs)
           DOG_MIN: "100"
           DOG_MAX: "160"
-          FAV_MIN: "-420"
-          FAV_MAX: "-120"
+          FAV_MIN: "-260"
+          FAV_MAX: "-115"
 
           # Blend (respect market, but let Elo help a bit)
           MARKET_BLEND_ALPHA: "0.75"
+
+          WIN_RATE_MODE: "1"
+          WIN_DISABLE_DOGS: "1"
+          WIN_MIN_FINAL_PROB_FAV: "0.62"
+          WIN_MIN_EDGE_FAV: "0.005"
+          WIN_MIN_EV_FAV: "-0.01"
 
           # Gates (these actually apply now)
           DOG_MIN_EDGE: "0.01"

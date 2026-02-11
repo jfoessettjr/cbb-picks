@@ -70,6 +70,26 @@ MAX_PICKS_PER_DAY = int(os.getenv("MAX_PICKS_PER_DAY", "5"))
 ONLY_POSITIVE_EV = os.getenv("ONLY_POSITIVE_EV", "1").lower() in ("1", "true", "yes")
 DISABLE_GATES = os.getenv("DISABLE_GATES", "0").lower() in ("1", "true", "yes")
 
+# -------------------------
+# Win% mode (accuracy-first)
+# -------------------------
+WIN_RATE_MODE = os.getenv("WIN_RATE_MODE", "0").lower() in ("1", "true", "yes")
+
+# In win% mode, we prefer safer favorites and rank by probability first.
+WIN_MIN_FINAL_PROB_FAV = float(os.getenv("WIN_MIN_FINAL_PROB_FAV", "0.62"))
+WIN_MIN_FINAL_PROB_DOG = float(os.getenv("WIN_MIN_FINAL_PROB_DOG", "0.54"))  # only used if dogs allowed
+
+WIN_MIN_EDGE_FAV = float(os.getenv("WIN_MIN_EDGE_FAV", "0.005"))
+WIN_MIN_EDGE_DOG = float(os.getenv("WIN_MIN_EDGE_DOG", "0.010"))
+
+# Allow slightly negative EV in win% mode (optional) to avoid over-thinning
+WIN_MIN_EV_FAV = float(os.getenv("WIN_MIN_EV_FAV", "-0.01"))
+WIN_MIN_EV_DOG = float(os.getenv("WIN_MIN_EV_DOG", "-0.01"))
+
+# Disable dogs entirely for maximum win%
+WIN_DISABLE_DOGS = os.getenv("WIN_DISABLE_DOGS", "1").lower() in ("1", "true", "yes")
+
+
 # Elo fallback — prevents empty slates if gates are too strict (still requires odds if REQUIRE_ODDS=1)
 ELO_FALLBACK_ENABLED = os.getenv("ELO_FALLBACK_ENABLED", "1").lower() in ("1", "true", "yes")
 ELO_FALLBACK_WINPROB = float(os.getenv("ELO_FALLBACK_WINPROB", "0.66"))
@@ -672,15 +692,41 @@ def write_picks_for_date(d: date, ratings: dict[str, float], odds_games_window: 
                         ed = p_blend - p_home_mkt
                         evv = expected_value_per_dollar(p_blend, float(home_best["dec"]))
 
+                        # Gate policy
                         if DISABLE_GATES:
                             ok = True
                         else:
-                            if kind == "fav":
-                                ok = (
-                                    (ed >= FAV_MIN_EDGE)
-                                    and (evv >= FAV_MIN_EV)
-                                    and (p_blend >= FAV_MIN_FINAL_WINPROB)
-                                )
+                            # Optional: in win% mode, skip dogs completely
+                            if WIN_RATE_MODE and WIN_DISABLE_DOGS and kind == "dog":
+                                ok = False
+                            else:
+                                if WIN_RATE_MODE:
+                                    if kind == "fav":
+                                        ok = (
+                                            (p_blend >= WIN_MIN_FINAL_PROB_FAV)
+                                            and (ed >= WIN_MIN_EDGE_FAV)
+                                            and (evv >= WIN_MIN_EV_FAV)
+                                        )
+                                    else:  # dog
+                                        ok = (
+                                            (p_blend >= WIN_MIN_FINAL_PROB_DOG)
+                                            and (ed >= WIN_MIN_EDGE_DOG)
+                                            and (evv >= WIN_MIN_EV_DOG)
+                                        )
+                                else:
+                                    # ROI/EV mode (apply gates to BOTH fav + dog)
+                                    if kind == "fav":
+                                        ok = (
+                                            (ed >= FAV_MIN_EDGE)
+                                            and (evv >= FAV_MIN_EV)
+                                            and (p_blend >= FAV_MIN_FINAL_WINPROB)
+                                        )
+                                    else:  # dog
+                                        ok = (
+                                            (ed >= DOG_MIN_EDGE)
+                                            and (evv >= DOG_MIN_EV)
+                                            and (p_blend >= DOG_MIN_FINAL_WINPROB)
+                                        )
 
                         if (not ok) and _elo_fallback_ok(kind, am_home, p_home_elo, evv):
                             ok = True
@@ -706,16 +752,39 @@ def write_picks_for_date(d: date, ratings: dict[str, float], odds_games_window: 
                         ed = p_blend - p_away_mkt
                         evv = expected_value_per_dollar(p_blend, float(away_best["dec"]))
 
+                        # Gate policy
                         if DISABLE_GATES:
                             ok = True
                         else:
-                            if kind == "fav":
-                                ok = (
-                                    (ed >= FAV_MIN_EDGE)
-                                    and (evv >= FAV_MIN_EV)
-                                    and (p_blend >= FAV_MIN_FINAL_WINPROB)
-                                )
-
+                            if WIN_RATE_MODE and WIN_DISABLE_DOGS and kind == "dog":
+                                ok = False
+                            else:
+                                if WIN_RATE_MODE:
+                                    if kind == "fav":
+                                        ok = (
+                                            (p_blend >= WIN_MIN_FINAL_PROB_FAV)
+                                            and (ed >= WIN_MIN_EDGE_FAV)
+                                            and (evv >= WIN_MIN_EV_FAV)
+                                        )
+                                    else:  # dog
+                                        ok = (
+                                            (p_blend >= WIN_MIN_FINAL_PROB_DOG)
+                                            and (ed >= WIN_MIN_EDGE_DOG)
+                                            and (evv >= WIN_MIN_EV_DOG)
+                                        )
+                                else:
+                                    if kind == "fav":
+                                        ok = (
+                                            (ed >= FAV_MIN_EDGE)
+                                            and (evv >= FAV_MIN_EV)
+                                            and (p_blend >= FAV_MIN_FINAL_WINPROB)
+                                        )
+                                    else:  # dog
+                                        ok = (
+                                            (ed >= DOG_MIN_EDGE)
+                                            and (evv >= DOG_MIN_EV)
+                                            and (p_blend >= DOG_MIN_FINAL_WINPROB)
+                                        )
 
                         if (not ok) and _elo_fallback_ok(kind, am_away, p_away_elo, evv):
                             ok = True
@@ -737,8 +806,14 @@ def write_picks_for_date(d: date, ratings: dict[str, float], odds_games_window: 
                         if REQUIRE_ODDS:
                             continue
                     else:
-                        # Choose best per game: EV first, then edge, then win prob
-                        candidates.sort(key=lambda c: (c["ev"], c["edge"], c["p_final"]), reverse=True)
+                        # Choose best per game
+                        if WIN_RATE_MODE:
+                            # Win% first: probability, then edge, then EV
+                            candidates.sort(key=lambda c: (c["p_final"], c["edge"], c["ev"]), reverse=True)
+                        else:
+                            # ROI/EV mode: EV, then edge, then probability
+                            candidates.sort(key=lambda c: (c["ev"], c["edge"], c["p_final"]), reverse=True)
+
                         best = candidates[0]
 
                         pick_side = best["side"]
@@ -783,16 +858,30 @@ def write_picks_for_date(d: date, ratings: dict[str, float], odds_games_window: 
     if ODDS_API_KEY:
         if REQUIRE_ODDS:
             picks = [p for p in picks if p.get("ev") is not None]
-        if ONLY_POSITIVE_EV:
+
+        # In win% mode, do NOT force positive EV (it can over-thin and reduce hit rate stability)
+        if (not WIN_RATE_MODE) and ONLY_POSITIVE_EV:
             picks = [p for p in picks if (p.get("ev") is not None and p["ev"] > 0)]
-        picks.sort(
-            key=lambda x: (
-                x["ev"] if x.get("ev") is not None else -999,
-                x["edge"] if x.get("edge") is not None else -999,
-                x["win_prob"],
-            ),
-            reverse=True,
-        )
+
+        if WIN_RATE_MODE:
+            picks.sort(
+                key=lambda x: (
+                    x["win_prob"],
+                    x["edge"] if x.get("edge") is not None else -999,
+                    x["ev"] if x.get("ev") is not None else -999,
+                ),
+                reverse=True,
+            )
+        else:
+            picks.sort(
+                key=lambda x: (
+                    x["ev"] if x.get("ev") is not None else -999,
+                    x["edge"] if x.get("edge") is not None else -999,
+                    x["win_prob"],
+                ),
+                reverse=True,
+            )
+
         if MAX_PICKS_PER_DAY and MAX_PICKS_PER_DAY > 0:
             picks = picks[:MAX_PICKS_PER_DAY]
     else:
@@ -840,6 +929,17 @@ def write_picks_for_date(d: date, ratings: dict[str, float], odds_games_window: 
                     "fav_min_edge": (FAV_MIN_EDGE if ODDS_API_KEY else None),
                     "fav_min_ev": (FAV_MIN_EV if ODDS_API_KEY else None),
                     "fav_min_final_winprob": (FAV_MIN_FINAL_WINPROB if ODDS_API_KEY else None),
+                },
+
+                "win_rate_mode": {
+                    "enabled": (WIN_RATE_MODE if ODDS_API_KEY else None),
+                    "disable_dogs": (WIN_DISABLE_DOGS if ODDS_API_KEY else None),
+                    "min_final_prob_fav": (WIN_MIN_FINAL_PROB_FAV if ODDS_API_KEY else None),
+                    "min_final_prob_dog": (WIN_MIN_FINAL_PROB_DOG if ODDS_API_KEY else None),
+                    "min_edge_fav": (WIN_MIN_EDGE_FAV if ODDS_API_KEY else None),
+                    "min_edge_dog": (WIN_MIN_EDGE_DOG if ODDS_API_KEY else None),
+                    "min_ev_fav": (WIN_MIN_EV_FAV if ODDS_API_KEY else None),
+                    "min_ev_dog": (WIN_MIN_EV_DOG if ODDS_API_KEY else None),
                 },
 
                 "elo_fallback": {
