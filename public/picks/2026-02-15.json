@@ -1,7 +1,7 @@
 {
-  "date": "2026-02-12",
+  "date": "2026-02-15",
   "season": "2025-2026",
-  "generated_at": "2026-02-12T15:01:46Z",
+  "generated_at": "2026-02-12T15:01:48Z",
   "model": {
     "type": "Elo",
     "mov": true,
@@ -57,37 +57,15 @@
       }
     }
   },
-  "picks": [
-    {
-      "game_id": "6506376",
-      "date_time_epoch": 1770942600,
-      "home_team": "Morehead St.",
-      "away_team": "Tennessee Tech",
-      "neutral_site": false,
-      "pick_team": "Morehead St.",
-      "pick_side": "home",
-      "win_prob": 0.644490011022595,
-      "elo_win_prob": 0.6729907817952977,
-      "home_elo_raw": 1518.7844958404148,
-      "home_elo_with_hca": 1583.7844958404148,
-      "away_elo": 1458.4048477510114,
-      "hca": 65.0,
-      "pick_odds_american": -185,
-      "pick_odds_decimal": 1.5405405405405406,
-      "pick_book": "betonlineag",
-      "market_p_pick": 0.6349897540983607,
-      "edge": 0.009500256924234285,
-      "ev": -0.007137010046272596
-    }
-  ],
+  "picks": [],
   "debug": {
     "odds": {
-      "date": "2026-02-12",
-      "total": 57,
-      "matched": 35,
-      "no_match": 22,
+      "date": "2026-02-15",
+      "total": 32,
+      "matched": 0,
+      "no_match": 32,
       "no_prices": 0,
-      "no_candidates": 34,
+      "no_candidates": 0,
       "require_odds": true,
       "time_window_sec": 43200
     }
