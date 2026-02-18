@@ -1,7 +1,7 @@
 {
   "date": "2026-02-18",
   "season": "2025-2026",
-  "generated_at": "2026-02-17T15:00:27Z",
+  "generated_at": "2026-02-18T14:59:29Z",
   "model": {
     "type": "Elo",
     "mov": true,
@@ -57,15 +57,37 @@
       }
     }
   },
-  "picks": [],
+  "picks": [
+    {
+      "game_id": "6506338",
+      "date_time_epoch": 1771470000,
+      "home_team": "Portland",
+      "away_team": "Pepperdine",
+      "neutral_site": false,
+      "pick_team": "Portland",
+      "pick_side": "home",
+      "win_prob": 0.6965051543647091,
+      "elo_win_prob": 0.6892464239104493,
+      "home_elo_raw": 1480.2920007469993,
+      "home_elo_with_hca": 1545.2920007469993,
+      "away_elo": 1406.9086461981292,
+      "hca": 65.0,
+      "pick_odds_american": -250,
+      "pick_odds_decimal": 1.4,
+      "pick_book": "betrivers",
+      "market_p_pick": 0.6989247311827957,
+      "edge": -0.0024195768180866883,
+      "ev": -0.02489278388940741
+    }
+  ],
   "debug": {
     "odds": {
       "date": "2026-02-18",
       "total": 59,
-      "matched": 0,
-      "no_match": 59,
+      "matched": 42,
+      "no_match": 17,
       "no_prices": 0,
-      "no_candidates": 0,
+      "no_candidates": 41,
       "require_odds": true,
       "time_window_sec": 43200
     }
