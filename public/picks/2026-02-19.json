@@ -1,7 +1,7 @@
 {
   "date": "2026-02-19",
   "season": "2025-2026",
-  "generated_at": "2026-02-18T14:59:30Z",
+  "generated_at": "2026-02-19T15:01:22Z",
   "model": {
     "type": "Elo",
     "mov": true,
@@ -57,15 +57,58 @@
       }
     }
   },
-  "picks": [],
+  "picks": [
+    {
+      "game_id": "6501362",
+      "date_time_epoch": 1771545600,
+      "home_team": "Bethune-Cookman",
+      "away_team": "Alabama St.",
+      "neutral_site": false,
+      "pick_team": "Bethune-Cookman",
+      "pick_side": "home",
+      "win_prob": 0.6983291427786804,
+      "elo_win_prob": 0.6888389591744231,
+      "home_elo_raw": 1512.695903930722,
+      "home_elo_with_hca": 1577.695903930722,
+      "away_elo": 1439.6429093982115,
+      "hca": 65.0,
+      "pick_odds_american": -235,
+      "pick_odds_decimal": 1.425531914893617,
+      "pick_book": "betmgm",
+      "market_p_pick": 0.7014925373134329,
+      "edge": -0.0031633945347524506,
+      "ev": -0.004509519868689638
+    },
+    {
+      "game_id": "6502761",
+      "date_time_epoch": 1771552800,
+      "home_team": "Portland St.",
+      "away_team": "Idaho",
+      "neutral_site": false,
+      "pick_team": "Portland St.",
+      "pick_side": "home",
+      "win_prob": 0.6633192218646866,
+      "elo_win_prob": 0.6864312185350949,
+      "home_elo_raw": 1577.7040615037035,
+      "home_elo_with_hca": 1642.7040615037035,
+      "away_elo": 1506.5983781217665,
+      "hca": 65.0,
+      "pick_odds_american": -195,
+      "pick_odds_decimal": 1.5128205128205128,
+      "pick_book": "betonlineag",
+      "market_p_pick": 0.6556152229745504,
+      "edge": 0.007703998890136177,
+      "ev": 0.003482925385038693
+    }
+  ],
   "debug": {
     "odds": {
       "date": "2026-02-19",
       "total": 52,
-      "matched": 0,
-      "no_match": 52,
+      "matched": 32,
+      "no_match": 20,
       "no_prices": 0,
-      "no_candidates": 0,
+      "no_candidates": 30,
       "require_odds": true,
       "time_window_sec": 43200
     }
