@@ -1,7 +1,7 @@
 {
-  "date": "2026-02-20",
+  "date": "2026-02-21",
   "season": "2025-2026",
-  "generated_at": "2026-02-20T14:54:51Z",
+  "generated_at": "2026-02-21T14:38:41Z",
   "model": {
     "type": "Elo",
     "mov": true,
@@ -57,15 +57,37 @@
       }
     }
   },
-  "picks": [],
+  "picks": [
+    {
+      "game_id": "6501404",
+      "date_time_epoch": 1771707600,
+      "home_team": "Morgan St.",
+      "away_team": "Delaware St.",
+      "neutral_site": false,
+      "pick_team": "Morgan St.",
+      "pick_side": "home",
+      "win_prob": 0.6827544806534793,
+      "elo_win_prob": 0.7084066899370393,
+      "home_elo_raw": 1475.8764955569293,
+      "home_elo_with_hca": 1540.8764955569293,
+      "away_elo": 1386.6744563632105,
+      "hca": 65.0,
+      "pick_odds_american": -235,
+      "pick_odds_decimal": 1.425531914893617,
+      "pick_book": "betmgm",
+      "market_p_pick": 0.6742037442256261,
+      "edge": 0.0085507364278532,
+      "ev": -0.026711697791848676
+    }
+  ],
   "debug": {
     "odds": {
-      "date": "2026-02-20",
-      "total": 14,
-      "matched": 13,
-      "no_match": 1,
+      "date": "2026-02-21",
+      "total": 148,
+      "matched": 100,
+      "no_match": 48,
       "no_prices": 0,
-      "no_candidates": 13,
+      "no_candidates": 99,
       "require_odds": true,
       "time_window_sec": 43200
     }
