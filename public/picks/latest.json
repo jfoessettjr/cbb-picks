@@ -1,7 +1,7 @@
 {
-  "date": "2026-02-21",
+  "date": "2026-02-22",
   "season": "2025-2026",
-  "generated_at": "2026-02-21T14:38:41Z",
+  "generated_at": "2026-02-22T14:39:01Z",
   "model": {
     "type": "Elo",
     "mov": true,
@@ -59,35 +59,35 @@
   },
   "picks": [
     {
-      "game_id": "6501404",
-      "date_time_epoch": 1771707600,
-      "home_team": "Morgan St.",
-      "away_team": "Delaware St.",
+      "game_id": "6504255",
+      "date_time_epoch": 1771786800,
+      "home_team": "Tulane",
+      "away_team": "Rice",
       "neutral_site": false,
-      "pick_team": "Morgan St.",
+      "pick_team": "Tulane",
       "pick_side": "home",
-      "win_prob": 0.6827544806534793,
-      "elo_win_prob": 0.7084066899370393,
-      "home_elo_raw": 1475.8764955569293,
-      "home_elo_with_hca": 1540.8764955569293,
-      "away_elo": 1386.6744563632105,
+      "win_prob": 0.6842250571488218,
+      "elo_win_prob": 0.6800683059834366,
+      "home_elo_raw": 1543.3362367076902,
+      "home_elo_with_hca": 1608.3362367076902,
+      "away_elo": 1477.3381287836992,
       "hca": 65.0,
-      "pick_odds_american": -235,
-      "pick_odds_decimal": 1.425531914893617,
-      "pick_book": "betmgm",
-      "market_p_pick": 0.6742037442256261,
-      "edge": 0.0085507364278532,
-      "ev": -0.026711697791848676
+      "pick_odds_american": -225,
+      "pick_odds_decimal": 1.4444444444444444,
+      "pick_book": "betonlineag",
+      "market_p_pick": 0.6856106408706167,
+      "edge": -0.0013855837217949807,
+      "ev": -0.011674917451701905
     }
   ],
   "debug": {
     "odds": {
-      "date": "2026-02-21",
-      "total": 148,
-      "matched": 100,
-      "no_match": 48,
+      "date": "2026-02-22",
+      "total": 21,
+      "matched": 17,
+      "no_match": 4,
       "no_prices": 0,
-      "no_candidates": 99,
+      "no_candidates": 16,
       "require_odds": true,
       "time_window_sec": 43200
     }
