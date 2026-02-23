@@ -1,7 +1,7 @@
 {
-  "date": "2026-02-22",
+  "date": "2026-02-23",
   "season": "2025-2026",
-  "generated_at": "2026-02-22T14:39:01Z",
+  "generated_at": "2026-02-23T15:01:22Z",
   "model": {
     "type": "Elo",
     "mov": true,
@@ -57,37 +57,15 @@
       }
     }
   },
-  "picks": [
-    {
-      "game_id": "6504255",
-      "date_time_epoch": 1771786800,
-      "home_team": "Tulane",
-      "away_team": "Rice",
-      "neutral_site": false,
-      "pick_team": "Tulane",
-      "pick_side": "home",
-      "win_prob": 0.6842250571488218,
-      "elo_win_prob": 0.6800683059834366,
-      "home_elo_raw": 1543.3362367076902,
-      "home_elo_with_hca": 1608.3362367076902,
-      "away_elo": 1477.3381287836992,
-      "hca": 65.0,
-      "pick_odds_american": -225,
-      "pick_odds_decimal": 1.4444444444444444,
-      "pick_book": "betonlineag",
-      "market_p_pick": 0.6856106408706167,
-      "edge": -0.0013855837217949807,
-      "ev": -0.011674917451701905
-    }
-  ],
+  "picks": [],
   "debug": {
     "odds": {
-      "date": "2026-02-22",
-      "total": 21,
-      "matched": 17,
-      "no_match": 4,
+      "date": "2026-02-23",
+      "total": 9,
+      "matched": 4,
+      "no_match": 5,
       "no_prices": 0,
-      "no_candidates": 16,
+      "no_candidates": 4,
       "require_odds": true,
       "time_window_sec": 43200
     }
