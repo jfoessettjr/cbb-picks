@@ -1,7 +1,7 @@
 {
   "date": "2026-02-24",
   "season": "2025-2026",
-  "generated_at": "2026-02-23T15:01:22Z",
+  "generated_at": "2026-02-24T15:04:20Z",
   "model": {
     "type": "Elo",
     "mov": true,
@@ -57,15 +57,58 @@
       }
     }
   },
-  "picks": [],
+  "picks": [
+    {
+      "game_id": "6504187",
+      "date_time_epoch": 1771977600,
+      "home_team": "Texas Tech",
+      "away_team": "Cincinnati",
+      "neutral_site": false,
+      "pick_team": "Texas Tech",
+      "pick_side": "home",
+      "win_prob": 0.711043261071817,
+      "elo_win_prob": 0.6945667450746694,
+      "home_elo_raw": 1629.1141738550566,
+      "home_elo_with_hca": 1694.1141738550566,
+      "away_elo": 1551.3951075841821,
+      "hca": 65.0,
+      "pick_odds_american": -260,
+      "pick_odds_decimal": 1.3846153846153846,
+      "pick_book": "betonlineag",
+      "market_p_pick": 0.7165354330708662,
+      "edge": -0.005492171999049167,
+      "ev": -0.015478561592868756
+    },
+    {
+      "game_id": "6502670",
+      "date_time_epoch": 1771977600,
+      "home_team": "Georgetown",
+      "away_team": "Marquette",
+      "neutral_site": false,
+      "pick_team": "Georgetown",
+      "pick_side": "home",
+      "win_prob": 0.6225703730667578,
+      "elo_win_prob": 0.6580253230543398,
+      "home_elo_raw": 1502.294192444308,
+      "home_elo_with_hca": 1567.294192444308,
+      "away_elo": 1453.5947288008463,
+      "hca": 65.0,
+      "pick_odds_american": -165,
+      "pick_odds_decimal": 1.606060606060606,
+      "pick_book": "betonlineag",
+      "market_p_pick": 0.6107520564042304,
+      "edge": 0.011818316662527417,
+      "ev": -0.00011424931702547214
+    }
+  ],
   "debug": {
     "odds": {
       "date": "2026-02-24",
       "total": 38,
-      "matched": 0,
-      "no_match": 38,
+      "matched": 29,
+      "no_match": 9,
       "no_prices": 0,
-      "no_candidates": 0,
+      "no_candidates": 27,
       "require_odds": true,
       "time_window_sec": 43200
     }
