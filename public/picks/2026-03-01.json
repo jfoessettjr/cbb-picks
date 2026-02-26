@@ -1,5 +1,5 @@
 {
-  "date": "2026-02-28",
+  "date": "2026-03-01",
   "season": "2025-2026",
   "generated_at": "2026-02-26T15:00:48Z",
   "model": {
@@ -60,12 +60,12 @@
   "picks": [],
   "debug": {
     "odds": {
-      "date": "2026-02-28",
-      "total": 143,
-      "matched": 1,
-      "no_match": 142,
+      "date": "2026-03-01",
+      "total": 23,
+      "matched": 0,
+      "no_match": 23,
       "no_prices": 0,
-      "no_candidates": 1,
+      "no_candidates": 0,
       "require_odds": true,
       "time_window_sec": 43200
     }
