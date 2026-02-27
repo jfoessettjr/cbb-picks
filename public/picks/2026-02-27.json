@@ -1,7 +1,7 @@
 {
   "date": "2026-02-27",
   "season": "2025-2026",
-  "generated_at": "2026-02-26T15:00:46Z",
+  "generated_at": "2026-02-27T14:53:35Z",
   "model": {
     "type": "Elo",
     "mov": true,
@@ -57,15 +57,37 @@
       }
     }
   },
-  "picks": [],
+  "picks": [
+    {
+      "game_id": "6505507",
+      "date_time_epoch": 1772242200,
+      "home_team": "South Alabama",
+      "away_team": "Southern Miss.",
+      "neutral_site": false,
+      "pick_team": "South Alabama",
+      "pick_side": "home",
+      "win_prob": 0.6887697404806635,
+      "elo_win_prob": 0.7086241941964926,
+      "home_elo_raw": 1584.461140216897,
+      "home_elo_with_hca": 1649.461140216897,
+      "away_elo": 1495.076144789169,
+      "hca": 65.0,
+      "pick_odds_american": -225,
+      "pick_odds_decimal": 1.4444444444444444,
+      "pick_book": "bovada",
+      "market_p_pick": 0.6821515892420539,
+      "edge": 0.006618151238609649,
+      "ev": -0.005110374861263811
+    }
+  ],
   "debug": {
     "odds": {
       "date": "2026-02-27",
       "total": 21,
-      "matched": 1,
-      "no_match": 20,
+      "matched": 17,
+      "no_match": 4,
       "no_prices": 0,
-      "no_candidates": 1,
+      "no_candidates": 16,
       "require_odds": true,
       "time_window_sec": 43200
     }
