@@ -1,7 +1,7 @@
 {
-  "date": "2026-03-02",
+  "date": "2026-03-03",
   "season": "2025-2026",
-  "generated_at": "2026-03-02T14:55:59Z",
+  "generated_at": "2026-03-03T14:59:44Z",
   "model": {
     "type": "Elo",
     "mov": true,
@@ -57,15 +57,37 @@
       }
     }
   },
-  "picks": [],
+  "picks": [
+    {
+      "game_id": "6504019",
+      "date_time_epoch": 1772582400,
+      "home_team": "North Carolina",
+      "away_team": "Clemson",
+      "neutral_site": false,
+      "pick_team": "North Carolina",
+      "pick_side": "home",
+      "win_prob": 0.6243680499903757,
+      "elo_win_prob": 0.640571268547447,
+      "home_elo_raw": 1630.1416634924642,
+      "home_elo_with_hca": 1695.1416634924642,
+      "away_elo": 1594.7597973720265,
+      "hca": 65.0,
+      "pick_odds_american": -170,
+      "pick_odds_decimal": 1.5882352941176472,
+      "pick_book": "betonlineag",
+      "market_p_pick": 0.6189669771380186,
+      "edge": 0.005401072852357025,
+      "ev": -0.008356626485873875
+    }
+  ],
   "debug": {
     "odds": {
-      "date": "2026-03-02",
-      "total": 18,
-      "matched": 9,
-      "no_match": 9,
+      "date": "2026-03-03",
+      "total": 52,
+      "matched": 40,
+      "no_match": 12,
       "no_prices": 0,
-      "no_candidates": 9,
+      "no_candidates": 39,
       "require_odds": true,
       "time_window_sec": 43200
     }
