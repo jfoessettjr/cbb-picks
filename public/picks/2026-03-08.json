@@ -1,7 +1,7 @@
 {
   "date": "2026-03-08",
   "season": "2025-2026",
-  "generated_at": "2026-03-07T14:36:33Z",
+  "generated_at": "2026-03-08T14:36:46Z",
   "model": {
     "type": "Elo",
     "mov": true,
@@ -57,15 +57,37 @@
       }
     }
   },
-  "picks": [],
+  "picks": [
+    {
+      "game_id": "6589823",
+      "date_time_epoch": 1773007200,
+      "home_team": "Merrimack",
+      "away_team": "Marist",
+      "neutral_site": false,
+      "pick_team": "Merrimack",
+      "pick_side": "home",
+      "win_prob": 0.641678311904863,
+      "elo_win_prob": 0.6736084458400466,
+      "home_elo_raw": 1608.646743207931,
+      "home_elo_with_hca": 1673.646743207931,
+      "away_elo": 1547.7792985874567,
+      "hca": 65.0,
+      "pick_odds_american": -182,
+      "pick_odds_decimal": 1.5494505494505495,
+      "pick_book": "fanduel",
+      "market_p_pick": 0.6310349339264686,
+      "edge": 0.01064337797839443,
+      "ev": -0.00575118704850891
+    }
+  ],
   "debug": {
     "odds": {
       "date": "2026-03-08",
-      "total": 27,
-      "matched": 0,
-      "no_match": 27,
+      "total": 33,
+      "matched": 24,
+      "no_match": 9,
       "no_prices": 0,
-      "no_candidates": 0,
+      "no_candidates": 23,
       "require_odds": true,
       "time_window_sec": 43200
     }
