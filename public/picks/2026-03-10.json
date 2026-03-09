@@ -1,7 +1,7 @@
 {
   "date": "2026-03-10",
   "season": "2025-2026",
-  "generated_at": "2026-03-08T14:36:47Z",
+  "generated_at": "2026-03-09T15:05:13Z",
   "model": {
     "type": "Elo",
     "mov": true,
@@ -57,15 +57,37 @@
       }
     }
   },
-  "picks": [],
+  "picks": [
+    {
+      "game_id": "6593465",
+      "date_time_epoch": 1773165600,
+      "home_team": "Stanford",
+      "away_team": "Pittsburgh",
+      "neutral_site": false,
+      "pick_team": "Stanford",
+      "pick_side": "home",
+      "win_prob": 0.6539617124005419,
+      "elo_win_prob": 0.7280388933536466,
+      "home_elo_raw": 1562.0477843092274,
+      "home_elo_with_hca": 1627.0477843092274,
+      "away_elo": 1455.9886718532528,
+      "hca": 65.0,
+      "pick_odds_american": -182,
+      "pick_odds_decimal": 1.5494505494505495,
+      "pick_book": "fanduel",
+      "market_p_pick": 0.629269318749507,
+      "edge": 0.024692393651034927,
+      "ev": 0.013281334598641892
+    }
+  ],
   "debug": {
     "odds": {
       "date": "2026-03-10",
-      "total": 12,
-      "matched": 0,
-      "no_match": 12,
+      "total": 21,
+      "matched": 11,
+      "no_match": 10,
       "no_prices": 0,
-      "no_candidates": 0,
+      "no_candidates": 10,
       "require_odds": true,
       "time_window_sec": 43200
     }
