@@ -1,7 +1,7 @@
 {
   "date": "2026-03-11",
   "season": "2025-2026",
-  "generated_at": "2026-03-09T15:05:14Z",
+  "generated_at": "2026-03-10T15:04:21Z",
   "model": {
     "type": "Elo",
     "mov": true,
@@ -57,15 +57,58 @@
       }
     }
   },
-  "picks": [],
+  "picks": [
+    {
+      "game_id": "6593756",
+      "date_time_epoch": 1773246600,
+      "home_team": "Kentucky",
+      "away_team": "LSU",
+      "neutral_site": false,
+      "pick_team": "Kentucky",
+      "pick_side": "home",
+      "win_prob": 0.7008515531797141,
+      "elo_win_prob": 0.6807417123126827,
+      "home_elo_raw": 1557.2093941584799,
+      "home_elo_with_hca": 1622.2093941584799,
+      "away_elo": 1490.6733210737157,
+      "hca": 65.0,
+      "pick_odds_american": -260,
+      "pick_odds_decimal": 1.3846153846153846,
+      "pick_book": "fanduel",
+      "market_p_pick": 0.7075548334687245,
+      "edge": -0.006703280289010349,
+      "ev": -0.029590157135780448
+    },
+    {
+      "game_id": "6593758",
+      "date_time_epoch": 1773270000,
+      "home_team": "Texas",
+      "away_team": "Ole Miss",
+      "neutral_site": false,
+      "pick_team": "Texas",
+      "pick_side": "home",
+      "win_prob": 0.6829776866367253,
+      "elo_win_prob": 0.729353201789868,
+      "home_elo_raw": 1546.0808179477438,
+      "home_elo_with_hca": 1611.0808179477438,
+      "away_elo": 1438.8668179023869,
+      "hca": 65.0,
+      "pick_odds_american": -225,
+      "pick_odds_decimal": 1.4444444444444444,
+      "pick_book": "draftkings",
+      "market_p_pick": 0.6675191815856777,
+      "edge": 0.015458505051047622,
+      "ev": -0.013476674858063475
+    }
+  ],
   "debug": {
     "odds": {
       "date": "2026-03-11",
       "total": 36,
-      "matched": 0,
-      "no_match": 36,
-      "no_prices": 0,
-      "no_candidates": 0,
+      "matched": 18,
+      "no_match": 18,
+      "no_prices": 10,
+      "no_candidates": 6,
       "require_odds": true,
       "time_window_sec": 43200
     }
