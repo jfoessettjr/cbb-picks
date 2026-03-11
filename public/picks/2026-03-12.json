@@ -1,7 +1,7 @@
 {
   "date": "2026-03-12",
   "season": "2025-2026",
-  "generated_at": "2026-03-10T15:04:21Z",
+  "generated_at": "2026-03-11T14:59:46Z",
   "model": {
     "type": "Elo",
     "mov": true,
@@ -57,15 +57,58 @@
       }
     }
   },
-  "picks": [],
+  "picks": [
+    {
+      "game_id": "6593951",
+      "date_time_epoch": 1773363600,
+      "home_team": "UT Arlington",
+      "away_team": "Southern Utah",
+      "neutral_site": false,
+      "pick_team": "UT Arlington",
+      "pick_side": "home",
+      "win_prob": 0.6585650481804761,
+      "elo_win_prob": 0.7181907737797734,
+      "home_elo_raw": 1527.6669907420303,
+      "home_elo_with_hca": 1592.6669907420303,
+      "away_elo": 1430.1531450642078,
+      "hca": 65.0,
+      "pick_odds_american": -205,
+      "pick_odds_decimal": 1.4878048780487805,
+      "pick_book": "betrivers",
+      "market_p_pick": 0.6386898063140437,
+      "edge": 0.019875241866432414,
+      "ev": -0.020183708804657474
+    },
+    {
+      "game_id": "6593413",
+      "date_time_epoch": 1773354600,
+      "home_team": "Kent St.",
+      "away_team": "Ohio",
+      "neutral_site": false,
+      "pick_team": "Kent St.",
+      "pick_side": "home",
+      "win_prob": 0.645723558522674,
+      "elo_win_prob": 0.7140678931453959,
+      "home_elo_raw": 1604.7229792563344,
+      "home_elo_with_hca": 1669.7229792563344,
+      "away_elo": 1510.7323465063614,
+      "hca": 65.0,
+      "pick_odds_american": -184,
+      "pick_odds_decimal": 1.5434782608695652,
+      "pick_book": "fanduel",
+      "market_p_pick": 0.6229421136484334,
+      "edge": 0.02278144487424061,
+      "ev": -0.0033397248889161513
+    }
+  ],
   "debug": {
     "odds": {
       "date": "2026-03-12",
       "total": 44,
       "matched": 9,
       "no_match": 35,
-      "no_prices": 9,
-      "no_candidates": 0,
+      "no_prices": 0,
+      "no_candidates": 7,
       "require_odds": true,
       "time_window_sec": 43200
     }
