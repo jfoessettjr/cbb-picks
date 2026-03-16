@@ -1,7 +1,7 @@
 {
-  "date": "2026-03-15",
+  "date": "2026-03-16",
   "season": "2025-2026",
-  "generated_at": "2026-03-15T14:45:43Z",
+  "generated_at": "2026-03-16T15:14:07Z",
   "model": {
     "type": "Elo",
     "mov": true,
@@ -57,37 +57,15 @@
       }
     }
   },
-  "picks": [
-    {
-      "game_id": "6593954",
-      "date_time_epoch": 1773603000,
-      "home_team": "Michigan",
-      "away_team": "Purdue",
-      "neutral_site": false,
-      "pick_team": "Michigan",
-      "pick_side": "home",
-      "win_prob": 0.7030778315620618,
-      "elo_win_prob": 0.7144162377083207,
-      "home_elo_raw": 1740.2654719597222,
-      "home_elo_with_hca": 1805.2654719597222,
-      "away_elo": 1645.978349477997,
-      "hca": 65.0,
-      "pick_odds_american": -260,
-      "pick_odds_decimal": 1.3846153846153846,
-      "pick_book": "betus",
-      "market_p_pick": 0.6992983628466422,
-      "edge": 0.003779468715419676,
-      "ev": -0.02650761783714517
-    }
-  ],
+  "picks": [],
   "debug": {
     "odds": {
-      "date": "2026-03-15",
-      "total": 5,
-      "matched": 4,
-      "no_match": 1,
+      "date": "2026-03-16",
+      "total": 0,
+      "matched": 0,
+      "no_match": 0,
       "no_prices": 0,
-      "no_candidates": 3,
+      "no_candidates": 0,
       "require_odds": true,
       "time_window_sec": 43200
     }
