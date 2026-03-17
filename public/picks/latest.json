@@ -1,7 +1,7 @@
 {
-  "date": "2026-03-16",
+  "date": "2026-03-17",
   "season": "2025-2026",
-  "generated_at": "2026-03-16T15:14:07Z",
+  "generated_at": "2026-03-17T15:12:11Z",
   "model": {
     "type": "Elo",
     "mov": true,
@@ -57,15 +57,37 @@
       }
     }
   },
-  "picks": [],
+  "picks": [
+    {
+      "game_id": "6595236",
+      "date_time_epoch": 1773802800,
+      "home_team": "UC Irvine",
+      "away_team": "UNLV",
+      "neutral_site": false,
+      "pick_team": "UC Irvine",
+      "pick_side": "home",
+      "win_prob": 0.6081534545555237,
+      "elo_win_prob": 0.6905292726119628,
+      "home_elo_raw": 1594.1644510134035,
+      "home_elo_with_hca": 1659.1644510134035,
+      "away_elo": 1519.739443802844,
+      "hca": 65.0,
+      "pick_odds_american": -145,
+      "pick_odds_decimal": 1.6896551724137931,
+      "pick_book": "betonlineag",
+      "market_p_pick": 0.5806948485367106,
+      "edge": 0.027458606018813114,
+      "ev": 0.02756963011105734
+    }
+  ],
   "debug": {
     "odds": {
-      "date": "2026-03-16",
-      "total": 0,
-      "matched": 0,
-      "no_match": 0,
+      "date": "2026-03-17",
+      "total": 10,
+      "matched": 8,
+      "no_match": 2,
       "no_prices": 0,
-      "no_candidates": 0,
+      "no_candidates": 7,
       "require_odds": true,
       "time_window_sec": 43200
     }
