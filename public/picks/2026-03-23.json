@@ -1,5 +1,5 @@
 {
-  "date": "2026-03-22",
+  "date": "2026-03-23",
   "season": "2025-2026",
   "generated_at": "2026-03-20T14:57:23Z",
   "model": {
@@ -57,37 +57,15 @@
       }
     }
   },
-  "picks": [
-    {
-      "game_id": "6595509",
-      "date_time_epoch": 1774220400,
-      "home_team": "Tulsa",
-      "away_team": "UNLV",
-      "neutral_site": false,
-      "pick_team": "Tulsa",
-      "pick_side": "home",
-      "win_prob": 0.6486368308583467,
-      "elo_win_prob": 0.7383948104351199,
-      "home_elo_raw": 1645.8318070778466,
-      "home_elo_with_hca": 1710.8318070778466,
-      "away_elo": 1530.5748947878894,
-      "hca": 65.0,
-      "pick_odds_american": -175,
-      "pick_odds_decimal": 1.5714285714285714,
-      "pick_book": "bovada",
-      "market_p_pick": 0.6187175043327556,
-      "edge": 0.02991932652559104,
-      "ev": 0.01928644849168759
-    }
-  ],
+  "picks": [],
   "debug": {
     "odds": {
-      "date": "2026-03-22",
-      "total": 6,
-      "matched": 4,
-      "no_match": 2,
+      "date": "2026-03-23",
+      "total": 0,
+      "matched": 0,
+      "no_match": 0,
       "no_prices": 0,
-      "no_candidates": 3,
+      "no_candidates": 0,
       "require_odds": true,
       "time_window_sec": 43200
     }
