@@ -1,5 +1,5 @@
 {
-  "date": "2026-03-23",
+  "date": "2026-03-24",
   "season": "2025-2026",
   "generated_at": "2026-03-21T14:39:03Z",
   "model": {
@@ -60,7 +60,7 @@
   "picks": [],
   "debug": {
     "odds": {
-      "date": "2026-03-23",
+      "date": "2026-03-24",
       "total": 0,
       "matched": 0,
       "no_match": 0,

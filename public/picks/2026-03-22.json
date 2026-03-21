@@ -1,7 +1,7 @@
 {
   "date": "2026-03-22",
   "season": "2025-2026",
-  "generated_at": "2026-03-20T14:57:23Z",
+  "generated_at": "2026-03-21T14:39:02Z",
   "model": {
     "type": "Elo",
     "mov": true,
@@ -59,6 +59,27 @@
   },
   "picks": [
     {
+      "game_id": "6534643",
+      "date_time_epoch": 1774205100,
+      "home_team": "Iowa St.",
+      "away_team": "Kentucky",
+      "neutral_site": false,
+      "pick_team": "Iowa St.",
+      "pick_side": "home",
+      "win_prob": 0.6663347691105812,
+      "elo_win_prob": 0.7164754400786881,
+      "home_elo_raw": 1674.7705304091207,
+      "home_elo_with_hca": 1739.7705304091207,
+      "away_elo": 1578.726281257863,
+      "hca": 65.0,
+      "pick_odds_american": -196,
+      "pick_odds_decimal": 1.510204081632653,
+      "pick_book": "fanduel",
+      "market_p_pick": 0.6496212121212122,
+      "edge": 0.01671355698936905,
+      "ev": 0.006301488044551162
+    },
+    {
       "game_id": "6595509",
       "date_time_epoch": 1774220400,
       "home_team": "Tulsa",
@@ -66,28 +87,28 @@
       "neutral_site": false,
       "pick_team": "Tulsa",
       "pick_side": "home",
-      "win_prob": 0.6486368308583467,
+      "win_prob": 0.6571752332210248,
       "elo_win_prob": 0.7383948104351199,
       "home_elo_raw": 1645.8318070778466,
       "home_elo_with_hca": 1710.8318070778466,
       "away_elo": 1530.5748947878894,
       "hca": 65.0,
-      "pick_odds_american": -175,
-      "pick_odds_decimal": 1.5714285714285714,
-      "pick_book": "bovada",
-      "market_p_pick": 0.6187175043327556,
-      "edge": 0.02991932652559104,
-      "ev": 0.01928644849168759
+      "pick_odds_american": -190,
+      "pick_odds_decimal": 1.526315789473684,
+      "pick_book": "betmgm",
+      "market_p_pick": 0.6301020408163265,
+      "edge": 0.0270731924046983,
+      "ev": 0.0030569349163008797
     }
   ],
   "debug": {
     "odds": {
       "date": "2026-03-22",
-      "total": 6,
-      "matched": 4,
-      "no_match": 2,
+      "total": 14,
+      "matched": 10,
+      "no_match": 4,
       "no_prices": 0,
-      "no_candidates": 3,
+      "no_candidates": 8,
       "require_odds": true,
       "time_window_sec": 43200
     }

@@ -1,7 +1,7 @@
 {
-  "date": "2026-03-20",
+  "date": "2026-03-21",
   "season": "2025-2026",
-  "generated_at": "2026-03-20T14:57:22Z",
+  "generated_at": "2026-03-21T14:39:02Z",
   "model": {
     "type": "Elo",
     "mov": true,
@@ -57,15 +57,37 @@
       }
     }
   },
-  "picks": [],
+  "picks": [
+    {
+      "game_id": "6534638",
+      "date_time_epoch": 1774134600,
+      "home_team": "Gonzaga",
+      "away_team": "Texas",
+      "neutral_site": false,
+      "pick_team": "Gonzaga",
+      "pick_side": "home",
+      "win_prob": 0.719738578978266,
+      "elo_win_prob": 0.7919977941739333,
+      "home_elo_raw": 1721.0903479137226,
+      "home_elo_with_hca": 1786.0903479137226,
+      "away_elo": 1553.827935346808,
+      "hca": 65.0,
+      "pick_odds_american": -250,
+      "pick_odds_decimal": 1.4,
+      "pick_book": "mybookieag",
+      "market_p_pick": 0.6956521739130435,
+      "edge": 0.024086405065222527,
+      "ev": 0.007634010569572303
+    }
+  ],
   "debug": {
     "odds": {
-      "date": "2026-03-20",
-      "total": 16,
-      "matched": 12,
-      "no_match": 4,
+      "date": "2026-03-21",
+      "total": 10,
+      "matched": 10,
+      "no_match": 0,
       "no_prices": 0,
-      "no_candidates": 12,
+      "no_candidates": 9,
       "require_odds": true,
       "time_window_sec": 43200
     }
