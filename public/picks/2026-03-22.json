@@ -1,7 +1,7 @@
 {
   "date": "2026-03-22",
   "season": "2025-2026",
-  "generated_at": "2026-03-21T14:39:02Z",
+  "generated_at": "2026-03-22T14:40:13Z",
   "model": {
     "type": "Elo",
     "mov": true,
@@ -66,18 +66,18 @@
       "neutral_site": false,
       "pick_team": "Iowa St.",
       "pick_side": "home",
-      "win_prob": 0.6663347691105812,
+      "win_prob": 0.6842209008359986,
       "elo_win_prob": 0.7164754400786881,
       "home_elo_raw": 1674.7705304091207,
       "home_elo_with_hca": 1739.7705304091207,
       "away_elo": 1578.726281257863,
       "hca": 65.0,
-      "pick_odds_american": -196,
-      "pick_odds_decimal": 1.510204081632653,
-      "pick_book": "fanduel",
-      "market_p_pick": 0.6496212121212122,
-      "edge": 0.01671355698936905,
-      "ev": 0.006301488044551162
+      "pick_odds_american": -220,
+      "pick_odds_decimal": 1.4545454545454546,
+      "pick_book": "betmgm",
+      "market_p_pick": 0.6734693877551021,
+      "edge": 0.010751513080896502,
+      "ev": -0.0047695987840019605
     },
     {
       "game_id": "6595509",
@@ -87,7 +87,7 @@
       "neutral_site": false,
       "pick_team": "Tulsa",
       "pick_side": "home",
-      "win_prob": 0.6571752332210248,
+      "win_prob": 0.6604966232136948,
       "elo_win_prob": 0.7383948104351199,
       "home_elo_raw": 1645.8318070778466,
       "home_elo_with_hca": 1710.8318070778466,
@@ -95,10 +95,10 @@
       "hca": 65.0,
       "pick_odds_american": -190,
       "pick_odds_decimal": 1.526315789473684,
-      "pick_book": "betmgm",
-      "market_p_pick": 0.6301020408163265,
-      "edge": 0.0270731924046983,
-      "ev": 0.0030569349163008797
+      "pick_book": "betonlineag",
+      "market_p_pick": 0.6345305608065532,
+      "edge": 0.02596606240714161,
+      "ev": 0.008126424905113117
     }
   ],
   "debug": {
