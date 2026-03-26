@@ -1,7 +1,7 @@
 {
-  "date": "2026-03-27",
+  "date": "2026-03-29",
   "season": "2025-2026",
-  "generated_at": "2026-03-26T15:21:54Z",
+  "generated_at": "2026-03-26T15:21:55Z",
   "model": {
     "type": "Elo",
     "mov": true,
@@ -57,37 +57,15 @@
       }
     }
   },
-  "picks": [
-    {
-      "game_id": "6534651",
-      "date_time_epoch": 1774663800,
-      "home_team": "Iowa St.",
-      "away_team": "Tennessee",
-      "neutral_site": false,
-      "pick_team": "Iowa St.",
-      "pick_side": "home",
-      "win_prob": 0.6330734259874758,
-      "elo_win_prob": 0.6624306902512731,
-      "home_elo_raw": 1683.25853671468,
-      "home_elo_with_hca": 1748.25853671468,
-      "away_elo": 1631.1475409902794,
-      "hca": 65.0,
-      "pick_odds_american": -175,
-      "pick_odds_decimal": 1.5714285714285714,
-      "pick_book": "mybookieag",
-      "market_p_pick": 0.6232876712328768,
-      "edge": 0.009785754754599085,
-      "ev": -0.005170330591109384
-    }
-  ],
+  "picks": [],
   "debug": {
     "odds": {
-      "date": "2026-03-27",
-      "total": 4,
-      "matched": 3,
-      "no_match": 1,
+      "date": "2026-03-29",
+      "total": 0,
+      "matched": 0,
+      "no_match": 0,
       "no_prices": 0,
-      "no_candidates": 2,
+      "no_candidates": 0,
       "require_odds": true,
       "time_window_sec": 43200
     }
