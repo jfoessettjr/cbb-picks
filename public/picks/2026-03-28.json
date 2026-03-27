@@ -1,7 +1,7 @@
 {
   "date": "2026-03-28",
   "season": "2025-2026",
-  "generated_at": "2026-03-26T15:21:54Z",
+  "generated_at": "2026-03-27T15:05:05Z",
   "model": {
     "type": "Elo",
     "mov": true,
@@ -57,15 +57,37 @@
       }
     }
   },
-  "picks": [],
+  "picks": [
+    {
+      "game_id": "6534654",
+      "date_time_epoch": 1774745340,
+      "home_team": "Arizona",
+      "away_team": "Purdue",
+      "neutral_site": false,
+      "pick_team": "Arizona",
+      "pick_side": "home",
+      "win_prob": 0.6956007422772172,
+      "elo_win_prob": 0.6954464473697384,
+      "home_elo_raw": 1762.6338117638998,
+      "home_elo_with_hca": 1827.6338117638998,
+      "away_elo": 1684.1938025727775,
+      "hca": 65.0,
+      "pick_odds_american": -250,
+      "pick_odds_decimal": 1.4,
+      "pick_book": "bovada",
+      "market_p_pick": 0.6956521739130435,
+      "edge": -5.143163582621568e-05,
+      "ev": -0.026158960811895948
+    }
+  ],
   "debug": {
     "odds": {
       "date": "2026-03-28",
-      "total": 0,
-      "matched": 0,
+      "total": 2,
+      "matched": 2,
       "no_match": 0,
       "no_prices": 0,
-      "no_candidates": 0,
+      "no_candidates": 1,
       "require_odds": true,
       "time_window_sec": 43200
     }
