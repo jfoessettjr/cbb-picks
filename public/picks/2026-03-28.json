@@ -1,7 +1,7 @@
 {
   "date": "2026-03-28",
   "season": "2025-2026",
-  "generated_at": "2026-03-27T15:05:05Z",
+  "generated_at": "2026-03-28T14:47:07Z",
   "model": {
     "type": "Elo",
     "mov": true,
@@ -66,18 +66,18 @@
       "neutral_site": false,
       "pick_team": "Arizona",
       "pick_side": "home",
-      "win_prob": 0.6956007422772172,
+      "win_prob": 0.6961830404138631,
       "elo_win_prob": 0.6954464473697384,
       "home_elo_raw": 1762.6338117638998,
       "home_elo_with_hca": 1827.6338117638998,
       "away_elo": 1684.1938025727775,
       "hca": 65.0,
-      "pick_odds_american": -250,
-      "pick_odds_decimal": 1.4,
+      "pick_odds_american": -240,
+      "pick_odds_decimal": 1.4166666666666667,
       "pick_book": "bovada",
-      "market_p_pick": 0.6956521739130435,
-      "edge": -5.143163582621568e-05,
-      "ev": -0.026158960811895948
+      "market_p_pick": 0.6964285714285714,
+      "edge": -0.00024553101470825567,
+      "ev": -0.013740692747027161
     }
   ],
   "debug": {
