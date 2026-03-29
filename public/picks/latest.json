@@ -1,7 +1,7 @@
 {
-  "date": "2026-03-28",
+  "date": "2026-03-29",
   "season": "2025-2026",
-  "generated_at": "2026-03-28T14:47:07Z",
+  "generated_at": "2026-03-29T14:48:05Z",
   "model": {
     "type": "Elo",
     "mov": true,
@@ -59,30 +59,30 @@
   },
   "picks": [
     {
-      "game_id": "6534654",
-      "date_time_epoch": 1774745340,
-      "home_team": "Arizona",
-      "away_team": "Purdue",
+      "game_id": "6534652",
+      "date_time_epoch": 1774818300,
+      "home_team": "Duke",
+      "away_team": "UConn",
       "neutral_site": false,
-      "pick_team": "Arizona",
+      "pick_team": "Duke",
       "pick_side": "home",
-      "win_prob": 0.6961830404138631,
-      "elo_win_prob": 0.6954464473697384,
-      "home_elo_raw": 1762.6338117638998,
-      "home_elo_with_hca": 1827.6338117638998,
-      "away_elo": 1684.1938025727775,
+      "win_prob": 0.6673140982782066,
+      "elo_win_prob": 0.6854946983069334,
+      "home_elo_raw": 1765.5755848114463,
+      "home_elo_with_hca": 1830.5755848114463,
+      "away_elo": 1695.225133049648,
       "hca": 65.0,
-      "pick_odds_american": -240,
-      "pick_odds_decimal": 1.4166666666666667,
-      "pick_book": "bovada",
-      "market_p_pick": 0.6964285714285714,
-      "edge": -0.00024553101470825567,
-      "ev": -0.013740692747027161
+      "pick_odds_american": -215,
+      "pick_odds_decimal": 1.4651162790697674,
+      "pick_book": "betrivers",
+      "market_p_pick": 0.6612538982686311,
+      "edge": 0.006060200009575523,
+      "ev": -0.0223072513598368
     }
   ],
   "debug": {
     "odds": {
-      "date": "2026-03-28",
+      "date": "2026-03-29",
       "total": 2,
       "matched": 2,
       "no_match": 0,
