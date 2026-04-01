@@ -1,7 +1,7 @@
 {
-  "date": "2026-03-31",
+  "date": "2026-04-01",
   "season": "2025-2026",
-  "generated_at": "2026-03-31T15:18:04Z",
+  "generated_at": "2026-04-01T15:21:40Z",
   "model": {
     "type": "Elo",
     "mov": true,
@@ -60,12 +60,12 @@
   "picks": [],
   "debug": {
     "odds": {
-      "date": "2026-03-31",
-      "total": 0,
-      "matched": 0,
+      "date": "2026-04-01",
+      "total": 2,
+      "matched": 2,
       "no_match": 0,
       "no_prices": 0,
-      "no_candidates": 0,
+      "no_candidates": 2,
       "require_odds": true,
       "time_window_sec": 43200
     }

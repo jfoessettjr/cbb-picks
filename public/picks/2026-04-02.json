@@ -1,7 +1,7 @@
 {
   "date": "2026-04-02",
   "season": "2025-2026",
-  "generated_at": "2026-03-31T15:18:05Z",
+  "generated_at": "2026-04-01T15:21:40Z",
   "model": {
     "type": "Elo",
     "mov": true,
@@ -64,8 +64,8 @@
       "total": 4,
       "matched": 4,
       "no_match": 0,
-      "no_prices": 2,
-      "no_candidates": 2,
+      "no_prices": 0,
+      "no_candidates": 4,
       "require_odds": true,
       "time_window_sec": 43200
     }
