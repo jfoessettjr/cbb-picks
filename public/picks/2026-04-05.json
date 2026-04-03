@@ -1,7 +1,7 @@
 {
   "date": "2026-04-05",
   "season": "2025-2026",
-  "generated_at": "2026-04-02T15:11:38Z",
+  "generated_at": "2026-04-03T14:56:58Z",
   "model": {
     "type": "Elo",
     "mov": true,
@@ -57,12 +57,34 @@
       }
     }
   },
-  "picks": [],
+  "picks": [
+    {
+      "game_id": "6595384",
+      "date_time_epoch": 1775433600,
+      "home_team": "Tulsa",
+      "away_team": "Auburn",
+      "neutral_site": false,
+      "pick_team": "Tulsa",
+      "pick_side": "home",
+      "win_prob": 0.44858894180153874,
+      "elo_win_prob": 0.7183965285016503,
+      "home_elo_raw": 1670.0030289303595,
+      "home_elo_with_hca": 1735.0030289303595,
+      "away_elo": 1572.3125406456845,
+      "hca": 65.0,
+      "pick_odds_american": 158,
+      "pick_odds_decimal": 2.58,
+      "pick_book": "fanduel",
+      "market_p_pick": 0.37085958138589714,
+      "edge": 0.0777293604156416,
+      "ev": 0.15735946984797
+    }
+  ],
   "debug": {
     "odds": {
       "date": "2026-04-05",
-      "total": 0,
-      "matched": 0,
+      "total": 1,
+      "matched": 1,
       "no_match": 0,
       "no_prices": 0,
       "no_candidates": 0,
