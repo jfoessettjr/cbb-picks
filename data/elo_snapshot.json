@@ -1,7 +1,10 @@
 {
   "season_start": "2026-11-01",
   "season": "2026-2027",
-  "last_finalized_date": "2026-10-31",
-  "updated_at": "2026-11-01T18:52:12Z",
-  "ratings": {}
+  "last_finalized_date": "2026-11-01",
+  "updated_at": "2026-11-02T22:43:38Z",
+  "ratings": {
+    "villanova": 1486.0499524954505,
+    "notre-dame": 1513.9500475045495
+  }
 }
