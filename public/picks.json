@@ -1,0 +1,98 @@
+[
+  {
+    "id": "dba571eaa20f42408cc4687d047d445b-Syracuse Orange",
+    "matchup": "Syracuse Orange @ Indiana Hoosiers",
+    "team": "Syracuse Orange",
+    "category": "Parlay Builders",
+    "odds": "+203",
+    "modelWinPct": "33.6%",
+    "impliedPct": "33.0%",
+    "edge": "+0.6%",
+    "rationale": "Model detected value via LowVig.ag. Implied probability (33.0%) diverges from adjusted power rating projection (33.6%).",
+    "commenceTime": "2026-11-09T23:30:00Z"
+  },
+  {
+    "id": "ac95e0ac2e49652512325d7f947a36c3-Howard Bison",
+    "matchup": "Howard Bison @ Pennsylvania Quakers",
+    "team": "Howard Bison",
+    "category": "Parlay Builders",
+    "odds": "+210",
+    "modelWinPct": "32.7%",
+    "impliedPct": "32.3%",
+    "edge": "+0.5%",
+    "rationale": "Model detected value via FanDuel. Implied probability (32.3%) diverges from adjusted power rating projection (32.7%).",
+    "commenceTime": "2026-11-09T23:30:00Z"
+  },
+  {
+    "id": "469286b8c4d62249df7d89201149dc5e-Minnesota Golden Gophers",
+    "matchup": "Minnesota Golden Gophers @ Cincinnati Bearcats",
+    "team": "Minnesota Golden Gophers",
+    "category": "Parlay Builders",
+    "odds": "+256",
+    "modelWinPct": "27.8%",
+    "impliedPct": "28.1%",
+    "edge": "+-0.3%",
+    "rationale": "Model detected value via BetOnline.ag. Implied probability (28.1%) diverges from adjusted power rating projection (27.8%).",
+    "commenceTime": "2026-11-10T00:00:00Z"
+  },
+  {
+    "id": "bad12e347cddcd095a44690bd969e057-South Carolina Upstate Spartans",
+    "matchup": "South Carolina Upstate Spartans @ Coastal Carolina Chanticleers",
+    "team": "South Carolina Upstate Spartans",
+    "category": "Upset Specials",
+    "odds": "+440",
+    "modelWinPct": "15.6%",
+    "impliedPct": "18.5%",
+    "edge": "+-2.9%",
+    "rationale": "Model detected value via FanDuel. Implied probability (18.5%) diverges from adjusted power rating projection (15.6%).",
+    "commenceTime": "2026-11-10T00:00:00Z"
+  },
+  {
+    "id": "6884179f3fa0670a0d5d729ed255d195-LIU Sharks",
+    "matchup": "LIU Sharks @ Towson Tigers",
+    "team": "LIU Sharks",
+    "category": "Parlay Builders",
+    "odds": "+230",
+    "modelWinPct": "30.4%",
+    "impliedPct": "30.3%",
+    "edge": "+0.1%",
+    "rationale": "Model detected value via FanDuel. Implied probability (30.3%) diverges from adjusted power rating projection (30.4%).",
+    "commenceTime": "2026-11-10T00:00:00Z"
+  },
+  {
+    "id": "c3059edfb2a6c5df3aad474b927e0198-Portland Pilots",
+    "matchup": "Portland Pilots @ Hawai'i Rainbow Warriors",
+    "team": "Portland Pilots",
+    "category": "Parlay Builders",
+    "odds": "+263",
+    "modelWinPct": "27.1%",
+    "impliedPct": "27.5%",
+    "edge": "+-0.4%",
+    "rationale": "Model detected value via BetOnline.ag. Implied probability (27.5%) diverges from adjusted power rating projection (27.1%).",
+    "commenceTime": "2026-11-10T04:59:00Z"
+  },
+  {
+    "id": "8f8f96b87641a3cbc280c8e63aed3ad4-Michigan St Spartans",
+    "matchup": "Michigan St Spartans @ Duke Blue Devils",
+    "team": "Michigan St Spartans",
+    "category": "Parlay Builders",
+    "odds": "+225",
+    "modelWinPct": "31.0%",
+    "impliedPct": "30.8%",
+    "edge": "+0.2%",
+    "rationale": "Model detected value via DraftKings. Implied probability (30.8%) diverges from adjusted power rating projection (31.0%).",
+    "commenceTime": "2026-11-11T00:00:00Z"
+  },
+  {
+    "id": "ac091b3b15d1fcf0312f8c0500329879-Kentucky Wildcats",
+    "matchup": "Kansas Jayhawks @ Kentucky Wildcats",
+    "team": "Kentucky Wildcats",
+    "category": "Parlay Builders",
+    "odds": "+225",
+    "modelWinPct": "31.0%",
+    "impliedPct": "30.8%",
+    "edge": "+0.2%",
+    "rationale": "Model detected value via DraftKings. Implied probability (30.8%) diverges from adjusted power rating projection (31.0%).",
+    "commenceTime": "2026-11-11T02:30:00Z"
+  }
+]

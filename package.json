@@ -4,12 +4,14 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
-    "build": "vite build",
-    "lint": "eslint .",
-    "preview": "vite preview"
-  },
+  "dev": "vite",
+  "build": "vite build",
+  "lint": "eslint . --ext js,jsx --report-unused-type-check",
+  "preview": "vite preview",
+  "update-picks": "node scripts/fetch-odds.js"
+},
   "dependencies": {
+    "dotenv": "^18.0.10",
     "lucide-react": "^1.70.0",
     "react": "^19.3.1",
     "react-dom": "^19.3.1"
