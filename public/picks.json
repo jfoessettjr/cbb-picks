@@ -1,6 +1,18 @@
 {
   "2026-11-11": [
     {
+      "id": "83af3d625408a5c5f1b726fe740fc2ef-East Carolina Pirates",
+      "matchup": "North Carolina A&T Aggies @ East Carolina Pirates",
+      "team": "East Carolina Pirates",
+      "category": "ML Anchor Leg",
+      "odds": "-395",
+      "modelWinPct": "83.8%",
+      "impliedPct": "79.8%",
+      "edge": "+4.0%",
+      "rationale": "Strong candidate for parlay construction via DraftKings. High statistical alignment (83.8% win probability).",
+      "commenceTime": "2026-11-11T21:00:00Z"
+    },
+    {
       "id": "5b6355f8a6a8f6fe34a477c2b8e3a7e7-VMI Keydets",
       "matchup": "North Carolina Central Eagles @ VMI Keydets",
       "team": "VMI Keydets",
@@ -37,31 +49,43 @@
       "commenceTime": "2026-11-11T22:30:00Z"
     },
     {
-      "id": "fb4e0baed91adfe2f7de6ca28ed533e8-South Florida Bulls",
-      "matchup": "South Florida Bulls @ Saint Joseph's Hawks",
-      "team": "South Florida Bulls",
+      "id": "fb4e0baed91adfe2f7de6ca28ed533e8-Saint Joseph's Hawks",
+      "matchup": "Saint Joseph's Hawks @ South Florida Bulls",
+      "team": "Saint Joseph's Hawks",
       "category": "ML Anchor Leg",
-      "odds": "-290",
-      "modelWinPct": "78.4%",
-      "impliedPct": "74.4%",
+      "odds": "-320",
+      "modelWinPct": "80.2%",
+      "impliedPct": "76.2%",
       "edge": "+4.0%",
-      "rationale": "Strong candidate for parlay construction via BetOnline.ag. High statistical alignment (78.4% win probability).",
-      "commenceTime": "2026-11-11T20:00:00Z"
+      "rationale": "Strong candidate for parlay construction via FanDuel. High statistical alignment (80.2% win probability).",
+      "commenceTime": "2026-11-11T20:00:48Z"
     },
     {
       "id": "c07a4ccdd6e2560b5829395b56863dc1-Temple Owls",
       "matchup": "Charleston Cougars @ Temple Owls",
       "team": "Temple Owls",
       "category": "Value Parlay Leg",
-      "odds": "+105",
-      "modelWinPct": "52.8%",
-      "impliedPct": "48.8%",
+      "odds": "+113",
+      "modelWinPct": "50.9%",
+      "impliedPct": "46.9%",
       "edge": "+4.0%",
-      "rationale": "Strong candidate for parlay construction via BetOnline.ag. High statistical alignment (52.8% win probability).",
+      "rationale": "Strong candidate for parlay construction via BetOnline.ag. High statistical alignment (50.9% win probability).",
       "commenceTime": "2026-11-11T23:30:00Z"
     }
   ],
   "2026-11-12": [
+    {
+      "id": "2ad8e525847167b94b3fe19623b9447a-St. Bonaventure Bonnies",
+      "matchup": "Cornell Big Red @ St. Bonaventure Bonnies",
+      "team": "St. Bonaventure Bonnies",
+      "category": "ML Anchor Leg",
+      "odds": "-365",
+      "modelWinPct": "82.5%",
+      "impliedPct": "78.5%",
+      "edge": "+4.0%",
+      "rationale": "Strong candidate for parlay construction via BetOnline.ag. High statistical alignment (82.5% win probability).",
+      "commenceTime": "2026-11-12T00:00:00Z"
+    },
     {
       "id": "015a3bad9e6d4b3ce108f6e7c663ed88-UNC Wilmington Seahawks",
       "matchup": "Kent State Golden Flashes @ UNC Wilmington Seahawks",
@@ -72,6 +96,18 @@
       "impliedPct": "78.3%",
       "edge": "+4.0%",
       "rationale": "Strong candidate for parlay construction via BetOnline.ag. High statistical alignment (82.3% win probability).",
+      "commenceTime": "2026-11-12T00:00:00Z"
+    },
+    {
+      "id": "231f3efb3503e4f16e17f3d798e3a5b7-Massachusetts Minutemen",
+      "matchup": "UMass Lowell River Hawks @ Massachusetts Minutemen",
+      "team": "Massachusetts Minutemen",
+      "category": "ML Anchor Leg",
+      "odds": "-350",
+      "modelWinPct": "81.8%",
+      "impliedPct": "77.8%",
+      "edge": "+4.0%",
+      "rationale": "Strong candidate for parlay construction via BetMGM. High statistical alignment (81.8% win probability).",
       "commenceTime": "2026-11-12T00:00:00Z"
     },
     {
@@ -103,11 +139,11 @@
       "matchup": "Stephen F. Austin Lumberjacks @ Abilene Christian Wildcats",
       "team": "Stephen F. Austin Lumberjacks",
       "category": "ML Anchor Leg",
-      "odds": "-250",
-      "modelWinPct": "75.4%",
-      "impliedPct": "71.4%",
+      "odds": "-275",
+      "modelWinPct": "77.3%",
+      "impliedPct": "73.3%",
       "edge": "+4.0%",
-      "rationale": "Strong candidate for parlay construction via BetMGM. High statistical alignment (75.4% win probability).",
+      "rationale": "Strong candidate for parlay construction via BetMGM. High statistical alignment (77.3% win probability).",
       "commenceTime": "2026-11-12T01:00:00Z"
     },
     {
@@ -127,11 +163,11 @@
       "matchup": "William & Mary Tribe @ Florida Atlantic Owls",
       "team": "Florida Atlantic Owls",
       "category": "ML Anchor Leg",
-      "odds": "-215",
-      "modelWinPct": "72.3%",
-      "impliedPct": "68.3%",
+      "odds": "-225",
+      "modelWinPct": "73.2%",
+      "impliedPct": "69.2%",
       "edge": "+4.0%",
-      "rationale": "Strong candidate for parlay construction via BetOnline.ag. High statistical alignment (72.3% win probability).",
+      "rationale": "Strong candidate for parlay construction via BetOnline.ag. High statistical alignment (73.2% win probability).",
       "commenceTime": "2026-11-12T00:00:00Z"
     },
     {
@@ -175,11 +211,11 @@
       "matchup": "Marquette Golden Eagles @ Michigan Wolverines",
       "team": "Michigan Wolverines",
       "category": "ML Anchor Leg",
-      "odds": "-170",
-      "modelWinPct": "67.0%",
-      "impliedPct": "63.0%",
+      "odds": "-160",
+      "modelWinPct": "65.5%",
+      "impliedPct": "61.5%",
       "edge": "+4.0%",
-      "rationale": "Strong candidate for parlay construction via BetOnline.ag. High statistical alignment (67.0% win probability).",
+      "rationale": "Strong candidate for parlay construction via BetOnline.ag. High statistical alignment (65.5% win probability).",
       "commenceTime": "2026-11-12T00:00:00Z"
     },
     {
@@ -271,10 +307,10 @@
       "matchup": "William & Mary Tribe @ Florida Atlantic Owls",
       "team": "William & Mary Tribe",
       "category": "Value Parlay Leg",
-      "odds": "+183",
+      "odds": "+189",
       "modelWinPct": "50.0%",
-      "impliedPct": "35.3%",
-      "edge": "+14.7%",
+      "impliedPct": "34.6%",
+      "edge": "+15.4%",
       "rationale": "Strong candidate for parlay construction via BetOnline.ag. High statistical alignment (50.0% win probability).",
       "commenceTime": "2026-11-12T00:00:00Z"
     },
@@ -295,10 +331,10 @@
       "matchup": "Marquette Golden Eagles @ Michigan Wolverines",
       "team": "Marquette Golden Eagles",
       "category": "Value Parlay Leg",
-      "odds": "+149",
+      "odds": "+140",
       "modelWinPct": "50.0%",
-      "impliedPct": "40.2%",
-      "edge": "+9.8%",
+      "impliedPct": "41.7%",
+      "edge": "+8.3%",
       "rationale": "Strong candidate for parlay construction via BetOnline.ag. High statistical alignment (50.0% win probability).",
       "commenceTime": "2026-11-12T00:00:00Z"
     },
@@ -325,18 +361,6 @@
       "edge": "+6.5%",
       "rationale": "Strong candidate for parlay construction via BetOnline.ag. High statistical alignment (50.0% win probability).",
       "commenceTime": "2026-11-12T00:30:00Z"
-    },
-    {
-      "id": "5d71d9f77f845ab0748462e4714c0215-Abilene Christian Wildcats",
-      "matchup": "Stephen F. Austin Lumberjacks @ Abilene Christian Wildcats",
-      "team": "Abilene Christian Wildcats",
-      "category": "Value Parlay Leg",
-      "odds": "+200",
-      "modelWinPct": "50.0%",
-      "impliedPct": "33.3%",
-      "edge": "+16.7%",
-      "rationale": "Strong candidate for parlay construction via BetMGM. High statistical alignment (50.0% win probability).",
-      "commenceTime": "2026-11-12T01:00:00Z"
     }
   ],
   "2026-11-13": [
