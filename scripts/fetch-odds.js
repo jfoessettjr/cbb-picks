@@ -34,13 +34,17 @@ async function fetchParlayLegPicks() {
       return;
     }
 
-    let parsedPicks = [];
+    // Group picks by date object: { "YYYY-MM-DD": [ ...picks ] }
+    let groupedByDate = {};
 
     games.forEach((game) => {
       const bookmaker = game.bookmakers?.[0]; 
       if (!bookmaker) return;
       const h2hMarket = bookmaker.markets?.find(m => m.key === 'h2h');
       if (!h2hMarket) return;
+
+      // Extract game date (YYYY-MM-DD) from commence_time
+      const dateStr = game.commence_time.split('T')[0];
 
       h2hMarket.outcomes.forEach((outcome) => {
         const odds = outcome.price;
@@ -49,8 +53,6 @@ async function fetchParlayLegPicks() {
         // ==========================================
         // PARLAY LEG STRATEGY FILTER
         // ==========================================
-        // Target 1: Safe Moneyline Anchors (-350 to -150) -> High win probability (~60% to 78%)
-        // Target 2: Value Underdogs / Pickems (+100 to +180) -> Solid payout boost with decent model backing
         let category = "";
         if (odds <= -150 && odds >= -400) {
           category = "ML Anchor Leg";
@@ -65,7 +67,7 @@ async function fetchParlayLegPicks() {
 
           const edge = ((modelWinProb - impliedProb) * 100).toFixed(1);
 
-          parsedPicks.push({
+          const pickItem = {
             id: `${game.id}-${outcome.name}`,
             matchup: `${game.away_team} @ ${game.home_team}`,
             team: outcome.name,
@@ -76,17 +78,24 @@ async function fetchParlayLegPicks() {
             edge: `+${edge}%`,
             rationale: `Strong candidate for parlay construction via ${bookmaker.title}. High statistical alignment (${(modelWinProb * 100).toFixed(1)}% win probability).`,
             commenceTime: game.commence_time
-          });
+          };
+
+          if (!groupedByDate[dateStr]) {
+            groupedByDate[dateStr] = [];
+          }
+          groupedByDate[dateStr].push(pickItem);
         }
       });
     });
 
-    // Sort by highest model win percentage to prioritize safest parlay legs
-    parsedPicks.sort((a, b) => parseFloat(b.modelWinPct) - parseFloat(a.modelWinPct));
+    // Sort picks inside each date by highest model win percentage
+    Object.keys(groupedByDate).forEach((date) => {
+      groupedByDate[date].sort((a, b) => parseFloat(b.modelWinPct) - parseFloat(a.modelWinPct));
+    });
 
     const outputPath = path.resolve('public/picks.json');
-    fs.writeFileSync(outputPath, JSON.stringify(parsedPicks, null, 2));
-    console.log(`✅ Success! Generated and saved ${parsedPicks.length} parlay leg picks to public/picks.json`);
+    fs.writeFileSync(outputPath, JSON.stringify(groupedByDate, null, 2));
+    console.log(`✅ Success! Generated and saved multi-date parlay picks to public/picks.json`);
 
   } catch (error) {
     console.error("Failed to fetch/calculate parlay odds:", error);
