@@ -1,6 +1,21 @@
 import React, { useState, useEffect } from 'react';
 import { Trophy, SlidersHorizontal, Calendar as CalendarIcon } from 'lucide-react';
 
+// Helper to get today's date string in Eastern Time
+const getTodayEasternStr = () => {
+  const formatter = new Intl.DateTimeFormat('en-US', {
+    timeZone: 'America/New_York',
+    year: 'numeric',
+    month: '2-digit',
+    day: '2-digit',
+  });
+  const parts = formatter.formatToParts(new Date());
+  const year = parts.find(p => p.type === 'year').value;
+  const month = parts.find(p => p.type === 'month').value;
+  const day = parts.find(p => p.type === 'day').value;
+  return `${year}-${month}-${day}`;
+};
+
 export default function App() {
   const [picksByDate, setPicksByDate] = useState({});
   const [selectedDate, setSelectedDate] = useState('');
@@ -13,13 +28,13 @@ export default function App() {
     fetch('/picks.json')
       .then((res) => res.json())
       .then((data) => {
-        // data is expected to be an object: { "2026-06-06": [...], "2026-06-07": [...] }
+        // data is expected to be an object: { "2026-03-01": [...], "2026-03-02": [...] }
         setPicksByDate(data);
         const dates = Object.keys(data).sort();
         setAvailableDates(dates);
 
-        // Default to today's date if available, otherwise the first available date
-        const todayStr = new Date().toISOString().split('T')[0];
+        // Default to today's date in Eastern Time if available, otherwise the first available date
+        const todayStr = getTodayEasternStr();
         if (dates.includes(todayStr)) {
           setSelectedDate(todayStr);
         } else if (dates.length > 0) {
@@ -29,18 +44,18 @@ export default function App() {
       })
       .catch((err) => {
         console.error("Could not load picks.json, using fallback mockup data.", err);
-        const todayStr = new Date().toISOString().split('T')[0];
+        const todayStr = getTodayEasternStr();
         setPicksByDate({
           [todayStr]: [
             {
               id: 'demo-1',
               matchup: 'Sample Team A @ Sample Team B',
               team: 'Sample Team A',
-              category: 'Upset Specials',
-              odds: '+250',
-              modelWinPct: '34.5%',
-              impliedPct: '28.6%',
-              edge: '+5.9%',
+              category: 'Value Parlay Leg',
+              odds: '+150',
+              modelWinPct: '45.5%',
+              impliedPct: '40.0%',
+              edge: '+5.5%',
               rationale: 'Run "npm run update-picks" in your terminal to fetch live daily games.',
               commenceTime: new Date().toISOString()
             }
@@ -72,7 +87,7 @@ export default function App() {
   if (loading) {
     return (
       <div className="min-h-screen bg-slate-950 text-white flex items-center justify-center font-sans">
-        <div className="text-xl animate-pulse text-amber-400">Loading NCAA Longshot Vault...</div>
+        <div className="text-xl animate-pulse text-amber-400">Loading NCAA Analytical Value Engine...</div>
       </div>
     );
   }
@@ -87,7 +102,7 @@ export default function App() {
             <div className="flex items-center gap-2 text-amber-400 font-semibold tracking-wider text-sm uppercase">
               <Trophy className="w-5 h-5" /> NCAAB Analytical Value Engine
             </div>
-            <h1 className="text-3xl font-extrabold text-white tracking-tight mt-1">Value Vault: Longshot Picks</h1>
+            <h1 className="text-3xl font-extrabold text-white tracking-tight mt-1">Value Vault: Parlay Legs & Anchors</h1>
           </div>
           <div className="bg-slate-900 border border-slate-800 p-3 rounded-xl text-xs text-slate-400 max-w-xs">
             <span className="text-amber-400 font-medium">Informational Notice:</span> Statistical models track value divergence from Vegas odds. Not financial or gambling advice.
@@ -97,7 +112,7 @@ export default function App() {
         {/* Date Selector Bar */}
         <div className="flex items-center gap-3 bg-slate-900 p-4 rounded-xl border border-slate-800 overflow-x-auto">
           <div className="flex items-center gap-2 text-slate-400 text-sm font-medium whitespace-nowrap">
-            <CalendarIcon className="w-4 h-4 text-amber-400" /> Select Slate Date:
+            <CalendarIcon className="w-4 h-4 text-amber-400" /> Select Slate Date (EST):
           </div>
           <div className="flex gap-2">
             {availableDates.map((date) => (
@@ -113,7 +128,8 @@ export default function App() {
                 {new Date(date + 'T00:00:00').toLocaleDateString(undefined, {
                   month: 'short',
                   day: 'numeric',
-                  weekday: 'short'
+                  weekday: 'short',
+                  timeZone: 'America/New_York'
                 })}
               </button>
             ))}
@@ -123,7 +139,7 @@ export default function App() {
         {/* Filters & Controls */}
         <div className="flex flex-col sm:flex-row justify-between gap-4 bg-slate-900/50 p-4 rounded-xl border border-slate-800">
           <div className="flex flex-wrap gap-2">
-            {['All Picks', 'Upset Specials', 'Parlay Builders'].map((cat) => (
+            {['All Picks', 'ML Anchor Leg', 'Value Parlay Leg'].map((cat) => (
               <button
                 key={cat}
                 onClick={() => setFilter(cat)}
